@@ -61,9 +61,9 @@ class UsersValidation {
                 "email" => "required|string|max_length[255]",
                 "phone" => "permit_empty|string|max_length[255]",
                 "preferences" => "permit_empty|is_array|max_length[10]",
-                "password" => "required|valid_password|max_length[255]",
+                "password" => "required|valid_password|max_length[255]|min_length[6]",
                 "organizationName" => "permit_empty|string|max_length[255]",
-                "confirmPassword" => "required|valid_password|max_length[255]|matches[password]",
+                "confirmPassword" => "required|valid_password|max_length[255]|min_length[6]|matches[password]",
                 "role" => "required|string|in_list[User,Admin]"
             ]
         ],
