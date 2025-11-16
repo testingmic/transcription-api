@@ -64,7 +64,6 @@ class TranscriptionsValidation {
             'payload' => [
                 'title' => 'required|string|max_length[255]',
                 'description' => 'permit_empty|string|max_length[2000]',
-                'file' => 'required|uploaded_file[audio]',
                 'summary' => 'permit_empty|string|max_length[2000]',
                 'keywords' => 'permit_empty|string|max_length[2000]',
                 'transcription' => 'permit_empty|string|max_length[2000]',

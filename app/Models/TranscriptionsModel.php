@@ -9,6 +9,7 @@ use CodeIgniter\Database\Exceptions\DatabaseException;
 class TranscriptionsModel extends Model {
     
     protected $table = 'transcriptions';
+    protected $audioTable = 'audio_files';
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'title', 'transcription', 'summary', 'keywords', 'tags', 'language',
@@ -24,21 +25,23 @@ class TranscriptionsModel extends Model {
      * @return array
      */
     public function listTranscriptions($filters = [], $limit = null, $offset = 0) {
-        $query = $this->select('transcriptions.*')
-            ->orderBy('id', 'DESC')
+        $query = $this->db->table("{$this->table} t")
+            ->select('t.*, a.audioUrl, a.id AS audio_id')
+            ->join("{$this->audioTable} a", 'a.transcription_id = t.id', 'left')
+            ->orderBy('t.id', 'DESC')
             ->limit($limit, $offset * $limit);
 
         foreach($filters as $key => $value) {
             if(!empty($value)) {
                 if(is_array($value)) {
-                    $query->whereIn($key, $value);
+                    $query->whereIn("t.{$key}", $value);
                 } else {
-                    $query->where($key, $value);
+                    $query->where("t.{$key}", $value);
                 }
             }
         }
 
-        $query->orderBy('id', 'DESC')
+        $query->orderBy('t.id', 'DESC')
             ->limit($limit, $offset * $limit);
 
         return $query->get()->getResultArray();
@@ -97,10 +100,14 @@ class TranscriptionsModel extends Model {
      */
     public function checkExists($filters = []) {
         try {
-            $query = $this->select('*')
-                ->where($filters)
-                ->get();
-            return $query->getRowArray();
+            $query = $this->db->table("{$this->table} t")
+                ->select('t.*, a.audioUrl, a.id AS audio_id')
+                ->join("{$this->audioTable} a", 'a.transcription_id = t.id', 'left');
+            foreach($filters as $key => $value) {
+                $query->where("t.{$key}", $value);
+            }
+            return $query->get()->getRowArray();
+            
         } catch(DatabaseException $e) {
             log_message('error', 'Transcription Exists Error: ' . $e->getMessage());
             return false;

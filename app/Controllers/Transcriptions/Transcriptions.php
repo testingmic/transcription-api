@@ -20,6 +20,7 @@ class Transcriptions extends LoadController {
             'status' => $this->payload['status'] ?? null,
             'title' => $this->payload['title'] ?? null,
             'keywords' => $this->payload['keywords'] ?? null,
+            'language' => $this->payload['language'] ?? null,
         ];
 
         $data = $this->transcriptionsModel->listTranscriptions($filters, $this->payload['limit'] ?? 10, $this->payload['offset'] ?? 0);
@@ -67,7 +68,7 @@ class Transcriptions extends LoadController {
         if(!empty($checkExits)) {
             return Routing::created([
                 'data' => 'There is already a transcription with the same file size and text. Please use the existing transcription.',
-                'record' => formatTranscription([$checkExits])[0],
+                'record'
             ]);
         }
 

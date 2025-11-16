@@ -19,3 +19,22 @@ function formatTranscription($transcription) {
 
     return $result;
 }
+
+/**
+ * Format the audio response
+ * 
+ * @param array $audios
+ * 
+ * @return array
+ */
+function formatAudio($audios) {
+
+    if(empty($audios)) return [];
+
+    // format the transcription response
+    foreach($audios as $key => $value) {
+        $result[] = $value;
+    }
+
+    return $result;
+}

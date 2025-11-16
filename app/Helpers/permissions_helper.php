@@ -34,6 +34,12 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
             ],
+            'audio' => [
+                'create' => true,
+                'list' => true,
+                'view' => true,
+                'delete' => true,
+            ],
         ],
 
         /**
@@ -52,6 +58,12 @@ function getPermissions() {
             'transcriptions' => [
                 'create' => true,
                 'update' => true,
+                'list' => true,
+                'view' => true,
+                'delete' => true,
+            ],
+            'audio' => [
+                'create' => true,
                 'list' => true,
                 'view' => true,
                 'delete' => true,
@@ -75,6 +87,12 @@ function getPermissions() {
             'transcriptions' => [
                 'create' => true,
                 'update' => true,
+                'list' => true,
+                'view' => true,
+                'delete' => true,
+            ],
+            'audio' => [
+                'create' => true,
                 'list' => true,
                 'view' => true,
                 'delete' => true,

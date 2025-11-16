@@ -6,6 +6,7 @@ use App\Models\UsersModel;
 use App\Models\AuthModel;
 use App\Libraries\Caching;
 use App\Models\ResourcesModel;
+use App\Models\AudioModel;
 
 use App\Models\TranscriptionsModel;
 
@@ -24,6 +25,7 @@ class LoadController extends BaseController
     protected $supportModel;
 
     protected $resourcesModel;
+    protected $audioModel;
     
     protected $transcriptionsModel;
     protected $notificationsModel;
@@ -34,6 +36,7 @@ class LoadController extends BaseController
         $this->authModel = new AuthModel();
         $this->usersModel = new UsersModel();
         $this->transcriptionsModel = new TranscriptionsModel();
+        $this->audioModel = new AudioModel();
         
         // initialize the cache object
         if(empty($this->cacheObject)) {
@@ -63,7 +66,7 @@ class LoadController extends BaseController
             
             // Define a mapping of model names to their corresponding model classes
             $modelMap = [
-                'resources' => ResourcesModel::class,
+                'resources' => ResourcesModel::class
             ];
             
             // Loop through the requested models and initialize them
@@ -77,16 +80,11 @@ class LoadController extends BaseController
             // initialize additional models
             if($loop) {
 
-                // initialize additional for pickups
-                if(in_array($model, ['pickups'])) {
-                    $this->triggerModel(['households', 'drivers', 'contractors'], false);
+                // initialize additional for audio
+                if(in_array($model, ['audio'])) {
+                    $this->triggerModel(['transcriptions'], false);
                 }
 
-                // initialize additional for vehicles
-                if(in_array($model, ['vehicles'])) {
-                    $this->triggerModel(['drivers'], false);
-                }
-                
             }
 
         }

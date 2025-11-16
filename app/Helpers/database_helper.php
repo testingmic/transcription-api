@@ -103,6 +103,20 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_transcriptions_user_id ON transcriptions (user_id);
     CREATE INDEX IF NOT EXISTS idx_transcriptions_title ON transcriptions (title);
     CREATE INDEX IF NOT EXISTS idx_transcriptions_status ON transcriptions (status);",
+
+    "CREATE TABLE IF NOT EXISTS audio_files (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        transcription_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        audioUrl TEXT DEFAULT NULL,
+        mimeType VARCHAR(100) NOT NULL,
+        size INTEGER NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_audio_files_transcription_id ON audio_files (transcription_id);
+    CREATE INDEX IF NOT EXISTS idx_audio_files_mimeType ON audio_files (mimeType);
+    CREATE INDEX IF NOT EXISTS idx_audio_files_size ON audio_files (size);",
 ];
 
 $alterTables = [
