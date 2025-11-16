@@ -18,6 +18,15 @@ class AuthValidation {
                 'rememberme' => 'in_list[0,1]'
             ]
         ],
+        'register_device' => [
+            'method' => 'POST',
+            'authenticate' => true,
+            'payload' => [
+                'token' => 'required|max_length[255]',
+                'fingerprint' => 'required|max_length[255]',
+                'deviceInfo' => 'required|max_length[255]',
+            ]
+        ],
         'logout' => [
             'method' => 'GET,POST',
             'payload' => [

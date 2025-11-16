@@ -375,6 +375,15 @@ class Auth extends LoadController {
     }
 
     /**
+     * Register a device
+     * 
+     * @return array
+     */
+    public function register_device() {
+        return Routing::success('Device registered successfully.');
+    }
+
+    /**
      * Confirm the user
      * 
      * @return array
