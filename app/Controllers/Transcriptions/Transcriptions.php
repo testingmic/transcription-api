@@ -142,6 +142,12 @@ class Transcriptions extends LoadController {
                 $summary = $openAI->analyzeResponse($checkExits['transcription']);
                 $payload['summary'] = json_encode($summary);
             }
+            
+            // if the title is still recording and then the question is not empty then set the title to the question
+            if(strpos($checkExits['title'], 'recording_') !== false && !empty($summary['questions'])) {
+                $payload['title'] = $summary['questions'][0];
+            }
+
         }
 
         foreach(['title', 'description', 'summary', 'tags', 'transcription', 'status', 'keywords'] as $key) {
