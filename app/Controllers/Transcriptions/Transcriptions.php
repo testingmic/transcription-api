@@ -68,7 +68,7 @@ class Transcriptions extends LoadController {
         if(!empty($checkExits)) {
             return Routing::created([
                 'data' => 'There is already a transcription with the same file size and text. Please use the existing transcription.',
-                'record'
+                'record' => $checkExits
             ]);
         }
 
