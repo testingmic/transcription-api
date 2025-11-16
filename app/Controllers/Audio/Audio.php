@@ -5,6 +5,8 @@ namespace App\Controllers\Audio;
 use App\Controllers\LoadController;
 use App\Libraries\Routing;
 
+use App\Libraries\Resources;
+
 class Audio extends LoadController {
     
     public function list() {
@@ -48,7 +50,18 @@ class Audio extends LoadController {
      * @return array
      */
     public function create() {
-        return Routing::success('Audio file created successfully');
+
+
+        // upload the media files if any
+        $media = new Resources();
+        $media = $media->uploadMedia(
+            'transcriptions', 
+            $this->payload['transcription_id'], 
+            $this->currentUser['id'], 
+            $this->payload['file_uploads']
+        );
+
+        return Routing::created(['data' => 'Audio file created successfully', 'record' => $media]);
     }
 
     /**

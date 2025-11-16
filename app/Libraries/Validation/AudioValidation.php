@@ -21,7 +21,6 @@ class AudioValidation {
             'payload' => [
                 'transcription_id' => 'required|integer',
                 'audio' => 'required',
-                'audioUrl' => 'required|string|max_length[255]',
                 'mimeType' => 'required|string|max_length[255]',
                 'size' => 'required|integer',
             ]

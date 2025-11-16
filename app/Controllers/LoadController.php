@@ -5,8 +5,8 @@ namespace App\Controllers;
 use App\Models\UsersModel;
 use App\Models\AuthModel;
 use App\Libraries\Caching;
-use App\Models\ResourcesModel;
 use App\Models\AudioModel;
+use App\Models\ResourcesModel;
 
 use App\Models\TranscriptionsModel;
 
