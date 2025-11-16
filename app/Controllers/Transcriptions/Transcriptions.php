@@ -136,8 +136,12 @@ class Transcriptions extends LoadController {
         // set the 
         if(!empty($this->payload['generateSummary'])) {
             $openAI = new OpenAI();
-            $summary = $openAI->analyzeResponse($checkExits['transcription']);
-            $payload['summary'] = json_encode($summary);
+
+            $summary = !empty($checkExits['summary']) ? json_decode($checkExits['summary'], true) : [];
+            if(empty($summary['actionItems']) && empty($summary['keyPoints'])) {
+                $summary = $openAI->analyzeResponse($checkExits['transcription']);
+                $payload['summary'] = json_encode($summary);
+            }
         }
 
         foreach(['title', 'description', 'summary', 'tags', 'transcription', 'status', 'keywords'] as $key) {
