@@ -67,6 +67,7 @@ logs
 
 # Local env files
 !.env.example
+transcribe_db*
 test.php
 
 aidocs/
