@@ -20,6 +20,11 @@ function formatTranscription($transcription) {
         $value['summary'] = !empty($value['summary']) ? json_decode($value['summary'], true) : [];
         $value['text'] = $value['transcription'];
 
+        $value['summarySet'] = false;
+        if(!empty($value['summary']) && !empty($value['summary']['actionItems']) && !empty($value['summary']['keyPoints'])) {
+            $value['summarySet'] = true;
+        }
+
         if(!empty($value['audioUrl'])) {
             $value['audioUrl'] = base_url("uploads/{$value['audioUrl']}");
         }
