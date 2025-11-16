@@ -60,19 +60,6 @@ class Transcriptions extends LoadController {
      */
     public function create() {
 
-        // check if the transcription already exists
-        $checkExits = $this->transcriptionsModel->checkExists([
-            'user_id' => $this->currentUser['id'] ?? 0,
-            'fileSize' => $this->payload['fileSize'], 
-            'transcription' => $this->payload['text']
-        ]);
-        if(!empty($checkExits)) {
-            return Routing::created([
-                'data' => 'There is already a transcription with the same file size and text. Please use the existing transcription.',
-                'record' => $checkExits
-            ]);
-        }
-
         // create the transcription
         $data = [
             'user_id' => $this->currentUser['id'] ?? 0,
@@ -149,6 +136,8 @@ class Transcriptions extends LoadController {
             }
 
         }
+
+        $payload['updated_at'] = date('Y-m-d H:i:s');
 
         foreach(['title', 'description', 'summary', 'tags', 'transcription', 'status', 'keywords'] as $key) {
             if(isset($this->payload[$key])) {
