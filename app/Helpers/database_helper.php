@@ -109,6 +109,7 @@ $databases = [
         transcription_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         audioUrl TEXT DEFAULT NULL,
+        thumbnails TEXT DEFAULT NULL,
         mimeType VARCHAR(100) NOT NULL,
         size INTEGER NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -117,19 +118,6 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_audio_files_transcription_id ON audio_files (transcription_id);
     CREATE INDEX IF NOT EXISTS idx_audio_files_mimeType ON audio_files (mimeType);
     CREATE INDEX IF NOT EXISTS idx_audio_files_size ON audio_files (size);",
-
-    "CREATE TABLE IF NOT EXISTS media (
-        media_id INTEGER PRIMARY KEY,
-        user_id INTEGER NOT NULL,
-        record_id INTEGER NOT NULL,
-        section TEXT NOT NULL,
-        media TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-    CREATE INDEX IF NOT EXISTS user_id ON media (user_id);
-    CREATE INDEX IF NOT EXISTS record_id ON media (record_id);
-    CREATE INDEX IF NOT EXISTS section ON media (section);",
 ];
 
 $alterTables = [

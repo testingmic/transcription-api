@@ -61,7 +61,16 @@ class Audio extends LoadController {
             $this->payload['file_uploads']
         );
 
-        return Routing::created(['data' => 'Audio file created successfully', 'record' => $media]);
+        if(empty($media)) {
+            return Routing::error('Failed to upload audio file');
+        }
+
+        $reform = [];
+        foreach($media as $key => $value) {
+            $reform[] = base_url($key);
+        }
+
+        return Routing::created(['data' => 'Audio file created successfully', 'record' => $reform]);
     }
 
     /**

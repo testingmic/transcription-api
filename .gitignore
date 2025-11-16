@@ -90,6 +90,7 @@ writable/uploads/*
 package-lock.json
 
 public/tmp/*
+public/uploads/*
 !public/tmp/index.html
 .env
 .vscode

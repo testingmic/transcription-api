@@ -7,9 +7,9 @@ use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class ResourcesModel extends Model
 {
-    protected $table = 'resources';
-    protected $primaryKey = 'media_id';
-    protected $allowedFields = ['section', 'record_id', 'user_id', 'media', 'created_at', 'updated_at'];
+    protected $table = 'audio_files';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['size', 'transcription_id', 'user_id', 'thumbnails', 'audioUrl', 'mimeType'];
 
     public function __construct() {
         parent::__construct();
@@ -38,7 +38,7 @@ class ResourcesModel extends Model
      * @return array
      */
     public function getMediaRecordByRecordId($recordId) {
-        return $this->where('record_id', $recordId)->findAll();
+        return $this->where('transcription_id', $recordId)->findAll();
     }
 
     /**
@@ -49,7 +49,7 @@ class ResourcesModel extends Model
      * @return array
      */
     public function getMediaRecordByRecordIdAndSection($recordId, $section) {
-        return $this->where('record_id', $recordId)->where('section', $section)->findAll();
+        return $this->where('transcription_id', $recordId)->where('section', $section)->findAll();
     }
 
     /**
@@ -71,15 +71,17 @@ class ResourcesModel extends Model
      * 
      * @return array
      */
-    public function createMediaRecord($uploadedList, $section, $recordId, $userId) {
+    public function createMediaRecord($uploadedList, $transcriptionId, $userId) {
 
         try {
 
             $data = [
-                'section' => $section,
-                'record_id' => $recordId,
                 'user_id' => $userId,
-                'media' => json_encode($uploadedList),
+                'size' => $uploadedList['size'],
+                'audioUrl' => $uploadedList['audioUrl'],
+                'transcription_id' => $transcriptionId,
+                'mimeType' => $uploadedList['mimeType'],
+                'thumbnails' => $uploadedList['thumbnails'] ?? '',
             ];
             $this->insert($data);
 
