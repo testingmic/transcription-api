@@ -384,6 +384,19 @@ class Auth extends LoadController {
     }
 
     /**
+     * Setup a pin
+     * 
+     * @return array
+     */
+    public function setup_pin() {
+
+        $pinHash = hash_password($this->payload['pin']);
+        $this->usersModel->updateRecord($this->currentUser['user_id'], ['pin_hash' => $pinHash]);
+        
+        return Routing::success('Pin setup successfully.');
+    }
+
+    /**
      * Confirm the user
      * 
      * @return array

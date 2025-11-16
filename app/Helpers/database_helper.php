@@ -19,6 +19,7 @@ $databases = [
         last_login DATETIME DEFAULT NULL,
         twofactor_secret TEXT DEFAULT NULL,
         image VARCHAR(255),
+        pin_hash TEXT DEFAULT NULL,
         nationality VARCHAR(100),
         gender VARCHAR(20) DEFAULT NULL,
         date_of_birth DATE DEFAULT NULL,
@@ -121,7 +122,7 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE pickups ADD COLUMN assembly_id INTEGER DEFAULT 0;",
+    "ALTER TABLE users ADD COLUMN pin_hash TEXT DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {

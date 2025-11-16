@@ -18,6 +18,21 @@ class AuthValidation {
                 'rememberme' => 'in_list[0,1]'
             ]
         ],
+        'setup_pin' => [
+            'method' => 'POST',
+            'authenticate' => true,
+            'payload' => [
+                'pin' => 'required|max_length[4]',
+                'code' => 'required|max_length[32]'
+            ]
+        ],
+        'login_pin' => [
+            'method' => 'POST',
+            'payload' => [
+                'email' => 'required|valid_email|max_length[100]',
+                'pin' => 'required|max_length[4]'
+            ]
+        ],
         'register_device' => [
             'method' => 'POST',
             'authenticate' => true,

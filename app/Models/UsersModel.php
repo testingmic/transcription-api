@@ -23,7 +23,7 @@ class UsersModel extends Model {
         "username", "email", "name", "status", "two_factor_setup", "twofactor_secret", "user_type",
         "admin_access", "date_registered", "nationality", "gender", "date_of_birth", "phone",  
         "password", "billing_address", "timezone", "website", "job_title", "description", "skills", 
-        "social_links", "language", "rating", "image", "branch_id", "pharmacy_id"
+        "social_links", "language", "rating", "image", "branch_id", "pharmacy_id", "pin_hash"
     ];
     
     public function __construct() {
