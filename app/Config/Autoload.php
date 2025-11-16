@@ -91,23 +91,9 @@ class Autoload extends AutoloadConfig
      * @var list<string>
      */
     public $helpers = [
-        'response',
-        'jurisdictions',
-        'contractors',
-        'households',
-        'payments',
-        'drivers',
-        'pickups',
-        'routes',
-        'communications',
-        'assemblies',
         'permissions',
-        'emergency',
-        'municipality',
-        'vehicles',
         'analytics',
-        'notifications',
         'utilities',
-        'funnel'
+        'transcriptions'
     ];
 }

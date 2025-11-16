@@ -10,22 +10,18 @@ $databases = [
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username VARCHAR(100) UNIQUE NOT NULL,
         email VARCHAR(150) UNIQUE NOT NULL,
-        phone VARCHAR(20) NOT NULL,
-        assembly_id INTEGER DEFAULT 0,
-        contractor_id INTEGER DEFAULT 0,
-        jurisdiction_id INTEGER DEFAULT 0,
-        household_id INTEGER DEFAULT 0,
+        phone VARCHAR(20) DEFAULT NULL,
         password VARCHAR(255) NOT NULL,
         name VARCHAR(150) NOT NULL,
-        role VARCHAR(50) NOT NULL, -- 'household', 'contractor', 'driver', 'tricycle', 'assembly', 'admin'
+        role VARCHAR(50) NOT NULL DEFAULT 'User', -- 'User', 'Admin', 'Moderator'
         status VARCHAR(20) DEFAULT 'Active', -- 'Active', 'Inactive', 'Suspended'
         two_factor_setup INTEGER DEFAULT 0,
         last_login DATETIME DEFAULT NULL,
         twofactor_secret TEXT DEFAULT NULL,
         image VARCHAR(255),
         nationality VARCHAR(100),
-        gender VARCHAR(20),
-        date_of_birth DATE,
+        gender VARCHAR(20) DEFAULT NULL,
+        date_of_birth DATE DEFAULT NULL,
         timezone VARCHAR(50) DEFAULT 'Africa/Accra',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -80,7 +76,6 @@ $databases = [
         email TEXT,
         auth TEXT,
         time_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        ipaddress TEXT,
         request TEXT DEFAULT 'register',
         is_test INTEGER NOT NULL DEFAULT 0
     );
@@ -88,7 +83,26 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_altuser_ver_code ON altuser (ver_code);
     CREATE INDEX IF NOT EXISTS idx_altuser_username ON altuser (username);
     CREATE INDEX IF NOT EXISTS idx_altuser_email ON altuser (email);",
-    
+
+    "CREATE TABLE IF NOT EXISTS transcriptions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        title VARCHAR(100) NOT NULL,
+        transcription TEXT NOT NULL,
+        summary TEXT DEFAULT NULL,
+        keywords TEXT DEFAULT NULL,
+        language VARCHAR(50) DEFAULT 'en',
+        tags TEXT DEFAULT NULL,
+        duration INTEGER DEFAULT 0,
+        fileSize INTEGER DEFAULT 0,
+        metadata TEXT DEFAULT NULL,
+        status VARCHAR(20) DEFAULT 'Pending',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_transcriptions_user_id ON transcriptions (user_id);
+    CREATE INDEX IF NOT EXISTS idx_transcriptions_title ON transcriptions (title);
+    CREATE INDEX IF NOT EXISTS idx_transcriptions_status ON transcriptions (status);",
 ];
 
 $alterTables = [

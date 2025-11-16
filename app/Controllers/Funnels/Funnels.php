@@ -25,23 +25,17 @@ class Funnels extends LoadController {
     public function list() {
         $filters = [
             'event_name' => $this->payload['event_name'] ?? null,
-            'driver_id' => $this->payload['driver_id'] ?? null,
-            'pickup_id' => $this->payload['pickup_id'] ?? null,
-            'contractor_id' => $this->payload['contractor_id'] ?? null,
-            'household_id' => $this->payload['household_id'] ?? null,
+            'transcription_id' => $this->payload['transcription_id'] ?? null,
+            'moderator_id' => $this->payload['moderator_id'] ?? null,
             'start_date' => $this->payload['start_date'] ?? null,
             'end_date' => $this->payload['end_date'] ?? null,
         ];
 
         // Filter by user role
-        if($this->isHousehold()) {
+        if($this->isUser()) {
             $filters['household_id'] = $this->uniqueId;
-        } elseif($this->isContractor()) {
-            $filters['contractor_id'] = $this->currentUser['contractor_id'] ?? 0;
-        } elseif($this->isDriver() || $this->isTricycle()) {
-            $filters['driver_id'] = $this->currentUser['id'] ?? 0;
-        } elseif($this->isAssembly()) {
-            $filters['assembly_id'] = $this->currentUser['assembly_id'] ?? 0;
+        } elseif($this->isModerator()) {
+            $filters['moderator_id'] = $this->currentUser['moderator_id'] ?? 0;
         }
 
         $data = $this->funnelsModel->findEvents(
@@ -75,9 +69,8 @@ class Funnels extends LoadController {
 
         $data = [
             'driver_id' => $this->payload['driver_id'] ?? 0,
-            'pickup_id' => $this->payload['pickup_id'] ?? 0,
-            'contractor_id' => $this->payload['contractor_id'] ?? 0,
-            'household_id' => $this->payload['household_id'] ?? 0,
+            'transcription_id' => $this->payload['transcription_id'] ?? 0,
+            'moderator_id' => $this->payload['moderator_id'] ?? 0,
             'event_date' => $this->payload['event_date'] ?? date('Y-m-d'),
         ];
 
@@ -100,10 +93,8 @@ class Funnels extends LoadController {
     public function statistics() {
         $filters = [
             'event_name' => $this->payload['event_name'] ?? null,
-            'driver_id' => $this->payload['driver_id'] ?? null,
-            'pickup_id' => $this->payload['pickup_id'] ?? null,
-            'contractor_id' => $this->payload['contractor_id'] ?? null,
-            'household_id' => $this->payload['household_id'] ?? null,
+            'transcription_id' => $this->payload['transcription_id'] ?? null,
+            'moderator_id' => $this->payload['moderator_id'] ?? null,
             'start_date' => $this->payload['start_date'] ?? null,
             'end_date' => $this->payload['end_date'] ?? null,
         ];
@@ -111,7 +102,7 @@ class Funnels extends LoadController {
         // Filter by user role
         if(!empty($this->currentUser)) {
             if($this->currentUser['role'] == 'contractor') {
-                $filters['contractor_id'] = $this->currentUser['contractor_id'] ?? 0;
+                $filters['moderator_id'] = $this->currentUser['moderator_id'] ?? 0;
             }
         }
 
@@ -120,56 +111,4 @@ class Funnels extends LoadController {
         return Routing::success(['statistics' => $stats]);
     }
 
-    /**
-     * Get funnel conversion rates
-     * @return mixed
-     */
-    public function conversions() {
-        $filters = [
-            'driver_id' => $this->payload['driver_id'] ?? null,
-            'pickup_id' => $this->payload['pickup_id'] ?? null,
-            'contractor_id' => $this->payload['contractor_id'] ?? null,
-            'household_id' => $this->payload['household_id'] ?? null,
-            'start_date' => $this->payload['start_date'] ?? null,
-            'end_date' => $this->payload['end_date'] ?? null,
-        ];
-
-        // Filter by user role
-        if(!empty($this->currentUser)) {
-            if($this->currentUser['role'] == 'contractor') {
-                $filters['contractor_id'] = $this->currentUser['contractor_id'] ?? 0;
-            }
-        }
-
-        $conversions = $this->funnelsModel->getFunnelConversionRates($filters);
-        
-        return Routing::success(['conversions' => $conversions]);
-    }
-
-    /**
-     * Get events by date
-     * @return mixed
-     */
-    public function byDate() {
-        $filters = [
-            'event_name' => $this->payload['event_name'] ?? null,
-            'driver_id' => $this->payload['driver_id'] ?? null,
-            'pickup_id' => $this->payload['pickup_id'] ?? null,
-            'contractor_id' => $this->payload['contractor_id'] ?? null,
-            'household_id' => $this->payload['household_id'] ?? null,
-            'start_date' => $this->payload['start_date'] ?? null,
-            'end_date' => $this->payload['end_date'] ?? null,
-        ];
-
-        // Filter by user role
-        if(!empty($this->currentUser)) {
-            if($this->currentUser['role'] == 'contractor') {
-                $filters['contractor_id'] = $this->currentUser['contractor_id'] ?? 0;
-            }
-        }
-
-        $data = $this->funnelsModel->getEventsByDate($filters);
-        
-        return Routing::success(['data' => $data]);
-    }
 }

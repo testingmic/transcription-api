@@ -229,66 +229,36 @@ trait HasAuthorization {
      */
     protected function isAdmin() {
         $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'admin';
+        return strtolower($user['role'] ?? '') === 'Admin';
     }
 
     /**
-     * Check if user is contractor
+     * Check if user is moderator
      * 
      * @return bool
      */
-    protected function isContractor() {
+    protected function isModerator() {
         $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'contractor';
+        return strtolower($user['role'] ?? '') === 'Moderator';
     }
 
     /**
-     * Check if user is assembly
+     * Check if user is user
      * 
      * @return bool
      */
-    protected function isAssembly() {
+    protected function isUser() {
         $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'assembly';
+        return strtolower($user['role'] ?? '') === 'User';
     }
 
     /**
-     * Check if user is driver
+     * Check if user is admin or moderator
      * 
      * @return bool
      */
-    protected function isDriver() {
-        $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'driver';
-    }
-
-    /**
-     * Check if user is household
-     * 
-     * @return bool
-     */
-    protected function isHousehold() {
-        $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'household';
-    }
-
-    /**
-     * Check if user is tricycle
-     * 
-     * @return bool
-     */
-    protected function isTricycle() {
-        $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'tricycle';
-    }
-
-    /**
-     * Check if user is admin or contractor
-     * 
-     * @return bool
-     */
-    protected function adminContractor() {
-        return $this->isAdmin() || $this->isContractor();
+    protected function adminModerator() {
+        return $this->isAdmin() || $this->isModerator();
     }
 
     /**
@@ -297,7 +267,7 @@ trait HasAuthorization {
      * @return bool
      */
     protected function isPrivileged() {
-        return $this->isAdmin() || $this->isAssembly() || $this->isContractor();
+        return $this->isAdmin() || $this->isModerator();
     }
 
     /**
@@ -306,7 +276,7 @@ trait HasAuthorization {
      * @return bool
      */
     protected function isRestricted() {
-        return $this->isHousehold() || $this->isDriver() || $this->isTricycle();
+        return $this->isUser();
     }
 
     /**
@@ -331,45 +301,6 @@ trait HasAuthorization {
         return true;
     }
 
-    /**
-     * Check contractor ownership
-     * 
-     * @param int $contractorId
-     * @return bool
-     */
-    protected function ownsContractor($contractorId) {
-        if ($this->isAdmin()) {
-            return true;
-        }
-        
-        $user = $this->theCurrentUser ?? [];
-        $userContractorId = $user['contractor_id'] ?? null;
-        
-        return $userContractorId && (int)$userContractorId === (int)$contractorId;
-    }
-
-    /**
-     * Check assembly jurisdiction
-     * 
-     * @param int $jurisdictionId
-     * @return bool
-     */
-    protected function hasJurisdiction($jurisdictionId) {
-        if ($this->isAdmin()) {
-            return true;
-        }
-        
-        $user = $this->theCurrentUser ?? [];
-        $userAssemblyId = $user['assembly_id'] ?? null;
-        
-        if (!$userAssemblyId) {
-            return false;
-        }
-        
-        // Load jurisdiction and check if it belongs to user's assembly
-        // This would require database query - implement based on your needs
-        return true; // Placeholder
-    }
 
     /**
      * Filter data based on user role and permissions

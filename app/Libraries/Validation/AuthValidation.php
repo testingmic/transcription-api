@@ -5,7 +5,7 @@ namespace App\Libraries\Validation;
 class AuthValidation {
 
     public $routes = [
-        'confirm' => [
+        'refresh' => [
             'method' => 'POST,GET',
             'authenticate' => true,
             'payload' => []

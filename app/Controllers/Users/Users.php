@@ -107,7 +107,7 @@ class Users extends LoadController {
 
         // set the password
         $this->submittedPayload['password'] = $hashPassword;
-        $this->submittedPayload['role'] = ucwords($this->submittedPayload['role'] ?? 'Admin');
+        $this->submittedPayload['role'] = ucwords($this->submittedPayload['role'] ?? 'User');
 
         // set the username
         $this->submittedPayload['username'] = generateUsername($this->payload['email']);
@@ -119,37 +119,6 @@ class Users extends LoadController {
         $userId = $this->usersModel->createRecord($this->submittedPayload);
         if(!$userId) {
             return Routing::error('Failed to create user');
-        }
-
-        $theRole = $this->submittedPayload['role'];
-
-        // create the household, driver or tricycle record
-        if(in_array($theRole, ['Household', 'Driver', 'Tricycle'])) {
-
-            $objects =  [
-                'Household' => Households::class,
-                'Driver' => Drivers::class,
-                'Tricycle' => Drivers::class,
-            ];
-            
-            // create a new object
-            $object = new $objects[$theRole]();
-            $object->payload = $this->payload;
-            $object->payload['user_id'] = $userId;
-            $object->payload['driver_type'] = $theRole;
-
-             // create the record
-            $object->create();
-
-            // if the unique id is set, set the household id or driver id or tricycle id
-            if(!empty($object->uniqueId)) {
-                // set the household id or driver id or tricycle id
-                if($theRole == 'Household') {
-                    $this->usersModel->updateRecord($userId, ['household_id' => $object->uniqueId]);
-                } else if(in_array($theRole, ['Driver', 'Tricycle'])) {
-                    $this->usersModel->updateRecord($userId, ['driver_id' => $object->uniqueId]);
-                }
-            }
         }
 
         // set the user id

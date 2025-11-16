@@ -3,26 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\UsersModel;
-use App\Models\AccessModel;
 use App\Models\AuthModel;
 use App\Libraries\Caching;
 use App\Models\ResourcesModel;
 
-use App\Models\JurisdictionsModel;
-use App\Models\DriversModel;
-use App\Models\VehiclesModel;
-use App\Models\RoutesModel;
-use App\Models\HouseholdsModel;
-use App\Models\EmergenciesModel;
-use App\Models\CommunicationsModel;
-use App\Models\PickupsModel;
-use App\Models\ContractorsModel;
-
-use App\Models\PaymentsModel;
-use App\Models\AssembliesModel;
-
-use App\Models\NotificationsModel;
-
+use App\Models\TranscriptionsModel;
 
 // Traits
 use App\Libraries\Traits\HasAuthorization;
@@ -35,20 +20,20 @@ class LoadController extends BaseController
     protected $accessModel;
     protected $authModel;
     protected $accountStatus;
-    protected $categoriesModel;
     protected $analyticsObject;
     protected $supportModel;
-    protected $resourcesModel;
 
+    protected $resourcesModel;
+    
+    protected $transcriptionsModel;
     protected $notificationsModel;
     
-    protected $assembliesModel;
-
     public function __construct($model = [])
     {
         // initialize the models
         $this->authModel = new AuthModel();
         $this->usersModel = new UsersModel();
+        $this->transcriptionsModel = new TranscriptionsModel();
         
         // initialize the cache object
         if(empty($this->cacheObject)) {

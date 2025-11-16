@@ -379,7 +379,7 @@ class Auth extends LoadController {
      * 
      * @return array
      */
-    public function confirm() {
+    public function refresh() {
 
         // get the current user
         $currentUser = $this->currentUser;
@@ -388,6 +388,9 @@ class Auth extends LoadController {
         if(empty($currentUser)) {
             return Routing::unauthorized('The token you provided is invalid.');   
         }
+
+        // set the token to the refresh token
+        $this->payload['token'] = $this->payload['refreshToken'] ?? $this->payload['token'];
 
         // return the success response
         return Routing::success([
@@ -439,7 +442,7 @@ class Auth extends LoadController {
             $getRecord['date_expired'] = $tokenRecord['date_expired'];
 
             // if the route is in the array, return the record
-            if(in_array($route, ['auth/confirm', 'auth/login'])) {
+            if(in_array($route, ['auth/refresh', 'auth/confirm', 'auth/login'])) {
                 unset($getRecord['password']);
                 return $getRecord;
             }
@@ -457,7 +460,7 @@ class Auth extends LoadController {
         $getRecord['permissions'] = getUserPermissions($getRecord['role']);
 
         // assign the real user permission
-        foreach(['assembly', 'contractor', 'driver', 'tricycle', 'admin', 'household'] as $userRole) {
+        foreach(['user', 'admin', 'moderator'] as $userRole) {
             $ikey = "is" . ucwords($userRole);
             $getRecord['user_type'] = $getRecord['role'];
             $getRecord[$ikey] =  (bool)($getRecord['role'] == $userRole);

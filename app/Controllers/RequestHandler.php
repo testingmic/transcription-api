@@ -227,7 +227,7 @@ class RequestHandler extends BaseController
         }
 
         // convert the municipalId, contractor_id, contractor_id, household_id, driverId, and routeId to integers
-        foreach(['assembly_id', 'contractor_id', 'contractor_id', 'household_id', 'limit'] as $key) {
+        foreach(['moderator_id', 'user_id', 'limit'] as $key) {
             if(isset($payload[$key])) {
                 $payload[$key] = (int) $payload[$key];
             }

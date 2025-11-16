@@ -30,7 +30,7 @@ class UsersValidation {
                 "offset" => "permit_empty|integer",
                 "search" => "permit_empty|string",
                 "status" => "permit_empty|string",
-                "role" => "permit_empty|string|in_list[municipal,contractor,jurisdiction,household,driver,tricycle,admin,assembly]"
+                "role" => "permit_empty|string|in_list[User,Admin]"
             ]
         ],
         'delete:user_id' => [
@@ -64,7 +64,7 @@ class UsersValidation {
                 "password" => "required|valid_password|max_length[255]",
                 "organizationName" => "permit_empty|string|max_length[255]",
                 "confirmPassword" => "required|valid_password|max_length[255]|matches[password]",
-                "role" => "required|string|in_list[municipal,contractor,jurisdiction,household,driver,tricycle,admin,assembly]"
+                "role" => "required|string|in_list[User,Admin]"
             ]
         ],
         'update:user_id' => [
