@@ -145,6 +145,10 @@ class Transcriptions extends LoadController {
             }
         }
 
+        if(!empty($this->payload['text'])) {
+            $payload['transcription'] = $this->payload['text'];
+        }
+
         if(!empty($payload)) {
             $this->transcriptionsModel->updateRecord($this->uniqueId, $payload);
         }
