@@ -17,6 +17,7 @@ function configs($key) {
         'heatmaps_ttl' => (60 * 30 * 1),
         'is_local' => config('Database')?->defaultGroup == 'tests',
         'app_theme' => getenv('APP_THEME'),
+        'openai_api_key' => getenv('OPENAI_API_KEY2'),
 
         // email config
         'email.port' => getenv('email.SMTP_PORT'),

@@ -4,7 +4,7 @@ namespace App\Controllers\Transcriptions;
 
 use App\Controllers\LoadController;
 use App\Libraries\Routing;
-use App\Models\TranscriptionsModel;
+use App\Libraries\OpenAI;
 
 class Transcriptions extends LoadController {
 
@@ -132,17 +132,23 @@ class Transcriptions extends LoadController {
         }
 
         $payload = [];
+
+        // set the 
+        if(!empty($this->payload['generateSummary'])) {
+            $openAI = new OpenAI();
+            $summary = $openAI->analyzeResponse($checkExits['transcription']);
+            $payload['summary'] = json_encode($summary);
+        }
+
         foreach(['title', 'description', 'summary', 'tags', 'transcription', 'status', 'keywords'] as $key) {
             if(isset($this->payload[$key])) {
                 $payload[$key] = is_array($this->payload[$key]) ? json_encode($this->payload[$key]) : $this->payload[$key];
             }
         }
 
-        if(empty($data)) {
-            return Routing::error('No data to update');
+        if(!empty($payload)) {
+            $this->transcriptionsModel->updateRecord($this->uniqueId, $payload);
         }
-
-        $data = $this->transcriptionsModel->updateRecord($this->payload['id'], $payload);
 
         return Routing::updated('Transcription record successfully updated', $this->view()['data']);
     }
