@@ -62,6 +62,7 @@ class Transcriptions extends LoadController {
 
         // check if the transcription already exists
         $checkExits = $this->transcriptionsModel->checkExists([
+            'user_id' => $this->currentUser['id'] ?? 0,
             'fileSize' => $this->payload['fileSize'], 
             'transcription' => $this->payload['text']
         ]);
@@ -103,7 +104,9 @@ class Transcriptions extends LoadController {
         // set the unique ID
         $this->uniqueId = $transcriptionId;
 
-        return Routing::created(['data' => 'Transcription record successfully created', 'record' => $this->view()['data']]);
+        $record = $this->view()['data'];
+
+        return Routing::created(['data' => 'Transcription record successfully created', 'record' => $record]);
 
     }
 
