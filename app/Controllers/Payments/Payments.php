@@ -47,6 +47,8 @@ class Payments extends LoadController {
 
         // verify the reference id generated
         if(!empty($checkExists) && in_array($checkExists['status'], $successStatuses)) {
+            // payment status was successful
+            $checkExists['status'] = 'success';
             return Routing::created(['data' => 'Payment already verified.', 'record' => $checkExists]);
         }
 
@@ -109,6 +111,9 @@ class Payments extends LoadController {
             // create the payment record
             $this->paymentsModel->createRecord($payload);
         }
+
+        // payment status was successful
+        $paymentPayload['status'] = 'success';
 
         return Routing::created([
             'data' => 'Payment successfully verified.', 
