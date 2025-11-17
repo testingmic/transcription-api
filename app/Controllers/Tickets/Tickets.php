@@ -152,9 +152,6 @@ class Tickets extends LoadController {
         }
 
         $this->ticketsModel->updateTicket($this->uniqueId, ['messages_count' => $ticketRecord['messages_count'] + 1]);
-        if(empty($ticket)) {
-            return Routing::error('Failed to update ticket');
-        }
 
         return Routing::created(['data' => 'Message created successfully', 'record' => $this->view()['data']]);
 
