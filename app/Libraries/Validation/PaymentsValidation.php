@@ -25,6 +25,20 @@ class PaymentsValidation {
                 'planName' => 'required|string|max_length[255]',
             ]
         ],
+        'verify' => [
+            'method' => 'POST',
+            'authenticate' => true,
+            'roles' => ['Admin', 'Moderator', 'User'],
+            'payload' => [
+                'reference' => 'required|string|max_length[32]',
+            ]
+        ],
+        'history' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'roles' => ['Admin', 'Moderator', 'User'],
+            'payload' => [ ]
+        ],
         'list' => [
             'method' => 'GET',
             'authenticate' => true,

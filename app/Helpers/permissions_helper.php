@@ -52,6 +52,8 @@ function getPermissions() {
             ],
             'payments' => [
                 'initialize' => true,
+                'verify' => true,
+                'history' => true,
                 'list' => true,
                 'view' => true,
                 'delete' => true,
@@ -96,6 +98,8 @@ function getPermissions() {
             ],
             'payments' => [
                 'initialize' => true,
+                'verify' => true,
+                'history' => true,
                 'list' => true,
                 'view' => true,
                 'delete' => true,
@@ -140,6 +144,8 @@ function getPermissions() {
             ],
             'payments' => [
                 'initialize' => true,
+                'verify' => true,
+                'history' => true,
                 'list' => true,
                 'view' => true,
                 'delete' => true,
