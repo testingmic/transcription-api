@@ -21,6 +21,8 @@ $databases = [
         image VARCHAR(255),
         pin_hash TEXT DEFAULT NULL,
         nationality VARCHAR(100),
+        customer_id VARCHAR(32) DEFAULT NULL,
+        subscription_id VARCHAR(32) DEFAULT NULL,
         subscription_amount DECIMAL(10, 2) DEFAULT 0.00,
         subscription_plan VARCHAR(100) DEFAULT 'Free', -- 'Free', 'Pro', 'Premium'
         subscription_start_date DATETIME DEFAULT NULL,
@@ -125,10 +127,36 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_audio_files_transcription_id ON audio_files (transcription_id);
     CREATE INDEX IF NOT EXISTS idx_audio_files_mimeType ON audio_files (mimeType);
     CREATE INDEX IF NOT EXISTS idx_audio_files_size ON audio_files (size);",
+
+    "CREATE TABLE IF NOT EXISTS payments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        reference VARCHAR(32) DEFAULT NULL,
+        plan_id VARCHAR(32) DEFAULT NULL,
+        plan_name VARCHAR(255) DEFAULT NULL,
+        amount DECIMAL(10, 2) DEFAULT NULL,
+        amount_ghs DECIMAL(10, 2) DEFAULT NULL,
+        transaction_id VARCHAR(32) DEFAULT NULL,
+        subscription_id VARCHAR(32) DEFAULT NULL,
+        payment_bank  VARCHAR(32) DEFAULT NULL,
+        payment_method VARCHAR(32) DEFAULT NULL,
+        customer_id VARCHAR(32) DEFAULT NULL,
+        status VARCHAR(20) DEFAULT NULL,
+        last4 VARCHAR(20) DEFAULT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments (user_id);
+    CREATE INDEX IF NOT EXISTS idx_payments_amount ON payments (amount);
+    CREATE INDEX IF NOT EXISTS idx_payments_status ON payments (status);
+    CREATE INDEX IF NOT EXISTS idx_payments_subscription_id ON payments (subscription_id);
+    CREATE INDEX IF NOT EXISTS idx_payments_payment_method ON payments (payment_method);
+    CREATE INDEX IF NOT EXISTS idx_payments_payment_bank ON payments (payment_bank);",
 ];
 
 $alterTables = [
-    // "ALTER TABLE users ADD COLUMN pin_hash TEXT DEFAULT NULL;",
+    // "ALTER TABLE users ADD COLUMN customer_id TEXT DEFAULT NULL;",
+    // "ALTER TABLE users ADD COLUMN subscription_id TEXT DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {

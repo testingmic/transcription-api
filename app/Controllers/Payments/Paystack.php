@@ -7,6 +7,11 @@ use App\Libraries\Routing;
 
 class Paystack extends LoadController {
 
+    private $account_id = [
+        'test' => 'ACCT_jo9tc3oh08x38tr',
+        'live' => 'ACCT_6zahsx8cbky415y'
+    ];
+    
     private $urlPath = [
         'initialize' => "https://api.paystack.co/transaction/initialize",
         'verify' => "https://api.paystack.co/transaction/verify/",
@@ -52,14 +57,19 @@ class Paystack extends LoadController {
      * 
      * @param string $email
      * @param float $amount
+     * @param string $planId
+     * @param string $type
      * 
      * @return array
      */
-    public function initPaystack($email, $amount) {
+    public function initPaystack($email, $amount, $planId, $type = 'test') {
 
         $fields = [
             'email' => $email,
-            'amount' => $amount * 100
+            'plan' => $planId,
+            'currency' => 'GHS',
+            'amount' => $amount * 100,
+            'subaccount' => $this->account_id[$type],
         ];
 
         $fields_string = http_build_query($fields);
@@ -81,7 +91,7 @@ class Paystack extends LoadController {
         $verify = $this->makeRequest('verify');
 
         if(empty($verify['status'])) {
-            return Routing::error('The payment could not be verified.');
+            return false;
         }
 
         return $verify['data'];

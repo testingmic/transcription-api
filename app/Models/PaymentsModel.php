@@ -12,14 +12,19 @@ class PaymentsModel extends Model {
     protected $allowedFields = [
         'user_id',  
         'amount', 
-        'status', 
+        'amount_ghs',
+        'status',
         'created_at', 
         'updated_at',
-        'transaction_id', 
-        'payment_method', 
-        'subscription_plan',
-        'subscription_month', 
-        'subscription_year'
+        'reference',
+        'plan_id',
+        'plan_name',
+        'last4',
+        'transaction_id',
+        'payment_bank',
+        'customer_id',
+        'subscription_id',
+        'payment_method',  
     ];
 
     public function __construct() {
@@ -77,7 +82,7 @@ class PaymentsModel extends Model {
      * @param array $data
      * @return int|bool
      */
-    public function createPayment($data = []) {
+    public function createRecord($data = []) {
         try {
             $this->insert($data);
             return $this->insertID();
@@ -93,7 +98,7 @@ class PaymentsModel extends Model {
      * @param array $data
      * @return int|bool
      */
-    public function updatePayment($id, $data = []) {
+    public function updateRecord($id, $data = []) {
         try {
             $this->update($id, $data);
             return $this->affectedRows();

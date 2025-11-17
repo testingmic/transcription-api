@@ -31,6 +31,7 @@ class PaymentsValidation {
             'roles' => ['Admin', 'Moderator', 'User'],
             'payload' => [
                 'reference' => 'required|string|max_length[32]',
+                'planId' => 'required|string|max_length[32]',
             ]
         ],
         'history' => [
