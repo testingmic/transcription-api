@@ -114,9 +114,6 @@ class Tickets extends LoadController {
         }
 
         $ticket = $this->ticketsModel->updateTicket($this->uniqueId, $this->payload);
-        if(empty($ticket)) {
-            return Routing::error('Failed to update ticket');
-        }
 
         return Routing::updated('Ticket updated successfully', $this->view()['data']);
 
