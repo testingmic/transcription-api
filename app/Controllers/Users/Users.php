@@ -85,6 +85,8 @@ class Users extends LoadController {
 
         $this->payload['user_id'] = $userId;
 
+        currencyLookup($this->cacheObject);
+
         // get the user
         $data = $this->view()['data'];
 
@@ -96,6 +98,8 @@ class Users extends LoadController {
             } else {
                 $plans[$key]['currentPlan'] = false;
             }
+            $plans[$key]['price'] = revenue_conversion($plan['price'], 'GHS', 'USD', $this->cacheObject)['revenue'];
+            $plans[$key]['planInfo'] = [];
         }
 
         // get the subscription plans

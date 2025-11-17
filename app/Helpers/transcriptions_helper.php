@@ -59,6 +59,119 @@ function formatAudio($audios) {
 }
 
 /**
+ * Convert the revenue from the incoming currency into usd
+ * 
+ * @param int		$revenue
+ * @param string	$from
+ * @param string	$to
+ * 
+ * @return mixed
+ */
+function revenue_conversion($revenue, $from = 'GHS', $to = 'USD', $cacheObject = null) {
+
+    global $loadedCurrencies;
+
+    if(empty($cacheObject)) {
+        return [
+            'revenue' => $revenue,
+            'converted' => 0
+        ];
+    }
+
+    // if the currencies are not loaded, then load them
+    if(empty($loadedCurrencies)) {
+        $cacheKey = create_cache_key('currency', 'lookup', ['revenue' => 'currency_list']);
+        $loadedCurrencies = $cacheObject->get($cacheKey);
+    }
+    $converted = 0;
+
+    if(empty($loadedCurrencies)) {
+        return [
+            'revenue' => $revenue,
+            'converted' => 0
+        ];
+    }
+
+    // remove the commas
+    $revenue = str_ireplace(',', '', $revenue);
+
+    // get the exchange rates
+    $current = $loadedCurrencies;
+    if(!empty($current)) {
+        $exchangeRates = $current['rates'] ?? $current;
+        if (isset($exchangeRates[$from]) && isset($exchangeRates[$to])) {
+            $converted = 1;
+            $revenue = $revenue * ($exchangeRates[$to] / $exchangeRates[$from]);
+        }
+    }
+
+    $revenue = round($revenue, 2);
+
+    if(strpos($revenue, '.') == false) {
+        if(strlen($revenue) > 4) {
+            $revenue = substr($revenue, 0, 3);
+        }
+    }
+    
+    return [
+        'revenue' => $revenue,
+        'converted' => $converted
+    ];
+
+}
+
+/**
+ * Loop through the currencies
+ * 
+ * @param string $testKeys
+ * 
+ * @return array|bool
+ */
+function loopthroughCurrencies($testKeys = null) {
+    try {
+        $cur = file_get_contents("https://api.exchangeratesapi.io/v1/latest?access_key={$testKeys}");
+        $cur = !empty($cur) ? json_decode($cur, true) : [];
+
+        if(empty($cur) || !isset($cur['rates'])) {
+            return false;
+        }
+        return $cur['rates'];
+    } catch(\Exception $e) {
+        return false;
+    }
+}
+
+/**
+ * Currency lookup
+ * 
+ * @return bool
+ */
+function currencyLookup($cacheObject)
+{
+    try {
+        // check if the currency list is already in the cache
+        $cacheKey = create_cache_key('currency', 'lookup', ['revenue' => 'currency_list']);
+        $loadCache = $cacheObject->get($cacheKey);
+
+        // if the currency list is already in the cache, return
+        if(!empty($loadCache)) {
+            return;
+        }
+
+        // get the currency keys
+        $result = loopthroughCurrencies('d43e3d4d8ea95ac8a544df389b76b442');
+        if(empty($result)) {
+            return;
+        }
+
+        // save the currency list to the cache
+        $cacheObject->save($cacheKey, $result, 'currency.lookup', 'is_admin', (60 * 60 * 6));
+
+    } catch(\Exception $e) { }
+
+}
+
+/**
  * Get the subscription plans
  * 
  * @return array
@@ -82,14 +195,14 @@ function subscriptionPlans() {
         'PRO' => [
             'id' => 'pro',
             'name' => 'Pro',
-            'price' => 5.99,
+            'price' => 65.99,
             'minutesLimit' => 600,
             'maxFileSize' => 20, // MB
             'features' => [
                 'speakerDiarization' => true,
                 'priorityProcessing' => true,
                 'cloudStorage' => true,
-                'exportFormats' => ['TXT', 'SRT', 'VTT', 'JSON'],
+                'exportFormats' => ['TXT', 'PDF', 'JSON'],
             ],
             'planInfo' => [
                 'test' => [
@@ -105,14 +218,14 @@ function subscriptionPlans() {
         'PREMIUM' => [
             'id' => 'premium',
             'name' => 'Premium',
-            'price' => 9.99,
+            'price' => 119.99,
             'minutesLimit' => 600 * 2.5,
             'maxFileSize' => 50, // MB
             'features' => [
                 'speakerDiarization' => true,
                 'priorityProcessing' => true,
                 'cloudStorage' => true,
-                'exportFormats' => ['TXT', 'SRT', 'VTT', 'JSON'],
+                'exportFormats' => ['TXT', 'PDF', 'JSON'],
             ],
             'planInfo' => [
                 'test' => [
