@@ -2,7 +2,7 @@
 
 namespace App\Libraries\Validation;
 
-class AudioValidation {
+class PaymentsValidation {
     public $routes = [
         'history' => [
             'method' => 'GET',
@@ -21,7 +21,7 @@ class AudioValidation {
             'payload' => [
                 'email' => 'required|valid_email|max_length[255]',
                 'amount' => 'required|numeric',
-                'planId' => 'required|integer',
+                'planId' => 'required|string',
                 'planName' => 'required|string|max_length[255]',
             ]
         ],

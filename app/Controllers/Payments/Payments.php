@@ -26,11 +26,22 @@ class Payments extends LoadController {
     }
 
     /**
-     * Initialize the payments controller
-     * @return void
+     * Initialize a subscription
+     * 
+     * @return array
      */
     public function initialize() {
 
+        $plan = strtoupper($this->payload['planId']);
+
+        $isLocal = configs('is_local') ? 'test' : 'live';
+
+        $planInfo = subscriptionPlans()[$plan]['planInfo'];
+
+        return Routing::success([
+            'plans' => $planInfo[$isLocal],
+            'authorization_url' => $planInfo[$isLocal]['paylink']
+        ]);
     }
 
     /**

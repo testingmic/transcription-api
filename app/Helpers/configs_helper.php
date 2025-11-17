@@ -15,7 +15,7 @@ function configs($key) {
         'appName' => getenv('APP_NAME'),
         'app_url' => getenv('baseURL'),
         'heatmaps_ttl' => (60 * 30 * 1),
-        'is_local' => config('Database')?->defaultGroup == 'tests',
+        'is_local' => getenv('LOCAL_ENVIRONMENT') == 'yes',
         'app_theme' => getenv('APP_THEME'),
         'openai_api_key' => getenv('OPENAI_API_KEY2'),
         

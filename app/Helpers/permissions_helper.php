@@ -44,10 +44,17 @@ function getPermissions() {
             'subscriptions' => [
                 'list' => true,
                 'plans' => true,
+                'initialize' => true,
                 'checkout' => true,
                 'verify' => true,
                 'usage' => true,
                 'restore' => true,
+            ],
+            'payments' => [
+                'initialize' => true,
+                'list' => true,
+                'view' => true,
+                'delete' => true,
             ]
         ],
 
@@ -81,10 +88,17 @@ function getPermissions() {
             'subscriptions' => [
                 'list' => true,
                 'plans' => true,
+                'initialize' => true,
                 'checkout' => true,
                 'verify' => true,
                 'usage' => true,
                 'restore' => true,
+            ],
+            'payments' => [
+                'initialize' => true,
+                'list' => true,
+                'view' => true,
+                'delete' => true,
             ]
         ],
 
@@ -123,6 +137,12 @@ function getPermissions() {
                 'verify' => true,
                 'usage' => true,
                 'restore' => true,
+            ],
+            'payments' => [
+                'initialize' => true,
+                'list' => true,
+                'view' => true,
+                'delete' => true,
             ]
         ],
 
