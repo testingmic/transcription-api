@@ -184,4 +184,35 @@ class Tickets extends LoadController {
         return $this->update();
     }
 
+    /**
+     * Resolve a ticket
+     * 
+     * @return array
+     */
+    public function resolve() {
+        $this->payload['status'] = 'resolved';
+        return $this->update();
+    }
+
+    /**
+     * Reopen a ticket
+     * 
+     * @return array
+     */
+    public function reopen() {
+        $this->payload['status'] = 'open';
+        return $this->update();
+    }
+
+    /**
+     * Delete a ticket
+     * 
+     * @return array
+     */
+    public function delete() {
+        $this->payload['status'] = 'deleted';
+        $this->update();
+        return Routing::success('Ticket deleted successfully');
+    }
+
 }

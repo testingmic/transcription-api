@@ -43,6 +43,7 @@ class TicketsModel extends Model {
                 }
             }
         }
+        $query->where('status !=', 'deleted');
 
         $query->orderBy('id', 'DESC')
             ->limit($limit, $offset * $limit);
@@ -57,7 +58,9 @@ class TicketsModel extends Model {
      */
     public function countTickets($filters = []) {
         try {
-            return $this->where($filters)->countAllResults();
+            return $this->where($filters)
+                        ->where('status !=', 'deleted')
+                        ->countAllResults();
         } catch(DatabaseException $e) {
             log_message('error', 'Ticket Count Error: ' . $e->getMessage());
             return false;
@@ -85,7 +88,9 @@ class TicketsModel extends Model {
      */
     public function checkExists($filters = []) {
         try {
-            return $this->where($filters)->first();
+            return $this->where($filters)
+                        ->where('status !=', 'deleted')
+                        ->first();
         } catch(DatabaseException $e) {
             log_message('error', 'Ticket Exists Error: ' . $e->getMessage());
             return false;
@@ -145,7 +150,9 @@ class TicketsModel extends Model {
      */
     public function getTicket($id) {
         try {
-            return $this->find($id);
+            return $this->where('id', $id)
+                        ->where('status !=', 'deleted')
+                        ->first();
         } catch(DatabaseException $e) {
             log_message('error', 'Ticket Get Error: ' . $e->getMessage());
             return false;
@@ -158,7 +165,8 @@ class TicketsModel extends Model {
      */
     public function getAllTickets() {
         try {
-            return $this->findAll();
+            return $this->where('status !=', 'deleted')
+                        ->findAll();
         } catch(DatabaseException $e) {
             log_message('error', 'Ticket Get All Error: ' . $e->getMessage());
             return false;
