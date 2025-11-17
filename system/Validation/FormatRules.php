@@ -321,14 +321,24 @@ class FormatRules
      */
     public function valid_password($str = null): bool
     {
-        // Single regex to validate all conditions
-        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
-
-        if (preg_match($pattern, $str)) {
-            return true; // Password is valid
-        } else {
+        // lowercase letter, uppercase letter, number, minimum 6 characters
+        if(strlen($str) < 6) {
             return false;
         }
+
+        if(!preg_match('/[a-z]/', $str)) {
+            return false;
+        }
+        
+        if(!preg_match('/[A-Z]/', $str)) {
+            return false;
+        }
+
+        if(!preg_match('/[0-9]/', $str)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
