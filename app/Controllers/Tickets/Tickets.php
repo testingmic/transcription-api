@@ -140,7 +140,7 @@ class Tickets extends LoadController {
             'ticket_id' => $this->uniqueId,
             'user_id' => $this->currentUser['id'],
             'message' => $this->payload['message'],
-            'sender_type' => $this->isUser() ? 'user' : 'admin',
+            'sender_type' => 'admin',
         ];
 
         $message = $this->ticketsModel->createMessage($payload);
@@ -151,9 +151,9 @@ class Tickets extends LoadController {
         $updated = ['messages_count' => $ticketRecord['messages_count'] + 1];
 
         // change the status to in progress if the user is an admin
-        if($this->isAdmin()) {
+        // if($this->isAdmin()) {
             $updated['status'] = 'in_progress';
-        }
+        // }
 
         $this->ticketsModel->updateTicket($this->uniqueId, $updated);
 
