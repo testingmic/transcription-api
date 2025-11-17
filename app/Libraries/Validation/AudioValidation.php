@@ -7,7 +7,7 @@ class AudioValidation {
         'list' => [
             'method' => 'GET',
             'authenticate' => true,
-            'roles' => ['admin', 'moderator', 'user'],
+            'roles' => ['Admin', 'Moderator', 'User'],
             'payload' => [
                 'limit' => 'permit_empty|integer',
                 'offset' => 'permit_empty|integer',
@@ -17,7 +17,7 @@ class AudioValidation {
         'create' => [
             'method' => 'POST',
             'authenticate' => true,
-            'roles' => ['admin', 'moderator', 'user'],
+            'roles' => ['Admin', 'Moderator', 'User'],
             'payload' => [
                 'transcription_id' => 'required|integer',
                 'audio' => 'required',
@@ -28,7 +28,7 @@ class AudioValidation {
         'view:audio_id' => [
             'method' => 'GET',
             'authenticate' => true,
-            'roles' => ['admin', 'moderator', 'user'],
+            'roles' => ['Admin', 'Moderator', 'User'],
             'payload' => [
                 'audio_id' => 'required|integer',
             ]
@@ -36,7 +36,7 @@ class AudioValidation {
         'delete:audio_id' => [
             'method' => 'DELETE',
             'authenticate' => true,
-            'roles' => ['admin', 'moderator', 'user'],
+            'roles' => ['Admin', 'Moderator', 'User'],
             'payload' => [
                 'audio_id' => 'required|integer',
             ]

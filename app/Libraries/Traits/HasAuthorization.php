@@ -82,7 +82,7 @@ trait HasAuthorization {
             return false;
         }
         
-        $userRole = strtolower($user['role'] ?? 'household');
+        $userRole = ucwords($user['role'] ?? 'User');
         
         // Admin has all permissions
         $permissions = $this->loadPermissions();
@@ -229,7 +229,7 @@ trait HasAuthorization {
      */
     protected function isAdmin() {
         $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'Admin';
+        return ucwords($user['role'] ?? '') === 'Admin';
     }
 
     /**
@@ -239,7 +239,7 @@ trait HasAuthorization {
      */
     protected function isModerator() {
         $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'Moderator';
+        return ucwords($user['role'] ?? '') === 'Moderator';
     }
 
     /**
@@ -249,7 +249,7 @@ trait HasAuthorization {
      */
     protected function isUser() {
         $user = $this->theCurrentUser ?? [];
-        return strtolower($user['role'] ?? '') === 'User';
+        return ucwords($user['role'] ?? '') === 'User';
     }
 
     /**
@@ -287,10 +287,10 @@ trait HasAuthorization {
      */
     protected function requireRole($roles) {
         $user = $this->theCurrentUser ?? [];
-        $userRole = strtolower($user['role'] ?? '');
+        $userRole = ucwords($user['role'] ?? '');
         
         $roles = is_array($roles) ? $roles : [$roles];
-        $roles = array_map('strtolower', $roles);
+        $roles = array_map('ucwords', $roles);
         
         if (!in_array($userRole, $roles)) {
             return Routing::denied(

@@ -41,7 +41,7 @@ class Audio extends LoadController {
             return Routing::notFound();
         }
 
-        return Routing::success('Audio file view retrieved successfully');
+        return Routing::success($audioRecord);
     }
 
     /**

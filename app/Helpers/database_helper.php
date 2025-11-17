@@ -21,6 +21,8 @@ $databases = [
         image VARCHAR(255),
         pin_hash TEXT DEFAULT NULL,
         nationality VARCHAR(100),
+        preferences TEXT DEFAULT NULL,
+        photo VARCHAR(255) DEFAULT NULL,
         gender VARCHAR(20) DEFAULT NULL,
         date_of_birth DATE DEFAULT NULL,
         timezone VARCHAR(50) DEFAULT 'Africa/Accra',
@@ -123,6 +125,8 @@ $databases = [
 
 $alterTables = [
     "ALTER TABLE users ADD COLUMN pin_hash TEXT DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN preferences TEXT DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN photo VARCHAR(255) DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {

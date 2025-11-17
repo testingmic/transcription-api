@@ -18,7 +18,7 @@ function getPermissions() {
          * ADMIN ROLE
          * Full access to all system resources
          */
-        'admin' => [
+        'Admin' => [
             'users' => [
                 'create' => true,
                 'update' => true,
@@ -46,7 +46,7 @@ function getPermissions() {
          * USER ROLE
          * User operations
          */
-        'user' => [
+        'User' => [
             'users' => [
                 'create' => true,
                 'update' => true,
@@ -75,7 +75,7 @@ function getPermissions() {
          * MODERATOR ROLE
          * Moderator operations
          */
-        'moderator' => [
+        'Moderator' => [
             'users' => [
                 'create' => true,
                 'update' => true,

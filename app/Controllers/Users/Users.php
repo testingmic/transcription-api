@@ -26,9 +26,9 @@ class Users extends LoadController {
         $userIds = $this->payload['user_ids'] ?? [];
 
         // if the current user is a student, get the user ids
-        if(!empty($this->payload['role']) && in_array($this->payload['role'], ['Student', 'Instructor'])) {
-            $userIds = [];
-            $data['role'] = $this->payload['role'];
+        if($this->isUser()) {
+            $userIds = [$this->currentUser['user_id']];
+            $data['role'] = ['User'];
         }
 
         // get the users
@@ -51,6 +51,11 @@ class Users extends LoadController {
      * @return array
      */
     public function view() {
+
+        // if the current user is a user, get the user ids
+        if($this->isUser()) {
+            $this->payload['user_id'] = $this->currentUser['user_id'];
+        }
 
         // check if the user id is set
         $users = $this->usersModel->findById($this->payload['user_id']);

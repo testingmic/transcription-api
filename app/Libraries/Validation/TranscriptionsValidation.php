@@ -9,7 +9,7 @@ class TranscriptionsValidation {
         'list' => [
             'method' => 'GET',
             'authenticate' => true,
-            'roles' => ['admin', 'user', 'moderator'],
+            'roles' => ['Admin', 'User', 'Moderator'],
             'payload' => [
                 'limit' => 'permit_empty|integer',
                 'offset' => 'permit_empty|integer',
@@ -22,7 +22,7 @@ class TranscriptionsValidation {
         'view:transcription_id' => [
             'method' => 'GET',
             'authenticate' => true,
-            'roles' => ['admin', 'user', 'moderator'],
+            'roles' => ['Admin', 'User', 'Moderator'],
             'payload' => [
                 'transcription_id' => 'required|integer',
             ]
@@ -30,7 +30,7 @@ class TranscriptionsValidation {
         'delete:transcription_id' => [
             'method' => 'DELETE',
             'authenticate' => true,
-            'roles' => ['admin', 'user', 'moderator'],
+            'roles' => ['Admin', 'User', 'Moderator'],
             'payload' => [
                 'transcription_id' => 'required|integer',
             ]
@@ -38,7 +38,7 @@ class TranscriptionsValidation {
         'update:transcription_id' => [
             'method' => 'PUT',
             'authenticate' => true,
-            'roles' => ['admin', 'user', 'moderator'],
+            'roles' => ['Admin', 'User', 'Moderator'],
             'payload' => [
                 'transcription_id' => 'required|integer',
             ]
@@ -46,7 +46,7 @@ class TranscriptionsValidation {
         'create' => [
             'method' => 'POST',
             'authenticate' => true,
-            'roles' => ['admin', 'user', 'moderator'],
+            'roles' => ['Admin', 'User', 'Moderator'],
             'payload' => [
                 'status' => 'permit_empty|string|in_list[PENDING,COMPLETED,FAILED,PROCESSING]',
                 'title' => 'required|string|max_length[255]',
@@ -60,7 +60,7 @@ class TranscriptionsValidation {
         'upload' => [
             'method' => 'POST',
             'authenticate' => true,
-            'roles' => ['admin', 'user', 'moderator'],
+            'roles' => ['Admin', 'User', 'Moderator'],
             'payload' => [
                 'title' => 'required|string|max_length[255]',
                 'description' => 'permit_empty|string|max_length[2000]',

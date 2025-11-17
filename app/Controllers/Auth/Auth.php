@@ -392,7 +392,7 @@ class Auth extends LoadController {
 
         $pinHash = hash_password($this->payload['pin']);
         $this->usersModel->updateRecord($this->currentUser['user_id'], ['pin_hash' => $pinHash]);
-        
+
         return Routing::success('Pin setup successfully.');
     }
 
@@ -478,7 +478,7 @@ class Auth extends LoadController {
         }
         
         // convert the role to lowercase
-        $getRecord['role'] = strtolower($getRecord['role']);
+        $getRecord['role'] = ucwords($getRecord['role']);
         $getRecord['permissions'] = getUserPermissions($getRecord['role']);
 
         // assign the real user permission

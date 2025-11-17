@@ -55,7 +55,7 @@ class UsersModel extends Model {
             $query->groupStart();
             $query->like('phone', $search);
             // search in phone, email, username, full_name
-            foreach (['email', 'username', 'firstname', 'lastname', 'user_type'] as $where) {
+            foreach (['email', 'username', 'firstname', 'lastname', 'role'] as $where) {
                 $query->orLike($where, $search);
             }
             $query->groupEnd();
