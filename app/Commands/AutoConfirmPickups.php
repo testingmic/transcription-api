@@ -4,7 +4,6 @@ namespace App\Commands;
 
 use CodeIgniter\CLI\BaseCommand;
 use CodeIgniter\CLI\CLI;
-use App\Controllers\Pickups\Pickups;
 
 class AutoConfirmPickups extends BaseCommand
 {
@@ -17,12 +16,10 @@ class AutoConfirmPickups extends BaseCommand
         CLI::write('Starting auto-confirm process at ' . date('Y-m-d H:i:s'), 'yellow');
         
         try {
-            $pickupsController = new Pickups();
-            $result = $pickupsController->autoConfirm();
             
             CLI::write('Auto-confirm completed successfully!', 'green');
             
-            if (is_array($result)) {
+            if (!empty($result) && is_array($result)) {
                 CLI::write('Result: ' . json_encode($result));
             }
             
