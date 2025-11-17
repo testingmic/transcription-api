@@ -155,8 +155,17 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE users ADD COLUMN customer_id TEXT DEFAULT NULL;",
-    // "ALTER TABLE users ADD COLUMN subscription_id TEXT DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN customer_id TEXT DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN subscription_id TEXT DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN subscription_amount DECIMAL(10, 2) DEFAULT 0.00;",
+    "ALTER TABLE users ADD COLUMN subscription_plan VARCHAR(100) DEFAULT 'Free';",
+    "ALTER TABLE users ADD COLUMN subscription_start_date DATETIME DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN subscription_expires_at DATETIME DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN preferences TEXT DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN photo VARCHAR(255) DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN gender VARCHAR(20) DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN date_of_birth DATE DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN timezone VARCHAR(50) DEFAULT 'Africa/Accra';",
 ];
 
 function createDatabaseStructure() {
