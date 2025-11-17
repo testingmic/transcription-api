@@ -184,7 +184,7 @@ $databases = [
 ];
 
 $alterTables = [
-    "ALTER TABLE tickets ADD COLUMN messages_count INTEGER DEFAULT 0;",
+    // "ALTER TABLE tickets ADD COLUMN messages_count INTEGER DEFAULT 0;",
 ];
 
 function createDatabaseStructure() {
