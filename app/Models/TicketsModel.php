@@ -92,6 +92,21 @@ class TicketsModel extends Model {
     }
 
     /**
+     * Create a message for a ticket
+     * @param array $data
+     * @return int|bool
+     */
+    public function createMessage($data = []) {
+        try {
+            $this->db->table('ticket_messages')->insert($data);
+            return $this->db->insertID();
+        } catch(DatabaseException $e) {
+            log_message('error', 'Ticket Message Create Error: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Create a ticket
      * @param array $data
      * @return int|bool

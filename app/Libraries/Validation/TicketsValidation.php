@@ -85,6 +85,7 @@ class TicketsValidation {
             'roles' => ['Admin', 'Moderator', 'User'],
             'payload' => [
                 'ticket_id' => 'required|integer',
+                'message' => 'required|string'
             ]
         ],
         'close:ticket_id' => [

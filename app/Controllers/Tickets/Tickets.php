@@ -123,6 +123,39 @@ class Tickets extends LoadController {
     }
 
     /**
+     * Create a message for a ticket
+     * 
+     * @return array
+     */
+    public function messages() {
+
+        if(empty($this->uniqueId)) {
+            return Routing::error('Ticket ID is required');
+        }
+
+        $payload = ['ticket_id' => $this->uniqueId];
+        $messages = $this->ticketsModel->checkExists($payload);
+        if(empty($messages)) {
+            $messages = [];
+        }
+
+        $payload = [
+            'ticket_id' => $this->uniqueId,
+            'user_id' => $this->currentUser['id'],
+            'message' => $this->payload['message'],
+            'sender_type' => $this->isUser() ? 'user' : 'admin',
+        ];
+
+        $message = $this->ticketsModel->createMessage($payload);
+        if(empty($message)) {
+            return Routing::error('Failed to create message');
+        }
+
+        return Routing::created(['data' => 'Message created successfully', 'record' => $this->view()['data']]);
+
+    }
+
+    /**
      * Close a ticket
      * 
      * @return array
