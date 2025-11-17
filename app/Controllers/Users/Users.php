@@ -5,9 +5,6 @@ namespace App\Controllers\Users;
 use App\Controllers\LoadController;
 use App\Libraries\Routing;
 
-use App\Controllers\Households\Households;
-use App\Controllers\Drivers\Drivers;
-
 class Users extends LoadController {
 
     public $softDelete = false;
@@ -92,6 +89,14 @@ class Users extends LoadController {
         $data = $this->view()['data'];
 
         $plans = subscriptionPlans();
+
+        foreach($plans as $key => $plan) {
+            if($data['subscription']['plan'] == $plan['name']) {
+                $plans[$key]['currentPlan'] = true;
+            } else {
+                $plans[$key]['currentPlan'] = false;
+            }
+        }
 
         // get the subscription plans
         $data['plans'] = $plans;
