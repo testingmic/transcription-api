@@ -133,7 +133,7 @@ class Payments extends LoadController {
         }
 
         // current user plan
-        $currentPlan = $this->currentUser['subscription']['plan'];
+        $currentPlan = $this->currentUser['subscription_plan'];
         if(!empty($currentPlan) && (strtoupper($currentPlan) == $plan)) {
             return Routing::error('You are already subscribed to this plan.');
         }
