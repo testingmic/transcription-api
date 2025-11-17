@@ -159,7 +159,7 @@ function currencyLookup($cacheObject)
         }
 
         // get the currency keys
-        $result = loopthroughCurrencies('d43e3d4d8ea95ac8a544df389b76b442');
+        $result = loopthroughCurrencies(configs('currency_key'));
         if(empty($result)) {
             return;
         }

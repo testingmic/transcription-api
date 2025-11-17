@@ -19,6 +19,7 @@ function configs($key) {
         'app_theme' => getenv('APP_THEME'),
         'openai_api_key' => getenv('OPENAI_API_KEY2'),
         
+        // paystack config
         'paystack_account_id' => getenv('PAYSTACK_ACCOUNT_ID'),
 
         'paystack_test_secret' => getenv('PAYSTACK_TEST_SECRET'),
@@ -26,6 +27,9 @@ function configs($key) {
 
         'paystack_test_public' => getenv('PAYSTACK_TEST_PUBLIC_KEY'),
         'paystack_live_public' => getenv('PAYSTACK_LIVE_PUBLIC_KEY'),
+
+        // currency key
+        'currency_key' => getenv('CURRENCY_KEYS'),
 
         // email config
         'email.port' => getenv('email.SMTP_PORT'),
