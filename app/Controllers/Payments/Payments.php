@@ -102,7 +102,7 @@ class Payments extends LoadController {
             'transaction_id' => $verify['id'],
             'last4' => $verify['authorization']['last4'],
             'customer_id' => $verify['customer']['customer_code'],
-            'subscription_id' => $verify['subscription']['id'] ?? '',
+            'subscription_id' => $verify['plan'] ?? '',
             'payment_method' => $verify['authorization']['channel'], 
             'payment_bank' => $verify['authorization']['bank'], 
         ];
