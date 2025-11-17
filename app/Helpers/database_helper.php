@@ -21,6 +21,10 @@ $databases = [
         image VARCHAR(255),
         pin_hash TEXT DEFAULT NULL,
         nationality VARCHAR(100),
+        subscription_amount DECIMAL(10, 2) DEFAULT 0.00,
+        subscription_plan VARCHAR(100) DEFAULT 'Free', -- 'Free', 'Pro', 'Premium'
+        subscription_start_date DATETIME DEFAULT NULL,
+        subscription_expires_at DATETIME DEFAULT NULL,
         preferences TEXT DEFAULT NULL,
         photo VARCHAR(255) DEFAULT NULL,
         gender VARCHAR(20) DEFAULT NULL,
@@ -127,6 +131,10 @@ $alterTables = [
     "ALTER TABLE users ADD COLUMN pin_hash TEXT DEFAULT NULL;",
     "ALTER TABLE users ADD COLUMN preferences TEXT DEFAULT NULL;",
     "ALTER TABLE users ADD COLUMN photo VARCHAR(255) DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN subscription_plan VARCHAR(100) DEFAULT 'Free';",
+    "ALTER TABLE users ADD COLUMN subscription_start_date DATETIME DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN subscription_expires_at DATETIME DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN subscription_amount DECIMAL(10, 2) DEFAULT 0.00;",
 ];
 
 function createDatabaseStructure() {

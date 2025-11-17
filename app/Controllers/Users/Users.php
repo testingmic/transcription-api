@@ -68,6 +68,15 @@ class Users extends LoadController {
     }
 
     /**
+     * Get the subscription of the current user
+     * 
+     * @return array
+     */
+    public function subscription() {
+        return $this->profile();
+    }
+
+    /**
      * Get the profile of the current user
      * 
      * @return array
@@ -80,7 +89,14 @@ class Users extends LoadController {
         $this->payload['user_id'] = $userId;
 
         // get the user
-        return $this->view();
+        $data = $this->view()['data'];
+
+        $plans = subscriptionPlans();
+
+        // get the subscription plans
+        $data['plans'] = $plans;
+
+        return Routing::success($data);
     }
 
     /**

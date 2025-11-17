@@ -94,6 +94,7 @@ class Autoload extends AutoloadConfig
         'permissions',
         'analytics',
         'utilities',
-        'transcriptions'
+        'transcriptions',
+        'number'
     ];
 }

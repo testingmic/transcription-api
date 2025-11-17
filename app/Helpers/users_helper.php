@@ -27,16 +27,24 @@ function formatUserResponse($user, bool $single = false, $simpleData = false) {
             "email" => $value['email'],
             "name" => $value['name'],
             "status" => $value['status'],
-            "role" => $value['role'],
-            "gender" => $value['gender']
+            "role" => $value['role']
         ];
 
-        foreach(['contractor_id', 'jurisdiction_id', 'assembly_id'] as $item) {
-            $result[$key][$item] = !empty($value[$item]) ? (int) $value[$item] : 0;
+        $result[$key]['subscription'] = [
+            'plan' => $value['subscription_plan'],
+            'amount' => number_to_currency($value['subscription_amount'], 'USD'),
+            'start_date' => empty($value['subscription_start_date']) ? 'N/A' : $value['subscription_start_date'],
+            'expires_at' => empty($value['subscription_expires_at']) ? 'N/A' : $value['subscription_expires_at'],
+        ];
+
+        foreach(['gender', 'nationality', 'date_of_birth'] as $item) {
+            if(!empty($value[$item])) {
+                $result[$key][$item] = ucwords($value[$item]);
+            }
         }
 
         if(!$simpleData) {
-            foreach(['username', 'two_factor_setup', 'nationality', 'date_of_birth', 'phone', 'timezone', 'last_login'] as $item) {
+            foreach(['username', 'two_factor_setup', 'timezone', 'last_login'] as $item) {
                 $result[$key][$item] = $value[$item];
             }
         }

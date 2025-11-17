@@ -17,6 +17,11 @@ class UsersValidation {
             'authenticate' => true,
             'payload' => []
         ],
+        'subscription' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'payload' => []
+        ],
         'profile' => [
             'method' => 'GET',
             'authenticate' => true,

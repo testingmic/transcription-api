@@ -18,6 +18,14 @@ function configs($key) {
         'is_local' => config('Database')?->defaultGroup == 'tests',
         'app_theme' => getenv('APP_THEME'),
         'openai_api_key' => getenv('OPENAI_API_KEY2'),
+        
+        'paystack_account_id' => getenv('PAYSTACK_ACCOUNT_ID'),
+
+        'paystack_test_secret' => getenv('PAYSTACK_TEST_SECRET'),
+        'paystack_live_secret' => getenv('PAYSTACK_LIVE_SECRET'),
+
+        'paystack_test_public' => getenv('PAYSTACK_TEST_PUBLIC_KEY'),
+        'paystack_live_public' => getenv('PAYSTACK_LIVE_PUBLIC_KEY'),
 
         // email config
         'email.port' => getenv('email.SMTP_PORT'),

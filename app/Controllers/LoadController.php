@@ -8,7 +8,9 @@ use App\Libraries\Caching;
 use App\Models\AudioModel;
 use App\Models\ResourcesModel;
 
+use App\Models\PaymentsModel;
 use App\Models\TranscriptionsModel;
+
 
 // Traits
 use App\Libraries\Traits\HasAuthorization;
@@ -26,7 +28,8 @@ class LoadController extends BaseController
 
     protected $resourcesModel;
     protected $audioModel;
-    
+    protected $paymentsModel;
+
     protected $transcriptionsModel;
     protected $notificationsModel;
     
@@ -66,7 +69,8 @@ class LoadController extends BaseController
             
             // Define a mapping of model names to their corresponding model classes
             $modelMap = [
-                'resources' => ResourcesModel::class
+                'resources' => ResourcesModel::class,
+                'payments' => PaymentsModel::class
             ];
             
             // Loop through the requested models and initialize them
