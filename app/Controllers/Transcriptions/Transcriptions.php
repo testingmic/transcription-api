@@ -25,7 +25,7 @@ class Transcriptions extends LoadController {
 
         $data = $this->transcriptionsModel->listTranscriptions($filters, $this->payload['limit'] ?? 10, $this->payload['offset'] ?? 0);
 
-        return Routing::success(formatTranscription($data));
+        return Routing::success(formatTranscription($data, true));
     }
 
     /**

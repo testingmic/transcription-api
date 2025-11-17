@@ -7,7 +7,7 @@
  * 
  * @return array
  */
-function formatTranscription($transcription) {
+function formatTranscription($transcription, $removeSummary = false) {
 
     // if the transcription is empty, return an empty array
     if(empty($transcription)) return [];
@@ -23,6 +23,10 @@ function formatTranscription($transcription) {
         $value['summarySet'] = false;
         if(!empty($value['summary']) && !empty($value['summary']['actionItems']) && !empty($value['summary']['keyPoints'])) {
             $value['summarySet'] = true;
+        }
+
+        if($removeSummary) {
+            unset($value['summary']);
         }
 
         if(!empty($value['audioUrl'])) {
