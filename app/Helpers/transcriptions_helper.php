@@ -165,7 +165,7 @@ function currencyLookup($cacheObject)
         }
 
         // save the currency list to the cache
-        $cacheObject->save($cacheKey, $result, 'currency.lookup', 'is_admin', (60 * 60 * 6));
+        $cacheObject->save($cacheKey, $result, 'currency.lookup', 'is_admin', (60 * 60 * 2));
 
     } catch(\Exception $e) { }
 
