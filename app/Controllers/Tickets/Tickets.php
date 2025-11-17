@@ -151,7 +151,14 @@ class Tickets extends LoadController {
             return Routing::error('Failed to create message');
         }
 
-        $this->ticketsModel->updateTicket($this->uniqueId, ['messages_count' => $ticketRecord['messages_count'] + 1]);
+        $updated = ['messages_count' => $ticketRecord['messages_count'] + 1];
+
+        // change the status to in progress if the user is an admin
+        if($this->isAdmin()) {
+            $updated['status'] = 'in_progress';
+        }
+
+        $this->ticketsModel->updateTicket($this->uniqueId, $updated);
 
         return Routing::created(['data' => 'Message created successfully', 'record' => $this->view()['data']]);
 
