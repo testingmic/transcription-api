@@ -26,6 +26,7 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
                 'profile' => true,
+                'subscription' => true,
             ],
             'transcriptions' => [
                 'create' => true,
@@ -40,6 +41,14 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
             ],
+            'subscriptions' => [
+                'list' => true,
+                'plans' => true,
+                'checkout' => true,
+                'verify' => true,
+                'usage' => true,
+                'restore' => true,
+            ]
         ],
 
         /**
@@ -54,6 +63,7 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
                 'profile' => true,
+                'subscription' => true,
             ],
             'transcriptions' => [
                 'create' => true,
@@ -68,6 +78,14 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
             ],
+            'subscriptions' => [
+                'list' => true,
+                'plans' => true,
+                'checkout' => true,
+                'verify' => true,
+                'usage' => true,
+                'restore' => true,
+            ]
         ],
 
 
@@ -83,6 +101,7 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
                 'profile' => true,
+                'subscription' => true,
             ],
             'transcriptions' => [
                 'create' => true,
@@ -97,6 +116,14 @@ function getPermissions() {
                 'view' => true,
                 'delete' => true,
             ],
+            'subscriptions' => [
+                'list' => true,
+                'plans' => true,
+                'checkout' => true,
+                'verify' => true,
+                'usage' => true,
+                'restore' => true,
+            ]
         ],
 
     ];
