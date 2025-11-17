@@ -133,10 +133,10 @@ class Tickets extends LoadController {
             return Routing::error('Ticket ID is required');
         }
 
-        $payload = ['ticket_id' => $this->uniqueId];
-        $messages = $this->ticketsModel->checkExists($payload);
-        if(empty($messages)) {
-            $messages = [];
+        $payload = ['id' => $this->uniqueId];
+        $ticketRecord = $this->ticketsModel->checkExists($payload);
+        if(empty($ticketRecord)) {
+            return Routing::notFound('Ticket');
         }
 
         $payload = [
@@ -149,6 +149,11 @@ class Tickets extends LoadController {
         $message = $this->ticketsModel->createMessage($payload);
         if(empty($message)) {
             return Routing::error('Failed to create message');
+        }
+
+        $this->ticketsModel->updateTicket($this->uniqueId, ['messages_count' => $ticketRecord['messages_count'] + 1]);
+        if(empty($ticket)) {
+            return Routing::error('Failed to update ticket');
         }
 
         return Routing::created(['data' => 'Message created successfully', 'record' => $this->view()['data']]);

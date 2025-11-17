@@ -160,6 +160,7 @@ $databases = [
         type VARCHAR(20) DEFAULT 'support',
         priority VARCHAR(20) DEFAULT 'low',
         subject VARCHAR(255) NOT NULL,
+        messages_count INTEGER DEFAULT 0,
         description TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -183,7 +184,7 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE users ADD COLUMN customer_id TEXT DEFAULT NULL;",
+    "ALTER TABLE tickets ADD COLUMN messages_count INTEGER DEFAULT 0;",
 ];
 
 function createDatabaseStructure() {
