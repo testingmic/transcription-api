@@ -109,7 +109,7 @@ class Payments extends LoadController {
 
         if(empty($checkExists)) {
             // create the payment record
-            $this->paymentsModel->createRecord($payload);
+            $this->paymentsModel->createRecord($paymentPayload);
         }
 
         // payment status was successful

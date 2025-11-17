@@ -128,7 +128,7 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_audio_files_mimeType ON audio_files (mimeType);
     CREATE INDEX IF NOT EXISTS idx_audio_files_size ON audio_files (size);",
 
-    "drop table payments;CREATE TABLE IF NOT EXISTS payments (
+    "CREATE TABLE IF NOT EXISTS payments (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         reference VARCHAR(32) DEFAULT NULL,
