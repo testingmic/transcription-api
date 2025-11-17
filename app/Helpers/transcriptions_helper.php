@@ -80,8 +80,8 @@ function subscriptionPlans() {
             ]
         ],
         'PRO' => [
-            'id' => 'premium',
-            'name' => 'Premium',
+            'id' => 'pro',
+            'name' => 'Pro',
             'price' => 5.99,
             'minutesLimit' => 600,
             'maxFileSize' => 20, // MB
