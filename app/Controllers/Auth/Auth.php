@@ -54,6 +54,8 @@ class Auth extends LoadController {
             }
         }
 
+        $formatUser = formatUserResponse([$user]);
+
         // Generate response
         $response = [
             'user_id'   => (int) $user['id'],
@@ -61,7 +63,8 @@ class Auth extends LoadController {
             'role' => $user['role'],
             'username' => $user['username'],
             'two_factor_setup' => false,
-            'email' => $user['email']
+            'email' => $user['email'],
+            'subscription' => $formatUser[0]['subscription']
         ];
 
         // update the user last login date
