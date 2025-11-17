@@ -57,6 +57,17 @@ function getPermissions() {
                 'list' => true,
                 'view' => true,
                 'delete' => true,
+            ],
+            'tickets' => [
+                'list' => true,
+                'view' => true,
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+                'email' => true,
+                'status' => true,
+                'close' => true,
+                'messages' => true,
             ]
         ],
 
@@ -103,6 +114,17 @@ function getPermissions() {
                 'list' => true,
                 'view' => true,
                 'delete' => true,
+            ],
+            'tickets' => [
+                'list' => true,
+                'view' => true,
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+                'email' => true,
+                'status' => true,
+                'close' => true,
+                'messages' => true,
             ]
         ],
 
@@ -149,6 +171,17 @@ function getPermissions() {
                 'list' => true,
                 'view' => true,
                 'delete' => true,
+            ],
+            'tickets' => [
+                'list' => true,
+                'view' => true,
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+                'email' => true,
+                'status' => true,
+                'close' => true,
+                'messages' => true,
             ]
         ],
 

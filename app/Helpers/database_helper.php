@@ -152,6 +152,34 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_payments_subscription_id ON payments (subscription_id);
     CREATE INDEX IF NOT EXISTS idx_payments_payment_method ON payments (payment_method);
     CREATE INDEX IF NOT EXISTS idx_payments_payment_bank ON payments (payment_bank);",
+
+    "CREATE TABLE IF NOT EXISTS tickets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        status VARCHAR(20) DEFAULT 'open',
+        type VARCHAR(20) DEFAULT 'support',
+        priority VARCHAR(20) DEFAULT 'low',
+        subject VARCHAR(255) NOT NULL,
+        description TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_tickets_user_id ON tickets (user_id);
+    CREATE INDEX IF NOT EXISTS idx_tickets_status ON tickets (status);
+    CREATE INDEX IF NOT EXISTS idx_tickets_type ON tickets (type);
+    CREATE INDEX IF NOT EXISTS idx_tickets_priority ON tickets (priority);",
+
+    "CREATE TABLE IF NOT EXISTS ticket_messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ticket_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        sender_type VARCHAR(20) NOT NULL DEFAULT 'user', -- 'user', 'admin', 'moderator'
+        message TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_ticket_messages_ticket_id ON ticket_messages (ticket_id);
+    CREATE INDEX IF NOT EXISTS idx_ticket_messages_user_id ON ticket_messages (user_id);",
 ];
 
 $alterTables = [
