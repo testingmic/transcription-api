@@ -26,6 +26,45 @@ class Payments extends LoadController {
     }
 
     /**
+     * Initialize a paystack transaction
+     * 
+     * @return array
+     */
+    private function initPaystack($email, $amount) {
+
+        $url = "https://api.paystack.co/transaction/initialize";
+
+        $fields = [
+            'email' => $email,
+            'amount' => $amount * 100
+        ];
+
+        $fields_string = http_build_query($fields);
+
+        //open connection
+        $ch = curl_init();
+
+        $secretKey = configs('is_local') ? configs('paystack_test_secret') : configs('paystack_live_secret');
+        
+        //set the url, number of POST vars, POST data
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_POST, true);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Authorization: Bearer " . $secretKey,
+            "Cache-Control: no-cache",
+        ));
+        
+        //So that curl_exec returns the contents of the cURL; rather than echoing it
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+        
+        //execute post
+        $result = curl_exec($ch);
+
+        return json_decode($result, true);
+    }
+
+    /**
      * Initialize a subscription
      * 
      * @return array
@@ -34,13 +73,23 @@ class Payments extends LoadController {
 
         $plan = strtoupper($this->payload['planId']);
 
-        $isLocal = configs('is_local') ? 'test' : 'live';
+        $planInfo = subscriptionPlans()[$plan] ?? [];
+        
+        if(empty($planInfo)) {
+            return Routing::error('Plan not found');
+        }
 
-        $planInfo = subscriptionPlans()[$plan]['planInfo'];
+        $generateUrl = $this->initPaystack($this->currentUser['email'], $planInfo['price']);
 
+        if(!isset($generateUrl['data']['authorization_url'])) {
+            return Routing::error('Error encountered while generating the payment URL.');
+        }
+
+        unset($planInfo['planInfo']);
+        
         return Routing::success([
-            'plans' => $planInfo[$isLocal],
-            'authorization_url' => $planInfo[$isLocal]['paylink']
+            'plans' => $planInfo,
+            'authorization_url' => $generateUrl['data']['authorization_url'],
         ]);
     }
 
