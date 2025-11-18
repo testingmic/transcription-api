@@ -182,6 +182,16 @@ $databases = [
     );
     CREATE INDEX IF NOT EXISTS idx_ticket_messages_ticket_id ON ticket_messages (ticket_id);
     CREATE INDEX IF NOT EXISTS idx_ticket_messages_user_id ON ticket_messages (user_id);",
+
+    "CREATE TABLE IF NOT EXISTS webhooks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        event VARCHAR(100) NOT NULL,
+        payload TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_webhooks_event ON webhooks (event);
+    CREATE INDEX IF NOT EXISTS idx_webhooks_payload ON webhooks (payload);",
 ];
 
 $alterTables = [

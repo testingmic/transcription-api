@@ -12,6 +12,7 @@ use App\Models\PaymentsModel;
 use App\Models\TranscriptionsModel;
 use App\Models\TicketsModel;
 
+use App\Models\WebhooksModel;
 
 // Traits
 use App\Libraries\Traits\HasAuthorization;
@@ -35,6 +36,8 @@ class LoadController extends BaseController
 
     protected $transcriptionsModel;
     protected $notificationsModel;
+    
+    protected $webhooksModel;
     
     public function __construct($model = [])
     {
@@ -74,7 +77,8 @@ class LoadController extends BaseController
             $modelMap = [
                 'resources' => ResourcesModel::class,
                 'payments' => PaymentsModel::class,
-                'tickets' => TicketsModel::class
+                'tickets' => TicketsModel::class,
+                'webhooks' => WebhooksModel::class
             ];
             
             // Loop through the requested models and initialize them
