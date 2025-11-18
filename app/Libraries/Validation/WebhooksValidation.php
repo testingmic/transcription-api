@@ -5,7 +5,7 @@ namespace App\Libraries\Validation;
 class WebhooksValidation {
 
     public $routes = [
-        'prod' => [
+        'live' => [
             'method' => 'POST,GET',
             'payload' => []
         ],

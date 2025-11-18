@@ -82,7 +82,7 @@ class RequestHandler extends BaseController
                     if(isset($routes[$routesUrl])) {
                         $endQuery = true;
                         $routes[$method] = $routes[$routesUrl];
-                        $routes[$method]['payload'] = $routes[$routesUrl]['payload'];
+                        $routes[$method]['payload'] = ($routes[$routesUrl]['payload'] ?? []);
                         unset($routes[$routesUrl]);
                     }
 

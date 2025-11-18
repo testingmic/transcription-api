@@ -75,6 +75,15 @@ function getPermissions() {
                 'stats' => true,
                 'endpoints' => true,
                 'utilities' => true,
+            ],
+            'notifications' => [
+                'list' => true,
+                'view' => true,
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+                'read' => true,
+                'readall' => true,
             ]
         ],
 
@@ -139,6 +148,15 @@ function getPermissions() {
                 'stats' => true,
                 'endpoints' => true,
                 'utilities' => true,
+            ],
+            'notifications' => [
+                'list' => true,
+                'view' => true,
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+                'read' => true,
+                'readall' => true,
             ]
         ],
 
@@ -202,6 +220,15 @@ function getPermissions() {
             'general' => [
                 'stats' => true,
                 'utilities' => true,
+            ],
+            'notifications' => [
+                'list' => true,
+                'view' => true,
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+                'read' => true,
+                'readall' => true,
             ]
         ],
 
