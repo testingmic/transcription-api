@@ -185,7 +185,7 @@ $databases = [
 ];
 
 $alterTables = [
-    "ALTER TABLE users ADD COLUMN user_device_model VARCHAR(50) DEFAULT NULL;",
+    // "ALTER TABLE users ADD COLUMN user_device_model VARCHAR(50) DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {

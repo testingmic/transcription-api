@@ -21,6 +21,16 @@ class GeneralValidation {
             'roles' => ['Admin', 'Moderator'],
             'payload' => []
         ],
+        'health' => [
+            'method' => 'GET,POST',
+            'roles' => ['Admin', 'Moderator', 'User'],
+            'payload' => []
+        ],
+        'event' => [
+            'method' => 'POST',
+            'authenticate' => false,
+            'payload' => []
+        ]
     ];
 
 }

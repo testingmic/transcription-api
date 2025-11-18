@@ -13,6 +13,28 @@ class General extends LoadController {
     }
 
     /**
+     * Get the health of the server
+     * 
+     * @return array
+     */
+    public function health() {
+        return Routing::success([
+            'status' => 'ok'
+        ]);
+    }
+
+    /**
+     * Log an event
+     * 
+     * @return array
+     */
+    public function event() {
+        return Routing::success([
+            'status' => 'event logged successfully'
+        ]);
+    }
+
+    /**
      * Get admin dashboard statistics
      * 
      * @return array
