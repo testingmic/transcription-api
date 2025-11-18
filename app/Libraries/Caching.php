@@ -271,16 +271,29 @@ class Caching {
                 ],
                 'ttl' => configs('heatmaps_ttl')
             ],
+            'general' => [
+                'methods' => [
+                    'stats',
+                    'utilities',
+                ],
+                'ttl' => 900
+            ],
+            'payments' => [
+                'methods' => [
+                    'revenue',
+                ],
+                'ttl' => 900
+            ],
             'users' => [
                 'methods' => [
-                    // 'list',
+                    'analytics',
                 ],
                 "invalid" => [
                     'create' => ['list'],
                     'update' => ['list'],
                     
                 ],
-                'ttl' => 3600
+                'ttl' => 900
             ]
         ];
 
