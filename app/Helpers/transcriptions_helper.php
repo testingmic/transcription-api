@@ -33,7 +33,7 @@ function formatTranscription($transcription, $removeSummary = false) {
             $value['audioUrl'] = base_url("uploads/{$value['audioUrl']}");
         }
 
-        $value['transcription'] = htmlspecialchars_decode($value['transcription']);
+        $value['transcription'] = html_entity_decode($value['transcription'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
         $result[] = $value;
     }
