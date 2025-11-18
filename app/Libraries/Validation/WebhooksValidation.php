@@ -6,11 +6,11 @@ class WebhooksValidation {
 
     public $routes = [
         'prod' => [
-            'method' => 'POST',
+            'method' => 'POST,GET',
             'payload' => []
         ],
         'test' => [
-            'method' => 'POST',
+            'method' => 'POST,GET',
             'payload' => []
         ],
     ];
