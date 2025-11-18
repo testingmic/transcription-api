@@ -118,6 +118,30 @@ class Users extends LoadController {
     }
 
     /**
+     * Detect if the user is on an iOS mobile or web
+     * 
+     * @return array
+     */
+    public function detectIosMobileOrWeb() {
+
+        $request = service('request');
+        
+        $userAgent = $request->getUserAgent();
+
+        $isAndroid = $userAgent->isMobile('android');
+        $isIos = $userAgent->isMobile('iphone');
+
+        $getPlatform = $userAgent->getPlatform();
+        $getMobile = $userAgent->getMobile();
+
+        return [
+            'device' => $isAndroid ? 'Android' : ($isIos ? 'iOS' : 'Web'),
+            'platform' => $getPlatform,
+            'mobile' => $getMobile
+        ];
+    }
+
+    /**
      * Create a new user
      * 
      * @return array
@@ -144,6 +168,8 @@ class Users extends LoadController {
 
         // remove the password confirm
         unset($this->submittedPayload['confirmPassword']);
+
+        $this->submittedPayload['user_device_model'] = $this->detectIosMobileOrWeb()['device'];
 
         // create the user
         $userId = $this->usersModel->createRecord($this->submittedPayload);

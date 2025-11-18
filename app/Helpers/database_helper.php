@@ -31,6 +31,7 @@ $databases = [
         photo VARCHAR(255) DEFAULT NULL,
         gender VARCHAR(20) DEFAULT NULL,
         date_of_birth DATE DEFAULT NULL,
+        user_device_model VARCHAR(50) DEFAULT NULL,
         timezone VARCHAR(50) DEFAULT 'Africa/Accra',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -184,7 +185,7 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE tickets ADD COLUMN messages_count INTEGER DEFAULT 0;",
+    "ALTER TABLE users ADD COLUMN user_device_model VARCHAR(50) DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {

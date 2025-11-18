@@ -286,7 +286,7 @@ class Caching {
             ],
             'users' => [
                 'methods' => [
-                    'analytics',
+                    // 'analytics',
                 ],
                 "invalid" => [
                     'create' => ['list'],

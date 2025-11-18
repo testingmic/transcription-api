@@ -18,7 +18,7 @@ class GeneralValidation {
         'stats' => [
             'method' => 'GET',
             'authenticate' => true,
-            'roles' => ['Admin', 'Moderator', 'User'],
+            'roles' => ['Admin', 'Moderator'],
             'payload' => []
         ],
     ];

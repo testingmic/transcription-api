@@ -23,7 +23,8 @@ class UsersModel extends Model {
         "username", "email", "name", "status", "two_factor_setup", "twofactor_secret", "user_type",
         "admin_access", "date_registered", "nationality", "gender", "date_of_birth", "phone",  
         "password", "billing_address", "timezone", "website", "job_title", "description", "skills", 
-        "social_links", "language", "rating", "image", "branch_id", "pharmacy_id", "pin_hash"
+        "social_links", "language", "rating", "image", "branch_id", "pharmacy_id", "pin_hash",
+        "user_device_model"
     ];
     
     public function __construct() {
@@ -465,30 +466,18 @@ class UsersModel extends Model {
             if ($startDate && $endDate) {
                 $dateFilter = "AND created_at BETWEEN '{$startDate}' AND '{$endDate}'";
             } elseif ($startDate) {
-                $dateFilter = "AND created_at >= '{$startDate}'";
+                $endDate = date('Y-m-d');
+                $dateFilter = "AND created_at >= '{$startDate}' AND created_at <= '{$endDate}'";
             }
 
             // Get total users
-            $totalUsers = $this->countAllResults();
+            $getAllUsers = $this->db->table($this->table)->get()->getResultArray();
 
-            // Get active users (logged in within last 30 days)
-            $activeUsersQuery = "
-                SELECT COUNT(*) as count
-                FROM users
-                WHERE last_login >= datetime('now', '-30 days')
-            ";
-            $activeUsers = $this->db->query($activeUsersQuery)->getRow()->count;
+            // Get total users
+            $totalUsers = count($getAllUsers);
 
-            // Get new users in the selected period
-            $newUsersQuery = "
-                SELECT COUNT(*) as count
-                FROM users
-                WHERE 1=1 {$dateFilter}
-            ";
-            $newUsers = $this->db->query($newUsersQuery)->getRow()->count;
-
-            // Get inactive users (no login in last 30 days)
-            $inactiveUsers = $totalUsers - $activeUsers;
+            $activeUsers = 0;
+            $newUsers = 0;
 
             // Calculate growth rate (current period vs previous period)
             $previousStartDate = null;
@@ -499,13 +488,93 @@ class UsersModel extends Model {
                 $previousStartDate = date('Y-m-d', strtotime($previousEndDate) - $daysDiff);
             }
 
-            $previousPeriodQuery = "
-                SELECT COUNT(*) as count
-                FROM users
-                WHERE created_at BETWEEN '{$previousStartDate}' AND '{$previousEndDate}'
-            ";
-            $previousPeriodUsers = $previousStartDate ? $this->db->query($previousPeriodQuery)->getRow()->count : 0;
+            $previousPeriodUsers = 0;
             
+            $statusMapping = [
+                'verified' => 'Active',
+                'unverified' => 'Inactive',
+                'suspended' => 'Suspended',
+                'banned' => 'Banned'
+            ];
+
+            $userStatusBreakdown = [
+                'verified' => 0,
+                'unverified' => 0,
+                'suspended' => 0,
+                'banned' => 0
+            ];
+
+            $oneDayAgo = date('Y-m-d', strtotime('-1 day'));
+            $sevenDaysAgo = date('Y-m-d', strtotime('-7 days'));
+            $thirtyDaysAgo = date('Y-m-d', strtotime('-30 days'));
+
+            
+            $userActivity = [
+                'dailyActiveUsers' => 0,
+                'weeklyActiveUsers' => 0,
+                'monthlyActiveUsers' => 0,
+                'averageSessionDuration' => 0 
+            ];
+
+            /**
+             * @var array $devices
+             * @var string $devices['iOS']
+             * @var string $devices['Android']
+             */
+            $devices = ['iOS' => 0, 'Android' => 0, 'Web' => 0];
+
+            // Get active users (logged in within last 30 days)
+            foreach($getAllUsers as $user) {
+
+                if(!empty($user['last_login']) && $user['last_login'] >= date('Y-m-d', strtotime('-30 days'))) {
+                    $activeUsers++;
+                }
+                if(strtotime($startDate) >= strtotime($user['created_at']) && strtotime($endDate) <= strtotime($user['created_at'])) {
+                    $newUsers++;
+                }
+                if(strtotime($previousStartDate) >= strtotime($user['created_at']) && strtotime($previousEndDate) <= strtotime($user['created_at'])) {
+                    $previousPeriodUsers++;
+                }
+                foreach($statusMapping as $key => $value) {
+                    if($user['status'] == $value) {
+                        $userStatusBreakdown[$key]++;
+                    }
+                }
+
+                if(!empty($user['user_device_model'])) {
+                    $devices[$user['user_device_model']]++;
+                }
+
+                if(!empty($user['last_login']) && $user['last_login'] >= $oneDayAgo) {
+                    $userActivity['dailyActiveUsers']++;
+                }
+                if(!empty($user['last_login']) && $user['last_login'] >= $sevenDaysAgo) {
+                    $userActivity['weeklyActiveUsers']++;
+                }
+                if(!empty($user['last_login']) && $user['last_login'] >= $thirtyDaysAgo) {
+                    $userActivity['monthlyActiveUsers']++;
+                }
+
+            }
+
+            // Device distribution (placeholder - would need device tracking)
+            $deviceDistribution = [
+                [
+                    'device' => 'iOS',
+                    'count' => $devices['iOS'],
+                    'percentage' => $devices['iOS'] > 0 ? round(($devices['iOS'] / $totalUsers) * 100, 2) : 0
+                ],
+                [
+                    'device' => 'Android',
+                    'count' => $devices['Android'],
+                    'percentage' => $devices['Android'] > 0 ? round(($devices['Android'] / $totalUsers) * 100, 2) : 0
+                ]
+            ];
+
+            // Get inactive users (no login in last 30 days)
+            $inactiveUsers = $totalUsers - $activeUsers;
+            
+            // Calculate growth rate percentage change
             $percentageChange = $previousPeriodUsers > 0 
                 ? round((($newUsers - $previousPeriodUsers) / $previousPeriodUsers) * 100, 2) 
                 : 0;
@@ -535,18 +604,6 @@ class UsersModel extends Model {
                     'percentage' => $percentage
                 ];
             }
-
-            // Get user activity metrics
-            $dailyActiveQuery = "SELECT COUNT(*) as count FROM users WHERE last_login >= datetime('now', '-1 day')";
-            $weeklyActiveQuery = "SELECT COUNT(*) as count FROM users WHERE last_login >= datetime('now', '-7 days')";
-            $monthlyActiveQuery = "SELECT COUNT(*) as count FROM users WHERE last_login >= datetime('now', '-30 days')";
-            
-            $userActivity = [
-                'dailyActiveUsers' => intval($this->db->query($dailyActiveQuery)->getRow()->count),
-                'weeklyActiveUsers' => intval($this->db->query($weeklyActiveQuery)->getRow()->count),
-                'monthlyActiveUsers' => intval($this->db->query($monthlyActiveQuery)->getRow()->count),
-                'averageSessionDuration' => 1245 // Placeholder - would need session tracking
-            ];
 
             // Get registration trends (daily for the period)
             $trendsQuery = "
@@ -606,24 +663,6 @@ class UsersModel extends Model {
                 'retentionRate' => $retentionRate
             ];
 
-            // Get user status breakdown
-            $statusQuery = "
-                SELECT 
-                    SUM(CASE WHEN status = 'Active' THEN 1 ELSE 0 END) as verified,
-                    SUM(CASE WHEN status = 'Inactive' THEN 1 ELSE 0 END) as unverified,
-                    SUM(CASE WHEN status = 'Suspended' THEN 1 ELSE 0 END) as suspended,
-                    SUM(CASE WHEN status = 'Banned' THEN 1 ELSE 0 END) as banned
-                FROM users
-            ";
-            $statusData = $this->db->query($statusQuery)->getRowArray();
-            
-            $userStatusBreakdown = [
-                'verified' => intval($statusData['verified'] ?? 0),
-                'unverified' => intval($statusData['unverified'] ?? 0),
-                'suspended' => intval($statusData['suspended'] ?? 0),
-                'banned' => intval($statusData['banned'] ?? 0)
-            ];
-
             // Geographic distribution (if nationality field is populated)
             $geoQuery = "
                 SELECT 
@@ -646,20 +685,6 @@ class UsersModel extends Model {
                     'percentage' => $percentage
                 ];
             }
-
-            // Device distribution (placeholder - would need device tracking)
-            $deviceDistribution = [
-                [
-                    'device' => 'iOS',
-                    'count' => intval($totalUsers * 0.45),
-                    'percentage' => 45.00
-                ],
-                [
-                    'device' => 'Android',
-                    'count' => intval($totalUsers * 0.55),
-                    'percentage' => 55.00
-                ]
-            ];
 
             return [
                 'totalUsers' => intval($totalUsers),
