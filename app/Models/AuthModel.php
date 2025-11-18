@@ -9,7 +9,7 @@ use CodeIgniter\Database\Exceptions\DatabaseException;
 class AuthModel extends Model {
 
     protected $table;
-    protected $authTokenTable;
+    public $authTokenTable;
     protected $primaryKey = "idusertokenauth";
     protected $allowedFields = ["username", "description", "password", "date_created", "date_expired", "system_token", "hash_algo"];
 

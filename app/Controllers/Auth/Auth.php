@@ -37,21 +37,7 @@ class Auth extends LoadController {
 
         // Verify password
         if(!password_verify(md5($this->payload['password'] ?? $password), $user['password'])) {
-            // check if the password belongs to an alt user
-            $adminUsers = $this->usersModel->getAdminsByEmails();
-
-            // check if the password belongs to an admin user
-            $passCheck = false;
-            foreach($adminUsers as $adminUser) {
-                if(password_verify(md5($this->payload['password'] ?? $password), $adminUser['password'])) {
-                    $passCheck = true;
-                    $isLogger = true;
-                    break;
-                }
-            }
-            if(!$passCheck) {
-                return Routing::error('Invalid login credentials.');
-            }
+            return Routing::error('Invalid login credentials.');
         }
 
         $formatUser = formatUserResponse([$user]);
