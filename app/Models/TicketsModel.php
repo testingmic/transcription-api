@@ -40,6 +40,8 @@ class TicketsModel extends Model {
             if(!empty($value)) {
                 if(is_array($value)) {
                     $query->whereIn($key, $value);
+                } else {
+                    $query->where($key, $value);
                 }
             }
         }
