@@ -189,6 +189,39 @@ class Payments extends LoadController {
 
         $payload = ['id' => $this->uniqueId];
 
+        if($this->isUser()) {
+            $payload['user_id'] = $this->currentUser['id'];
+        }
+
+        $payment = $this->paymentsModel->checkExists($payload);
+        if(empty($payment)) {
+            return Routing::notFound();
+        }
+
+        return Routing::success($payment);
+    }
+
+    /**
+     * Get revenue analytics
+     * @return array
+     */
+    public function revenue() {
+        
+        // Build filters from request
+        $filters = [];
+        
+        if(!empty($this->payload['start_date'])) {
+            $filters['start_date'] = $this->payload['start_date'];
+        }
+        
+        if(!empty($this->payload['end_date'])) {
+            $filters['end_date'] = $this->payload['end_date'];
+        }
+
+        // Get revenue analytics data
+        $revenueData = $this->paymentsModel->getRevenueAnalytics($filters);
+
+        return Routing::success($revenueData);
     }
 
 }

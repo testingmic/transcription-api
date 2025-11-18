@@ -56,6 +56,7 @@ function getPermissions() {
                 'history' => true,
                 'list' => true,
                 'view' => true,
+                'revenue' => true,
                 'delete' => true,
             ],
             'tickets' => [
@@ -113,6 +114,7 @@ function getPermissions() {
                 'history' => true,
                 'list' => true,
                 'view' => true,
+                'revenue' => true,
                 'delete' => true,
             ],
             'tickets' => [
@@ -170,6 +172,7 @@ function getPermissions() {
                 'history' => true,
                 'list' => true,
                 'view' => true,
+                'revenue' => true,
                 'delete' => true,
             ],
             'tickets' => [

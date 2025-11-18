@@ -56,6 +56,15 @@ class PaymentsValidation {
             'authenticate' => true,
             'roles' => ['Admin', 'Moderator', 'User']
         ],
+        'revenue' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'roles' => ['Admin', 'Moderator', 'User'],
+            'payload' => [
+                'start_date' => 'permit_empty|valid_date[Y-m-d]',
+                'end_date' => 'permit_empty|valid_date[Y-m-d]',
+            ]
+        ],
     ];
 
 }
