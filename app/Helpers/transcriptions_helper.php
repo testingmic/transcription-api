@@ -39,7 +39,6 @@ function formatTranscription($transcription, $removeSummary = false) {
 
         $result[] = $value;
     }
-    print_r($value);exit;
 
     return $result;
 }
