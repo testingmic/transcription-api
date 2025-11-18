@@ -287,6 +287,43 @@ class Users extends LoadController {
         return Routing::success('The user has been reactivated successfully');
     }
 
+    /**
+     * Get user analytics
+     * 
+     * @return array
+     */
+    public function analytics() {
+        try {
+            // Build filters from request
+            $filters = [];
+            
+            if(!empty($this->payload['start_date'])) {
+                $filters['start_date'] = $this->payload['start_date'];
+            }
+            
+            if(!empty($this->payload['end_date'])) {
+                $filters['end_date'] = $this->payload['end_date'];
+            }
+
+            if(!empty($this->payload['period'])) {
+                $filters['period'] = $this->payload['period'];
+            }
+
+            if($this->isUser()) {
+                $filters['user_id'] = $this->currentUser['id'];
+            }
+
+            // Get user analytics data
+            $analyticsData = $this->usersModel->getUserAnalytics($filters);
+
+            return Routing::success($analyticsData);
+
+        } catch (\Exception $e) {
+            log_message('error', 'User Analytics Controller Error: ' . $e->getMessage());
+            return Routing::error('Failed to retrieve user analytics');
+        }
+    }
+
 }
 
 ?>

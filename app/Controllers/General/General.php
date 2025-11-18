@@ -13,6 +13,95 @@ class General extends LoadController {
     }
 
     /**
+     * Get admin dashboard statistics
+     * 
+     * @return array
+     */
+    public function stats() {
+        try {
+            $db = \Config\Database::connect();
+
+            // Get total users
+            $totalUsers = $this->usersModel->countAllResults();
+
+            // Get total transcriptions
+            $totalTranscriptions = $this->transcriptionsModel->countAllResults();
+
+            // Get total transactions (successful only)
+            $totalTransactionsQuery = "
+                SELECT COUNT(*) as count
+                FROM payments
+                WHERE status IN ('Success', 'Successful', 'Approved', 'completed')
+            ";
+            $totalTransactions = $db->query($totalTransactionsQuery)->getRow()->count;
+
+            // Get total revenue (successful payments only)
+            $totalRevenueQuery = "
+                SELECT COALESCE(SUM(amount_ghs), 0) as total
+                FROM payments
+                WHERE status IN ('Success', 'Successful', 'Approved', 'completed')
+            ";
+            $totalRevenue = floatval($db->query($totalRevenueQuery)->getRow()->total);
+
+            // Get active subscriptions (non-Free plans with valid expiry)
+            $activeSubscriptionsQuery = "
+                SELECT COUNT(*) as count
+                FROM users
+                WHERE subscription_plan != 'Free' 
+                AND subscription_plan IS NOT NULL
+                AND (subscription_expires_at IS NULL OR subscription_expires_at > datetime('now'))
+            ";
+            $activeSubscriptions = $db->query($activeSubscriptionsQuery)->getRow()->count;
+
+            // Get recent activity (last 10 activities)
+            $recentActivity = [];
+
+            // Get recent user registrations
+            $recentUsersQuery = "
+                SELECT 'user_registration' as type, 
+                       'New user registered: ' || name as description,
+                       created_at as timestamp
+                FROM users
+                ORDER BY created_at DESC
+                LIMIT 5
+            ";
+            $recentUsers = $db->query($recentUsersQuery)->getResultArray();
+
+            // Get recent transactions
+            $recentTransactionsQuery = "
+                SELECT 'transaction' as type,
+                       'Payment received: GHS ' || CAST(amount_ghs AS TEXT) as description,
+                       created_at as timestamp
+                FROM payments
+                WHERE status IN ('Success', 'Successful', 'Approved', 'completed')
+                ORDER BY created_at DESC
+                LIMIT 5
+            ";
+            $recentTransactions = $db->query($recentTransactionsQuery)->getResultArray();
+
+            // Merge and sort recent activities
+            $recentActivity = array_merge($recentUsers, $recentTransactions);
+            usort($recentActivity, function($a, $b) {
+                return strtotime($b['timestamp']) - strtotime($a['timestamp']);
+            });
+            $recentActivity = array_slice($recentActivity, 0, 10);
+
+            return Routing::success([
+                'totalUsers' => intval($totalUsers),
+                'totalTranscriptions' => intval($totalTranscriptions),
+                'totalTransactions' => intval($totalTransactions),
+                'totalRevenue' => $totalRevenue,
+                'activeSubscriptions' => intval($activeSubscriptions),
+                'recentActivity' => $recentActivity
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Admin Stats Error: ' . $e->getMessage());
+            return Routing::error('Failed to retrieve admin statistics');
+        }
+    }
+
+    /**
      * Get all the endpoints for the current user
      * 
      * @return array

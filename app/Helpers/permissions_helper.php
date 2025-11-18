@@ -27,6 +27,7 @@ function getPermissions() {
                 'delete' => true,
                 'profile' => true,
                 'subscription' => true,
+                'analytics' => true,
             ],
             'transcriptions' => [
                 'create' => true,
@@ -69,6 +70,11 @@ function getPermissions() {
                 'status' => true,
                 'close' => true,
                 'messages' => true,
+            ],
+            'general' => [
+                'stats' => true,
+                'endpoints' => true,
+                'utilities' => true,
             ]
         ],
 
@@ -85,6 +91,7 @@ function getPermissions() {
                 'delete' => true,
                 'profile' => true,
                 'subscription' => true,
+                'analytics' => true,
             ],
             'transcriptions' => [
                 'create' => true,
@@ -127,6 +134,11 @@ function getPermissions() {
                 'status' => true,
                 'close' => true,
                 'messages' => true,
+            ],
+            'general' => [
+                'stats' => true,
+                'endpoints' => true,
+                'utilities' => true,
             ]
         ],
 
@@ -144,6 +156,7 @@ function getPermissions() {
                 'delete' => true,
                 'profile' => true,
                 'subscription' => true,
+                'analytics' => true,
             ],
             'transcriptions' => [
                 'create' => true,
@@ -185,6 +198,10 @@ function getPermissions() {
                 'status' => true,
                 'close' => true,
                 'messages' => true,
+            ],
+            'general' => [
+                'stats' => true,
+                'utilities' => true,
             ]
         ],
 

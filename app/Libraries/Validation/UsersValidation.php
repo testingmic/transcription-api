@@ -83,19 +83,16 @@ class UsersValidation {
                 "date_of_birth" => "permit_empty|string|max_length[255]|valid_date",
                 "phone" => "permit_empty|string|max_length[255]",
                 "billing_address" => "permit_empty|string|max_length[255]",
-                "name" => "permit_empty|string|max_length[255]",
-                "timezone" => "permit_empty|string|max_length[255]",
-                "organizationName" => "permit_empty|string|max_length[255]",
-                "website" => "permit_empty|string|max_length[255]",
-                "company" => "permit_empty|string|max_length[255]",
-                "job_title" => "permit_empty|string|max_length[255]",
-                "email" => "permit_empty|string|max_length[255]",
-                "language" => "permit_empty|string|max_length[255]",
-                "phone" => "permit_empty|string|max_length[255]",
-                "preferences" => "permit_empty|is_array|max_length[10]",
-                "social_links" => "permit_empty|is_array|max_length[5]",
-                "skills" => "permit_empty|string|max_length[500]",
-                "organizationType" => "permit_empty|string|max_length[255]|in_list[school,church,organization,individual]"
+            ]
+        ],
+        'analytics' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'roles' => ['Admin', 'Moderator'],
+            'payload' => [
+                'start_date' => 'permit_empty|valid_date[Y-m-d]',
+                'end_date' => 'permit_empty|valid_date[Y-m-d]',
+                'period' => 'permit_empty|string|in_list[7d,30d,90d,1y,all]',
             ]
         ]
     ];
