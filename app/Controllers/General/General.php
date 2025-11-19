@@ -30,7 +30,8 @@ class General extends LoadController {
      */
     public function legal() {
         return Routing::success([
-            'status' => 'ok'
+            'terms' => termsOfService(),
+            'privacy' => privacyPolicy(),
         ]);
     }
 

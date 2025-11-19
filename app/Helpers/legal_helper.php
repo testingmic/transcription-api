@@ -78,11 +78,91 @@ function termsOfService() {
 
 function privacyPolicy() {
     return [
-        'title'=> 'Terms of Service',
-        'subtitle' => 'Please read these terms carefully before using our transcription service.',
+        'title' => 'Privacy Policy',
+        'subtitle' => 'Please read this privacy policy carefully to understand how we collect, use, and protect your information.',
         'iconColor' => '#3B82F6',
         'iconBackground' => '#EFF6FF',
-        'sections' => []
+        'sections' => [
+            [
+                'heading' => '1. Introduction',
+                'text' => 'Welcome to Transc.io ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our transcription service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services. By using Transc.io, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.',
+            ],
+            [
+                'heading' => '2. Information We Collect',
+                'text' => 'We collect several types of information to provide and improve our service:',
+                'items' => [
+                    'Audio Files: When you use our transcription service, you upload audio files for processing. These files are temporarily stored on our secure servers during transcription and are encrypted both in transit and at rest.',
+                    'Account Data: Registration information (name, email address, password hashed, and profile information), usage data (how you interact with our app, features used, time spent, and frequency of use), device information (device type, operating system, unique device identifiers, and mobile network information), and log data (IP address, browser type, access times, pages viewed, and referring URLs).',
+                    'Transcription Data: We store your transcriptions, summaries, keywords, and tags as part of our service. This data is associated with your account and can be accessed, edited, or deleted by you at any time.',
+                    'Payment Information: Payment processing is handled securely through RevenueCat and third-party payment processors (Apple App Store, Google Play Store). We do not store your full payment card details. We only receive transaction confirmations and subscription status.',
+                ],
+            ],
+            [
+                'heading' => '3. How We Use Your Information',
+                'text' => 'We use the information we collect for the following purposes:',
+                'items' => [
+                    'To provide, maintain, and improve our transcription services',
+                    'To process your transactions and manage your account',
+                    'To authenticate your identity and prevent fraud',
+                    'To send you service-related notifications and updates',
+                    'To respond to your inquiries and provide customer support',
+                    'To analyze usage patterns and improve our app\'s functionality',
+                    'To detect, prevent, and address technical issues',
+                    'To comply with legal obligations and enforce our terms of service',
+                ],
+            ],
+            [
+                'heading' => '4. Data Storage and Security',
+                'text' => 'We implement industry-standard security measures to protect your information. However, no method of transmission over the internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your data, we cannot guarantee absolute security.',
+                'items' => [
+                    'Encryption: All data transmitted between your device and our servers is encrypted using SSL/TLS',
+                    'Secure Storage: Audio files and transcriptions are stored on secure, encrypted servers with regular backups',
+                    'Access Controls: Limited access to personal data on a need-to-know basis with multi-factor authentication',
+                    'Regular Audits: We conduct regular security assessments and updates',
+                    'Data Retention: We retain your data only as long as necessary to provide our services or as required by law',
+                ],
+            ],
+            [
+                'heading' => '5. Third-Party Services',
+                'text' => 'We use the following third-party services that may collect or process your data:',
+                'items' => [
+                    'ElevenLabs API: We use ElevenLabs API for advanced speech recognition and transcription processing. Audio files are sent to ElevenLabs for transcription and are subject to their privacy policy. We ensure all data transfers are encrypted and comply with data protection regulations.',
+                    'RevenueCat: RevenueCat handles subscription management and payment processing. They collect payment information and subscription data. Please review RevenueCat\'s privacy policy for details on how they handle your data.',
+                    'Analytics Services: We may use analytics services to understand how users interact with our app. These services collect anonymized usage data and do not identify individual users.',
+                ],
+            ],
+            [
+                'heading' => '6. Your Rights',
+                'text' => 'You have the following rights regarding your personal information. To exercise these rights, please contact us at privacy@transc.io or use our Data Deletion Request page:',
+                'items' => [
+                    'Access: Request access to your personal data',
+                    'Correction: Request correction of inaccurate or incomplete data',
+                    'Deletion: Request deletion of your account and associated data',
+                    'Portability: Request a copy of your data in a portable format',
+                    'Opt-Out: Unsubscribe from marketing communications (service-related messages may still be sent)',
+                    'Data Processing: Object to or restrict certain processing of your data',
+                ],
+            ],
+            [
+                'heading' => '7. Cookies and Tracking Technologies',
+                'text' => 'We use cookies and similar tracking technologies to track activity on our service and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service.',
+                'items' => [
+                    'Essential Cookies: Required for the service to function properly',
+                    'Analytics Cookies: Help us understand how users interact with our service',
+                    'Preference Cookies: Remember your settings and preferences',
+                ],
+            ],
+            [
+                'heading' => '8. Contact Us',
+                'text' => 'If you have any questions about this Privacy Policy or our data practices, please contact us:',
+                'items' => [
+                    'Privacy Email: privacy@transc.io',
+                    'Support Email: support@transc.io',
+                    'Data Deletion Requests: Request Data Deletion',
+                ],
+            ],
+        ],
+        'lastUpdated' => date('Y-m-d'),
     ];
 }
 
