@@ -2,8 +2,14 @@
 
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Api;
+use App\Controllers\HomeController;
 
 $routes->setAutoRoute(true);
+
+$routes->get("/", [HomeController::class, "index"]);
+$routes->get("/privacy", [HomeController::class, "privacy"]);
+$routes->get("/terms", [HomeController::class, "terms"]);
+$routes->get("/data-deletion", [HomeController::class, "dataDeletion"]);
 
 // Handle 404 errors and pass URL segments to BaseRoute::routing
 $routes->set404Override("\App\Controllers\BaseRoute::control");
