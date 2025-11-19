@@ -17,9 +17,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-blue': '#3B82F6',
-                        'primary-green': '#10B981',
-                        'primary-orange': '#F59E0B',
+                        'primary-blue': '#1E40AF',
+                        'blue-500': '#3B82F6',
+                        'blue-600': '#2563EB',
+                        'blue-700': '#1D4ED8',
+                        'blue-800': '#1E40AF',
+                        'blue-900': '#1E3A8A',
                     }
                 }
             }
@@ -32,18 +35,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent">
+                    <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
                         Transc.io
                     </a>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-primary-blue transition font-medium">Home</a>
-                    <a href="privacy.html" class="text-gray-700 hover:text-primary-blue transition font-medium">Privacy</a>
-                    <a href="terms.html" class="text-gray-700 hover:text-primary-blue transition font-medium">Terms</a>
-                    <a href="data-deletion.html" class="text-primary-blue font-semibold">Data Deletion</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-800 transition font-medium">Home</a>
+                    <a href="privacy.html" class="text-gray-700 hover:text-blue-800 transition font-medium">Privacy</a>
+                    <a href="terms.html" class="text-gray-700 hover:text-blue-800 transition font-medium">Terms</a>
+                    <a href="data-deletion.html" class="text-blue-800 font-semibold">Data Deletion</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary-blue transition">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-800 transition">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -54,10 +57,10 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200">
             <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-primary-blue hover:bg-gray-50 rounded-md transition">Home</a>
-                <a href="privacy.html" class="block px-3 py-2 text-gray-700 hover:text-primary-blue hover:bg-gray-50 rounded-md transition">Privacy</a>
-                <a href="terms.html" class="block px-3 py-2 text-gray-700 hover:text-primary-blue hover:bg-gray-50 rounded-md transition">Terms</a>
-                <a href="data-deletion.html" class="block px-3 py-2 text-primary-blue font-semibold hover:bg-gray-50 rounded-md transition">Data Deletion</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Home</a>
+                <a href="privacy.html" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Privacy</a>
+                <a href="terms.html" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Terms</a>
+                <a href="data-deletion.html" class="block px-3 py-2 text-blue-800 font-semibold hover:bg-gray-50 rounded-md transition">Data Deletion</a>
             </div>
         </div>
     </nav>
@@ -69,20 +72,29 @@
             <div class="absolute bottom-10 right-20 w-80 h-80 bg-blue-300 rounded-full filter blur-3xl"></div>
         </div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-on-scroll">Data Deletion Request</h1>
-            <p class="text-xl text-white/90 fade-in-on-scroll" style="transition-delay: 0.2s;">
-                Request to permanently delete your account and all associated data
-            </p>
+            <div class="centered-card fade-in-on-scroll" style="max-width: 600px;">
+                <div class="flex justify-center mb-6">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-700 to-blue-900 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Data Deletion Request</h1>
+                <p class="text-xl text-gray-600">
+                    Request to permanently delete your account and all associated data
+                </p>
+            </div>
         </div>
     </header>
 
     <!-- Content -->
     <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Warning Box -->
-        <div class="bg-yellow-50 border-l-4 border-primary-orange p-6 mb-8 rounded-lg fade-in-on-scroll">
+        <div class="bg-yellow-50 border-l-4 border-blue-800 p-6 mb-8 rounded-lg fade-in-on-scroll">
             <div class="flex">
                 <div class="flex-shrink-0">
-                    <svg class="h-5 w-5 text-primary-orange" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="h-5 w-5 text-blue-800" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                     </svg>
                 </div>
@@ -114,7 +126,7 @@
                         id="email" 
                         name="email" 
                         required
-                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none transition-all"
+                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent outline-none transition-all"
                         placeholder="your.email@example.com"
                     >
                     <p class="mt-2 text-sm text-gray-500">Enter the email address associated with your account</p>
@@ -128,7 +140,7 @@
                         type="text" 
                         id="account-id" 
                         name="account-id"
-                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none transition-all"
+                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent outline-none transition-all"
                         placeholder="Your account ID if available"
                     >
                     <p class="mt-2 text-sm text-gray-500">Helps us locate your account faster</p>
@@ -141,7 +153,7 @@
                     <select 
                         id="reason" 
                         name="reason"
-                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none transition-all"
+                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent outline-none transition-all"
                     >
                         <option value="">Select a reason...</option>
                         <option value="no-longer-needed">No longer need the service</option>
@@ -173,7 +185,7 @@
                             name="confirm-deletion" 
                             type="checkbox" 
                             required
-                            class="h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded"
+                            class="h-4 w-4 text-blue-800 focus:ring-blue-800 border-gray-300 rounded"
                         >
                     </div>
                     <div class="ml-3 text-sm">
@@ -190,7 +202,7 @@
                             id="export-data" 
                             name="export-data" 
                             type="checkbox"
-                            class="h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded"
+                            class="h-4 w-4 text-blue-800 focus:ring-blue-800 border-gray-300 rounded"
                         >
                     </div>
                     <div class="ml-3 text-sm">
@@ -212,10 +224,10 @@
 
             <!-- Success Message (hidden by default) -->
             <div id="success-message" class="hidden mt-6 success-message">
-                <div class="bg-green-50 border-l-4 border-primary-green p-6 rounded-lg">
+                <div class="bg-green-50 border-l-4 border-blue-800 p-6 rounded-lg">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-primary-green" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="h-5 w-5 text-blue-800" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
@@ -250,16 +262,16 @@
             </p>
             <ul class="space-y-3">
                 <li class="flex items-start">
-                    <svg class="h-5 w-5 text-primary-blue mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="h-5 w-5 text-blue-800 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                     </svg>
                     <div>
                         <strong class="text-gray-900">Contact Support:</strong>
-                        <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-primary-blue hover:underline">support@transc.io</a> - we're here to help!</p>
+                        <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-blue-800 hover:underline">support@transc.io</a> - we're here to help!</p>
                     </div>
                 </li>
                 <li class="flex items-start">
-                    <svg class="h-5 w-5 text-primary-blue mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="h-5 w-5 text-blue-800 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
                     <div>
@@ -268,7 +280,7 @@
                     </div>
                 </li>
                 <li class="flex items-start">
-                    <svg class="h-5 w-5 text-primary-blue mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="h-5 w-5 text-blue-800 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
                     </svg>
                     <div>
@@ -280,12 +292,31 @@
         </div>
     </main>
 
+    <!-- Floating Voice Chat Widget -->
+    <div class="floating-widget">
+        <div class="widget-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
+        </div>
+        <div class="widget-content">
+            <span>VOICE CHAT</span>
+            <div class="flex items-center gap-1 ml-2">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Crect width='60' height='30' fill='%23B22234'/%3E%3Cpath d='M0 3.46h60M0 7.69h60M0 11.92h60M0 16.15h60M0 20.38h60M0 24.61h60' stroke='%23fff' stroke-width='2.31'/%3E%3Crect width='24' height='16.15' fill='%23003F87'/%3E%3Cpath d='M0 0l6.92 5.38L0 10.77z' fill='%23fff'/%3E%3C/svg%3E" alt="US" class="w-4 h-3 rounded-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="widget-attribution">Powered by Transc.io</div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-4 bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent">Transc.io</h3>
+                    <h3 class="text-xl font-bold text-white mb-4 bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">Transc.io</h3>
                     <p class="text-sm">AI-powered transcription service.</p>
                 </div>
                 <div>

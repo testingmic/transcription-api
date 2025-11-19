@@ -17,9 +17,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-blue': '#3B82F6',
-                        'primary-green': '#10B981',
-                        'primary-orange': '#F59E0B',
+                        'primary-blue': '#1E40AF',
+                        'blue-500': '#3B82F6',
+                        'blue-600': '#2563EB',
+                        'blue-700': '#1D4ED8',
+                        'blue-800': '#1E40AF',
+                        'blue-900': '#1E3A8A',
                     }
                 }
             }
@@ -32,18 +35,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent">
+                    <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
                         Transc.io
                     </a>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-primary-blue transition font-medium">Home</a>
-                    <a href="privacy.html" class="text-primary-blue font-semibold">Privacy</a>
-                    <a href="terms.html" class="text-gray-700 hover:text-primary-blue transition font-medium">Terms</a>
-                    <a href="data-deletion.html" class="text-gray-700 hover:text-primary-blue transition font-medium">Data Deletion</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-800 transition font-medium">Home</a>
+                    <a href="privacy.html" class="text-blue-800 font-semibold">Privacy</a>
+                    <a href="terms.html" class="text-gray-700 hover:text-blue-800 transition font-medium">Terms</a>
+                    <a href="data-deletion.html" class="text-gray-700 hover:text-blue-800 transition font-medium">Data Deletion</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary-blue transition">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-800 transition">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -54,10 +57,10 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200">
             <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-primary-blue hover:bg-gray-50 rounded-md transition">Home</a>
-                <a href="privacy.html" class="block px-3 py-2 text-primary-blue font-semibold hover:bg-gray-50 rounded-md transition">Privacy</a>
-                <a href="terms.html" class="block px-3 py-2 text-gray-700 hover:text-primary-blue hover:bg-gray-50 rounded-md transition">Terms</a>
-                <a href="data-deletion.html" class="block px-3 py-2 text-gray-700 hover:text-primary-blue hover:bg-gray-50 rounded-md transition">Data Deletion</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Home</a>
+                <a href="privacy.html" class="block px-3 py-2 text-blue-800 font-semibold hover:bg-gray-50 rounded-md transition">Privacy</a>
+                <a href="terms.html" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Terms</a>
+                <a href="data-deletion.html" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Data Deletion</a>
             </div>
         </div>
     </nav>
@@ -69,26 +72,19 @@
             <div class="absolute bottom-10 right-20 w-80 h-80 bg-blue-300 rounded-full filter blur-3xl"></div>
         </div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-on-scroll">Privacy Policy</h1>
-            <p class="text-xl text-white/90 fade-in-on-scroll" style="transition-delay: 0.2s;">Last updated: January 2024</p>
+            <div class="centered-card fade-in-on-scroll" style="max-width: 600px;">
+                <div class="flex justify-center mb-6">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-700 to-blue-900 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Privacy Policy</h1>
+                <p class="text-xl text-gray-600">Last updated: January 2024</p>
+            </div>
         </div>
     </header>
-
-    <!-- Table of Contents -->
-    <section class="py-8 bg-white border-b border-gray-200 sticky top-16 z-40 backdrop-blur-lg bg-white/95">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex flex-wrap gap-4 text-sm">
-                <a href="#introduction" class="text-gray-600 hover:text-primary-blue transition">1. Introduction</a>
-                <a href="#information-collected" class="text-gray-600 hover:text-primary-blue transition">2. Information We Collect</a>
-                <a href="#how-we-use" class="text-gray-600 hover:text-primary-blue transition">3. How We Use Information</a>
-                <a href="#data-storage" class="text-gray-600 hover:text-primary-blue transition">4. Data Storage & Security</a>
-                <a href="#third-party" class="text-gray-600 hover:text-primary-blue transition">5. Third-Party Services</a>
-                <a href="#user-rights" class="text-gray-600 hover:text-primary-blue transition">6. Your Rights</a>
-                <a href="#cookies" class="text-gray-600 hover:text-primary-blue transition">7. Cookies</a>
-                <a href="#contact" class="text-gray-600 hover:text-primary-blue transition">8. Contact</a>
-            </nav>
-        </div>
-    </section>
 
     <!-- Content -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -195,7 +191,7 @@
                         <li><strong>Data Processing:</strong> Object to or restrict certain processing of your data</li>
                     </ul>
                     <p class="text-gray-700">
-                        To exercise these rights, please contact us at <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-primary-blue hover:underline">privacy@transc.io</a> or use our <a href="data-deletion.html" class="text-primary-blue hover:underline">Data Deletion Request</a> page.
+                        To exercise these rights, please contact us at <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-blue-800 hover:underline">privacy@transc.io</a> or use our <a href="data-deletion.html" class="text-blue-800 hover:underline">Data Deletion Request</a> page.
                     </p>
                 </section>
 
@@ -221,21 +217,40 @@
                         If you have any questions about this Privacy Policy or our data practices, please contact us:
                     </p>
                     <div class="glass-card p-6 rounded-lg">
-                        <p class="text-gray-700 mb-2"><strong>Privacy Email:</strong> <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-primary-blue hover:underline">privacy@transc.io</a></p>
-                        <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-primary-blue hover:underline">support@transc.io</a></p>
-                        <p class="text-gray-700"><strong>Data Deletion Requests:</strong> <a href="data-deletion.html" class="text-primary-blue hover:underline">Request Data Deletion</a></p>
+                        <p class="text-gray-700 mb-2"><strong>Privacy Email:</strong> <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-blue-800 hover:underline">privacy@transc.io</a></p>
+                        <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-blue-800 hover:underline">support@transc.io</a></p>
+                        <p class="text-gray-700"><strong>Data Deletion Requests:</strong> <a href="data-deletion.html" class="text-blue-800 hover:underline">Request Data Deletion</a></p>
                     </div>
                 </section>
             </div>
         </div>
     </main>
 
+    <!-- Floating Voice Chat Widget -->
+    <div class="floating-widget">
+        <div class="widget-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
+        </div>
+        <div class="widget-content">
+            <span>VOICE CHAT</span>
+            <div class="flex items-center gap-1 ml-2">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Crect width='60' height='30' fill='%23B22234'/%3E%3Cpath d='M0 3.46h60M0 7.69h60M0 11.92h60M0 16.15h60M0 20.38h60M0 24.61h60' stroke='%23fff' stroke-width='2.31'/%3E%3Crect width='24' height='16.15' fill='%23003F87'/%3E%3Cpath d='M0 0l6.92 5.38L0 10.77z' fill='%23fff'/%3E%3C/svg%3E" alt="US" class="w-4 h-3 rounded-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="widget-attribution">Powered by Transc.io</div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-4 bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent">Transc.io</h3>
+                    <h3 class="text-xl font-bold text-white mb-4 bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">Transc.io</h3>
                     <p class="text-sm">AI-powered transcription service.</p>
                 </div>
                 <div>

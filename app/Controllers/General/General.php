@@ -28,12 +28,10 @@ class General extends LoadController {
      * 
      * @return array
      */
-    public function leave() {
-
+    public function legal() {
         return Routing::success([
             'status' => 'ok'
         ]);
-
     }
 
     /**
