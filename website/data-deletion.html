@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Deletion Request - Transc.io</title>
+    <meta name="description" content="Request to delete your account and data from Transc.io">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(121.553deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216));
+        }
+        .gradient-text {
+            background: linear-gradient(121.553deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-animated {
+            background: linear-gradient(121.553deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216));
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        nav {
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
+        }
+        
+        .btn-submit {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-submit:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .success-message {
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .warning-box {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav id="navbar" class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">Transc.io</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="privacy-policy.html" class="text-gray-700 hover:text-blue-600 transition">Privacy</a>
+                    <a href="terms.html" class="text-gray-700 hover:text-blue-600 transition">Terms</a>
+                    <a href="data-deletion.html" class="text-blue-600 font-semibold">Data Deletion</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+                <a href="privacy-policy.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Privacy</a>
+                <a href="terms.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Terms</a>
+                <a href="data-deletion.html" class="block px-3 py-2 text-blue-600 font-semibold">Data Deletion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="gradient-animated text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-20 w-64 h-64 bg-white rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-10 right-20 w-80 h-80 bg-blue-300 rounded-full filter blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-on-scroll">Data Deletion Request</h1>
+            <p class="text-xl text-blue-100 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                Request to permanently delete your account and all associated data
+            </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Warning Box -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8 rounded-lg fade-in-on-scroll warning-box">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-yellow-800">Important: This action cannot be undone</h3>
+                    <div class="mt-2 text-sm text-yellow-700">
+                        <p>Deleting your account will permanently remove:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>All your audio files and transcriptions</li>
+                            <li>Your account information and profile data</li>
+                            <li>Your subscription and payment history</li>
+                            <li>All preferences and settings</li>
+                        </ul>
+                        <p class="mt-3 font-semibold">This process is irreversible. Please ensure you have exported any data you wish to keep before proceeding.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white rounded-lg shadow-sm p-8 md:p-12 fade-in-on-scroll" style="transition-delay: 0.2s;">
+            <form id="deletion-form" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required
+                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                        placeholder="your.email@example.com"
+                    >
+                    <p class="mt-2 text-sm text-gray-500">Enter the email address associated with your account</p>
+                </div>
+
+                <div>
+                    <label for="reason" class="block text-sm font-medium text-gray-700 mb-2">
+                        Reason for Deletion (Optional)
+                    </label>
+                    <select 
+                        id="reason" 
+                        name="reason"
+                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    >
+                        <option value="">Select a reason...</option>
+                        <option value="no-longer-needed">No longer need the service</option>
+                        <option value="privacy-concerns">Privacy concerns</option>
+                        <option value="found-alternative">Found an alternative service</option>
+                        <option value="too-expensive">Too expensive</option>
+                        <option value="technical-issues">Technical issues</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="comments" class="block text-sm font-medium text-gray-700 mb-2">
+                        Additional Comments (Optional)
+                    </label>
+                    <textarea 
+                        id="comments" 
+                        name="comments" 
+                        rows="4"
+                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+                        placeholder="Please let us know if there's anything we could have done better..."
+                    ></textarea>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input 
+                            id="confirm-deletion" 
+                            name="confirm-deletion" 
+                            type="checkbox" 
+                            required
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        >
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="confirm-deletion" class="font-medium text-gray-700">
+                            I understand that this action is permanent and cannot be undone
+                            <span class="text-red-500">*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input 
+                            id="export-data" 
+                            name="export-data" 
+                            type="checkbox"
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        >
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="export-data" class="font-medium text-gray-700">
+                            I have exported all my data that I wish to keep
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button 
+                        type="submit"
+                        class="btn-submit w-full gradient-bg text-white px-6 py-4 rounded-lg font-semibold text-lg relative z-10"
+                    >
+                        Submit Deletion Request
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="hidden mt-6 success-message">
+                <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-green-800">Request Submitted Successfully</h3>
+                            <div class="mt-2 text-sm text-green-700">
+                                <p>We have received your data deletion request. Our team will process it within 30 days. You will receive a confirmation email once your account and data have been permanently deleted.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="mt-8 bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg fade-in-on-scroll" style="transition-delay: 0.4s;">
+            <h3 class="text-lg font-semibold text-blue-900 mb-3">What happens after you submit?</h3>
+            <ol class="list-decimal list-inside space-y-2 text-sm text-blue-800">
+                <li>You will receive an email confirmation of your request</li>
+                <li>Our team will verify your identity and account ownership</li>
+                <li>Your account will be scheduled for deletion</li>
+                <li>All your data will be permanently removed within 30 days</li>
+                <li>You will receive a final confirmation email once deletion is complete</li>
+            </ol>
+        </div>
+
+        <!-- Alternative Options -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm p-8 fade-in-on-scroll" style="transition-delay: 0.6s;">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Before you go...</h3>
+            <p class="text-gray-700 mb-4">
+                If you're experiencing issues or have concerns, we'd love to help! Consider these alternatives:
+            </p>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <svg class="h-5 w-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="text-gray-900">Contact Support:</strong>
+                        <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@transc.io" class="text-blue-600 hover:underline">support@transc.io</a> - we're here to help!</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-5 w-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="text-gray-900">Export Your Data:</strong>
+                        <p class="text-gray-600 text-sm">Download all your transcriptions before deletion from your account settings</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-5 w-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="text-gray-900">Pause Your Subscription:</strong>
+                        <p class="text-gray-600 text-sm">Consider pausing instead of deleting - you can always come back later</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Transc.io</h3>
+                    <p class="text-sm">AI-powered transcription service.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="data-deletion.html" class="hover:text-white transition">Data Deletion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="mailto:support@transc.io" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <p class="text-sm">Follow us for updates and news.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2024 Transc.io. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.getElementById('deletion-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the data to your backend
+            // For now, we'll just show a success message
+            
+            // Hide form
+            this.style.display = 'none';
+            
+            // Show success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.classList.remove('hidden');
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // In a real implementation, you would send the form data to your server:
+            // const formData = new FormData(this);
+            // fetch('/api/data-deletion-request', {
+            //     method: 'POST',
+            //     body: formData
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Handle success
+            // })
+            // .catch(error => {
+            //     // Handle error
+            // });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Transc.io</title>
+    <meta name="description" content="Privacy Policy for Transc.io - Learn how we collect, use, and protect your personal information.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(121.553deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216));
+        }
+        .gradient-text {
+            background: linear-gradient(121.553deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-animated {
+            background: linear-gradient(121.553deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216));
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        nav {
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav id="navbar" class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">Transc.io</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <a href="privacy-policy.html" class="text-blue-600 font-semibold">Privacy</a>
+                    <a href="terms.html" class="text-gray-700 hover:text-blue-600 transition">Terms</a>
+                    <a href="data-deletion.html" class="text-gray-700 hover:text-blue-600 transition">Data Deletion</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+                <a href="privacy-policy.html" class="block px-3 py-2 text-blue-600 font-semibold">Privacy</a>
+                <a href="terms.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Terms</a>
+                <a href="data-deletion.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Data Deletion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="gradient-animated text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-20 w-64 h-64 bg-white rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-10 right-20 w-80 h-80 bg-blue-300 rounded-full filter blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-on-scroll">Privacy Policy</h1>
+            <p class="text-xl text-blue-100 fade-in-on-scroll" style="transition-delay: 0.2s;">Last updated: January 2024</p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-lg shadow-sm p-8 md:p-12 fade-in-on-scroll">
+            <div class="prose prose-lg max-w-none">
+                <section class="mb-8 fade-in-on-scroll">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
+                    <p class="text-gray-700 mb-4">
+                        Welcome to Transc.io ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our transcription service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services.
+                    </p>
+                    <p class="text-gray-700">
+                        By using Transc.io, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.
+                    </p>
+                </section>
+
+                <section class="mb-8 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 mt-6">2.1 Information You Provide</h3>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+                        <li><strong>Account Information:</strong> Name, email address, password, and profile information</li>
+                        <li><strong>Audio Files:</strong> Audio recordings you upload for transcription</li>
+                        <li><strong>Transcription Data:</strong> Text transcriptions, summaries, keywords, and tags you create</li>
+                        <li><strong>Payment Information:</strong> Billing details and payment method information (processed securely through third-party payment processors)</li>
+                        <li><strong>Support Communications:</strong> Information you provide when contacting our support team</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 mt-6">2.2 Automatically Collected Information</h3>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+                        <li><strong>Device Information:</strong> Device type, operating system, unique device identifiers, and mobile network information</li>
+                        <li><strong>Usage Data:</strong> How you interact with our app, features used, time spent, and frequency of use</li>
+                        <li><strong>Log Data:</strong> IP address, browser type, access times, pages viewed, and referring URLs</li>
+                        <li><strong>Location Data:</strong> General location information based on IP address (if permitted)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
+                    <p class="text-gray-700 mb-4">We use the information we collect for the following purposes:</p>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>To provide, maintain, and improve our transcription services</li>
+                        <li>To process your transactions and manage your account</li>
+                        <li>To authenticate your identity and prevent fraud</li>
+                        <li>To send you service-related notifications and updates</li>
+                        <li>To respond to your inquiries and provide customer support</li>
+                        <li>To analyze usage patterns and improve our app's functionality</li>
+                        <li>To detect, prevent, and address technical issues</li>
+                        <li>To comply with legal obligations and enforce our terms of service</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Data Storage and Security</h2>
+                    <p class="text-gray-700 mb-4">
+                        We implement industry-standard security measures to protect your information:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+                        <li><strong>Encryption:</strong> All data transmitted between your device and our servers is encrypted using SSL/TLS</li>
+                        <li><strong>Secure Storage:</strong> Audio files and transcriptions are stored on secure, encrypted servers</li>
+                        <li><strong>Access Controls:</strong> Limited access to personal data on a need-to-know basis</li>
+                        <li><strong>Regular Audits:</strong> We conduct regular security assessments and updates</li>
+                    </ul>
+                    <p class="text-gray-700">
+                        However, no method of transmission over the internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your data, we cannot guarantee absolute security.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Data Sharing and Disclosure</h2>
+                    <p class="text-gray-700 mb-4">We do not sell your personal information. We may share your information only in the following circumstances:</p>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li><strong>Service Providers:</strong> With trusted third-party service providers who assist in operating our service (e.g., cloud storage, payment processing, analytics)</li>
+                        <li><strong>Legal Requirements:</strong> When required by law, court order, or government regulation</li>
+                        <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets (with notice to users)</li>
+                        <li><strong>Protection of Rights:</strong> To protect our rights, property, or safety, or that of our users</li>
+                        <li><strong>With Your Consent:</strong> When you explicitly authorize us to share your information</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Your Rights and Choices</h2>
+                    <p class="text-gray-700 mb-4">You have the following rights regarding your personal information:</p>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li><strong>Access:</strong> Request access to your personal data</li>
+                        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete data</li>
+                        <li><strong>Deletion:</strong> Request deletion of your account and associated data</li>
+                        <li><strong>Portability:</strong> Request a copy of your data in a portable format</li>
+                        <li><strong>Opt-Out:</strong> Unsubscribe from marketing communications (service-related messages may still be sent)</li>
+                        <li><strong>Data Processing:</strong> Object to or restrict certain processing of your data</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4">
+                        To exercise these rights, please contact us at <a href="mailto:privacy@transc.io" class="text-blue-600 hover:underline">privacy@transc.io</a> or use our <a href="data-deletion.html" class="text-blue-600 hover:underline">Data Deletion Request</a> page.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Data Retention</h2>
+                    <p class="text-gray-700 mb-4">
+                        We retain your personal information for as long as necessary to provide our services and fulfill the purposes outlined in this policy, unless a longer retention period is required or permitted by law.
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>Account data is retained while your account is active</li>
+                        <li>Audio files and transcriptions are retained according to your subscription plan</li>
+                        <li>Some data may be retained for legal, accounting, or security purposes after account deletion</li>
+                        <li>You can request deletion of your data at any time</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">8. Children's Privacy</h2>
+                    <p class="text-gray-700">
+                        Our service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you become aware that a child has provided us with personal information, please contact us immediately, and we will take steps to delete such information.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">9. International Data Transfers</h2>
+                    <p class="text-gray-700">
+                        Your information may be transferred to and processed in countries other than your country of residence. These countries may have data protection laws that differ from those in your country. We take appropriate safeguards to ensure your data is protected in accordance with this Privacy Policy.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">10. Changes to This Privacy Policy</h2>
+                    <p class="text-gray-700">
+                        We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">11. Contact Us</h2>
+                    <p class="text-gray-700 mb-4">
+                        If you have any questions about this Privacy Policy or our data practices, please contact us:
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <p class="text-gray-700 mb-2"><strong>Email:</strong> <a href="mailto:privacy@transc.io" class="text-blue-600 hover:underline">privacy@transc.io</a></p>
+                        <p class="text-gray-700 mb-2"><strong>Support:</strong> <a href="mailto:support@transc.io" class="text-blue-600 hover:underline">support@transc.io</a></p>
+                        <p class="text-gray-700"><strong>Data Deletion Requests:</strong> <a href="data-deletion.html" class="text-blue-600 hover:underline">Request Data Deletion</a></p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Transc.io</h3>
+                    <p class="text-sm">AI-powered transcription service.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="data-deletion.html" class="hover:text-white transition">Data Deletion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="mailto:support@transc.io" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <p class="text-sm">Follow us for updates and news.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2024 Transc.io. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
