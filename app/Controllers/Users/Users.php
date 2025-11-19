@@ -4,6 +4,7 @@ namespace App\Controllers\Users;
 
 use App\Controllers\LoadController;
 use App\Libraries\Routing;
+use App\Controllers\Users\Usages;
 
 class Users extends LoadController {
 
@@ -60,6 +61,12 @@ class Users extends LoadController {
         if(empty($users)) {
             return Routing::notFound();
         }
+
+        $users['usage'] = (new Usages())->billingCircleUsage(
+            $users['billing_circle_start_date'], 
+            $users['id'], 
+            $users['monthly_minutes_limit'] ?? 0
+        );
 
         return Routing::success(formatUserResponse([$users], true));
     }
@@ -170,6 +177,7 @@ class Users extends LoadController {
         unset($this->submittedPayload['confirmPassword']);
 
         $this->submittedPayload['user_device_model'] = $this->detectIosMobileOrWeb()['device'];
+        $this->submittedPayload['billing_circle_start_date'] = date('Y-m-d');
 
         // create the user
         $userId = $this->usersModel->createRecord($this->submittedPayload);

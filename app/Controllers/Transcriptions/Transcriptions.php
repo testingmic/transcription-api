@@ -6,6 +6,8 @@ use App\Controllers\LoadController;
 use App\Libraries\Routing;
 use App\Libraries\OpenAI;
 
+use App\Controllers\Users\Usages;
+
 class Transcriptions extends LoadController {
 
     /**
@@ -54,6 +56,30 @@ class Transcriptions extends LoadController {
     }
 
     /**
+     * Check if the user is entitled to the service
+     * 
+     * @return array
+     */
+    public function entitled() {
+
+        $usageObject = new Usages();
+        
+        $isEntitled = $usageObject->isEntitled(
+            $this->currentUser['id'], 
+            $this->currentUser['billing_circle_start_date'], 
+            $this->currentUser['subscription_plan']['minutesLimit'] ?? 0
+        );
+        $rawUsage = $usageObject->rawUsage;
+
+        return Routing::success([
+            'isEntitled' => $isEntitled, 
+            'rawUsage' => round($rawUsage / 60),
+            'monthlyLimit' => $this->currentUser['monthly_minutes_limit'] ?? 0,
+        ]);
+
+    }
+
+    /**
      * Create a transcription
      * 
      * @return array
@@ -88,10 +114,19 @@ class Transcriptions extends LoadController {
             return Routing::error('Failed to create transcription record');
         }
 
+        // log the usage
+        $usageObject = new Usages();
+        $usageObject->logUsage($this->currentUser['id'], $data['duration']);
+
         // set the unique ID
         $this->uniqueId = $transcriptionId;
 
         $record = $this->view()['data'];
+        $record['usage'] = $usageObject->billingCircleUsage(
+            $this->currentUser['billing_circle_start_date'], 
+            $this->currentUser['id'], 
+            $this->currentUser['monthly_minutes_limit'] ?? 0
+        );
 
         return Routing::created(['data' => 'Transcription record successfully created', 'record' => $record]);
 

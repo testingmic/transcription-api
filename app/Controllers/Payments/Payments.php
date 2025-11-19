@@ -67,16 +67,27 @@ class Payments extends LoadController {
         if(!in_array($paymentStatus, $successStatuses)) {
             return Routing::error("Payment was not successful. Status marked as: {$paymentStatus}.");
         }
+
+        // get the plan information
+        $planInfo = subscriptionPlans()[strtoupper($planId)] ?? [];
         
         $payload = [
             'subscription_amount' => revenue_conversion(($verify['amount'] / 100), 'GHS', 'USD', $this->cacheObject)['revenue'],
             'customer_id' => $verify['customer']['customer_code'],
             'subscription_plan' => ucwords($planId),
+            'monthly_minutes_limit' => $planInfo['minutesLimit'] ?? $this->currentUser['monthly_minutes_limit'],
         ];
 
         // update the subscription expiry date
         if($this->currentUser['subscription_plan'] == 'Free') {
-            $payload['subscription_start_date'] = date('Y-m-d H:i:s');
+            // update the billing circle start date
+            $payload['billing_circle_start_date'] = date('Y-m-d');
+            
+            // update the subscription start date if it is not already set
+            if(empty($this->currentUser['subscription_start_date'])) {
+                $payload['subscription_start_date'] = date('Y-m-d H:i:s');
+            }
+            // update the subscription expiry date
             $payload['subscription_expires_at'] = date('Y-m-d H:i:s', strtotime('+1 month'));
         }
 

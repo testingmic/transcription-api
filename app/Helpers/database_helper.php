@@ -22,10 +22,12 @@ $databases = [
         pin_hash TEXT DEFAULT NULL,
         nationality VARCHAR(100),
         customer_id VARCHAR(32) DEFAULT NULL,
+        monthly_minutes_limit INTEGER DEFAULT 30,
         subscription_id VARCHAR(32) DEFAULT NULL,
         subscription_amount DECIMAL(10, 2) DEFAULT 0.00,
         subscription_plan VARCHAR(100) DEFAULT 'Free', -- 'Free', 'Pro', 'Premium'
         subscription_start_date DATETIME DEFAULT NULL,
+        billing_circle_start_date DATE DEFAULT NULL,
         subscription_expires_at DATETIME DEFAULT NULL,
         preferences TEXT DEFAULT NULL,
         photo VARCHAR(255) DEFAULT NULL,
@@ -39,6 +41,17 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
     CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
     CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);",
+
+    "CREATE TABLE IF NOT EXISTS users_usages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        seconds_used INTEGER DEFAULT 0,
+        usage_date DATE NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_users_usages_user_id ON users_usages(user_id);
+    CREATE INDEX IF NOT EXISTS idx_users_usages_usage_date ON users_usages(usage_date);",
 
     "CREATE TABLE IF NOT EXISTS funnel_events_map (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -213,7 +226,8 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE users ADD COLUMN user_device_model VARCHAR(50) DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN billing_circle_start_date DATE DEFAULT NULL;",
+    "ALTER TABLE users ADD COLUMN monthly_minutes_limit INTEGER DEFAULT 30;",
 ];
 
 function createDatabaseStructure() {

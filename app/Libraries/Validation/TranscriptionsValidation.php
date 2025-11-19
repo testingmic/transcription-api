@@ -35,6 +35,11 @@ class TranscriptionsValidation {
                 'transcription_id' => 'required|integer',
             ]
         ],
+        'entitled' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'roles' => ['Admin', 'User', 'Moderator'],
+        ],
         'update:transcription_id' => [
             'method' => 'PUT',
             'authenticate' => true,

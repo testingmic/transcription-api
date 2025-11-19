@@ -13,6 +13,8 @@
  * 
  */
 function formatUserResponse($user, bool $single = false, $simpleData = false) {
+    
+    // if the user is empty, return an empty array
     if(empty($user)) return [];
 
     // format the user response
@@ -37,6 +39,10 @@ function formatUserResponse($user, bool $single = false, $simpleData = false) {
             'expires_at' => empty($value['subscription_expires_at']) ? 'N/A' : $value['subscription_expires_at'],
         ];
 
+        if(isset($value['usage'])) {
+            $result[$key]['usage'] = $value['usage'];
+        }
+
         foreach(['gender', 'nationality', 'date_of_birth'] as $item) {
             if(!empty($value[$item])) {
                 $result[$key][$item] = ucwords($value[$item]);
@@ -44,7 +50,7 @@ function formatUserResponse($user, bool $single = false, $simpleData = false) {
         }
 
         if(!$simpleData) {
-            foreach(['username', 'two_factor_setup', 'timezone', 'last_login'] as $item) {
+            foreach(['username', 'two_factor_setup'] as $item) {
                 $result[$key][$item] = $value[$item];
             }
         }

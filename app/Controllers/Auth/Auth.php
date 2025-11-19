@@ -10,9 +10,7 @@ use App\Libraries\Routing;
 use RobThree\Auth\TwoFactorAuth;
 use RobThree\Auth\Providers\Qr\QRServerProvider;
 
-// add some models to use
-use App\Models\JurisdictionsModel;
-use App\Models\DriversModel;
+use App\Controllers\Users\Usages;
 
 class Auth extends LoadController {
 
@@ -42,6 +40,13 @@ class Auth extends LoadController {
 
         $formatUser = formatUserResponse([$user]);
 
+        // get the billing circle usage formatted
+        $usage = (new Usages())->billingCircleUsage(
+            $user['billing_circle_start_date'], 
+            (int)$user['id'], 
+            $user['monthly_minutes_limit'] ?? 0
+        );
+
         // Generate response
         $response = [
             'user_id'   => (int) $user['id'],
@@ -50,7 +55,8 @@ class Auth extends LoadController {
             'username' => $user['username'],
             'two_factor_setup' => false,
             'email' => $user['email'],
-            'subscription' => $formatUser[0]['subscription']
+            'subscription' => $formatUser[0]['subscription'],
+            'usage' => $usage
         ];
 
         // update the user last login date
