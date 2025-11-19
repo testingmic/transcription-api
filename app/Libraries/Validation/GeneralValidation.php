@@ -9,6 +9,11 @@ class GeneralValidation {
             'authenticate' => false,
             'payload' => []
         ],
+        'leave' => [
+            'method' => 'GET,POST',
+            'authenticate' => false,
+            'payload' => []
+        ],
         'endpoints' => [
             'method' => 'GET',
             'authenticate' => true,

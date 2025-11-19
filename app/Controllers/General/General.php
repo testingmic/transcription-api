@@ -24,6 +24,19 @@ class General extends LoadController {
     }
 
     /**
+     * Leave the application
+     * 
+     * @return array
+     */
+    public function leave() {
+
+        return Routing::success([
+            'status' => 'ok'
+        ]);
+
+    }
+
+    /**
      * Log an event
      * 
      * @return array

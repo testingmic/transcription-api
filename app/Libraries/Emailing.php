@@ -14,7 +14,8 @@ class Emailing {
             '__APPLOGO__' => 'https://portal.mypharmacy.com/assets/images/logo.png',
             '__TITLE__' => 'MyPharmacy.com',
             '__TEAM__' => 'Team - MyPharmacy.com',
-            '__INVITE_URL__' => rtrim(configs('app_url'), '/') . '/auth/signup'
+            '__INVITE_URL__' => rtrim(configs('app_url'), '/') . '/auth/signup',
+            '__YEAR__' => date('Y')
         ];
 
         $this->emailObject = new PHPMailer(true);
@@ -49,7 +50,7 @@ class Emailing {
         $this->emailObject->Password = configs('email.pass') ? configs('email.pass') : $emailConfig?->SMTPPass;
         $this->emailObject->SMTPSecure = configs('email.crypto') ? configs('email.crypto') : $emailConfig?->SMTPCrypto;
         $this->emailObject->Port = configs('email.port') ? configs('email.port') : $emailConfig?->SMTPPort;
-        $this->emailObject->setFrom($this->emailObject->Username , "MyPharmacy.com", false);
+        $this->emailObject->setFrom($this->emailObject->Username , "Transc.io", false);
         $this->emailObject->isHTML(true);
     }
 
@@ -78,11 +79,14 @@ class Emailing {
                 return true;
             }
 
+            // Clear previous recipients
+            $this->emailObject->clearAddresses();
+            
             // Initialize email
             $this->emailObject->addAddress($email);
 
             // Set email details
-            $this->emailObject->Subject = ($message['__subject__'] ?? 'VotingFlow.com');
+            $this->emailObject->Subject = ($message['__subject__'] ?? 'Transcriber.com');
             $this->emailObject->Body = $template;
             
             return  $this->emailObject->send();
@@ -109,11 +113,14 @@ class Emailing {
                 return true;
             }
 
+            // Clear previous recipients
+            $this->emailObject->clearAddresses();
+            
             // Initialize email
             $this->emailObject->addAddress($email);
 
             // Set email details
-            $this->emailObject->Subject = ($message['__subject__'] ?? 'VotingFlow.com');
+            $this->emailObject->Subject = ($data['__subject__'] ?? 'Transc.io');
             $this->emailObject->Body = $template;
 
             return  $this->emailObject->send();
