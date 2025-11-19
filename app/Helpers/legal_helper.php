@@ -1,5 +1,14 @@
 <?php
 /**
+ * Get the last updated date
+ * 
+ * @return string
+ */
+function lastUpdated() {
+    return '18th November 2025';
+}
+
+/**
  * Get the terms of service
  * 
  * @return array
@@ -71,11 +80,16 @@ function termsOfService() {
                 ],
             ],
         ],
-        'lastUpdated' => date('Y-m-d'),
+        'lastUpdated' => lastUpdated(),
     ];
 
 }
 
+/**
+ * Get the privacy policy
+ * 
+ * @return array
+ */
 function privacyPolicy() {
     return [
         'title' => 'Privacy Policy',
@@ -162,7 +176,7 @@ function privacyPolicy() {
                 ],
             ],
         ],
-        'lastUpdated' => date('Y-m-d'),
+        'lastUpdated' => lastUpdated(),
     ];
 }
 
