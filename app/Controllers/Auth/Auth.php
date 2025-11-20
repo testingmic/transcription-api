@@ -320,8 +320,10 @@ class Auth extends LoadController {
      */
     public function verify() {
 
+        $theCode = strlen($this->payload['code']) == 32 ? $this->payload['code'] : md5($this->payload['code']);
+
         $checkAltUser = $this->usersModel->getAltUser([
-            'ver_code' => md5($this->payload['code']),
+            'ver_code' => $theCode,
             'email' => $this->payload['email'] ?? null,
             'auth' => 'password_reset'
         ]);

@@ -59,7 +59,7 @@ class AuthValidation {
             'payload' => [
                 'password' => 'required|valid_password|min_length[6]|max_length[32]',
                 'confirmPassword' => 'required|matches[password]',
-                'code' => 'required|max_length[6]|numeric'
+                'code' => 'required|max_length[32]'
             ]
         ],
         'verify' => [
