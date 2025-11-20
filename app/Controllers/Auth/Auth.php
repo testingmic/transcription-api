@@ -14,6 +14,8 @@ use App\Controllers\Users\Usages;
 
 class Auth extends LoadController {
 
+    private $tempData = [];
+
     /**
      * Login the user
      * 
@@ -268,12 +270,26 @@ class Auth extends LoadController {
         // Find user by email
         $getUser = $this->usersModel->findByEmail($this->payload['email']);
         if(empty($getUser)) {
-            return Routing::success('Check your email for a link to reset your password.');
+            return Routing::success('A 5 digits OTP have been sent to your email.');
         }
 
-        $this->usersModel->deleteAltUser(['email' => $this->payload['email']]);
+        // Check if the user has requested for a password reset
+        $checkAltUser = $this->usersModel->getAltUser([
+            'email' => $this->payload['email'],
+            'auth' => 'password_reset'
+        ]);
+
+        if(!empty($checkAltUser)) {
+            $difference = timeDifference($checkAltUser['time_added']);
+            if($difference['minutes'] < 1) {
+                return Routing::error('You can only request a new OTP once every minute.');
+            }
+        }
+
+        // delete all pending requests
+        $this->usersModel->deleteAltUser(['email' => $this->payload['email'], 'auth' => 'password_reset']);
         
-        $ver_code = random_string("nozero", 6);
+        $ver_code = random_string("nozero", 5);
 
         // Send email
         $utilsObject = new \App\Libraries\Emailing();
@@ -282,18 +298,19 @@ class Auth extends LoadController {
             '__subject__' => 'Password Reset Request Confirmation'
         ], "verify.reset");
 
-        // Insert the altuser record
-        $this->usersModel->insertAltUser([
+        $payload = [
             'user_id' => $getUser['id'],
             'ver_code' => md5($ver_code),
             'email' => $getUser['email'],
-            'pass' => "no",
             'username' => "no",
             'auth' => "password_reset",
             'request' => "reset"
-        ]);
+        ];
 
-        return Routing::success('A 6 digits OTP have been sent to your email.');
+        // Insert the altuser record
+        $this->usersModel->insertAltUser($payload);
+
+        return Routing::success('A 5 digits OTP have been sent to your email.');
     }
 
     /**
@@ -305,13 +322,15 @@ class Auth extends LoadController {
 
         $checkAltUser = $this->usersModel->getAltUser([
             'ver_code' => md5($this->payload['code']),
-            'email' => $this->payload['email'],
+            'email' => $this->payload['email'] ?? null,
             'auth' => 'password_reset'
         ]);
 
         if(empty($checkAltUser)) {
             return Routing::error('Invalid reset code was provided.');
         }
+
+        $this->tempData = $checkAltUser;
 
         return Routing::success('Reset code verified.');
     }
@@ -329,14 +348,16 @@ class Auth extends LoadController {
             return $verify;
         }
 
+        $email = $this->tempData['email'];
+
         // Update the user password
-        $this->usersModel->updateRecordByEmail($this->payload['email'], [
+        $this->usersModel->updateRecordByEmail($email, [
             'password' => hash_password($this->payload['password'])
         ]);
 
         // Delete the alt user record
         $this->usersModel->deleteAltUser([
-            'email' => $this->payload['email']
+            'email' => $email, 'auth' => 'password_reset'
         ]);
 
         return Routing::success('Password reset successful.');

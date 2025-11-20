@@ -7,12 +7,13 @@
 function configs($key) {
 
     $configuration = [
+        'app_name' => 'MobileTranscribe.com',
         'db_group' => config('Database')?->defaultGroup,
         'algo' => config('Security')?->algo,
         'salt' => config('Security')?->salt,
         'testing_mode' => config('General')?->testing_mode,
         'tracking_ttl' => 6,
-        'appName' => getenv('APP_NAME'),
+        'appName' => 'MobileTranscribe.com',
         'app_url' => getenv('baseURL'),
         'heatmaps_ttl' => (60 * 30 * 1),
         'is_local' => getenv('LOCAL_ENVIRONMENT') == 'yes',
@@ -32,11 +33,11 @@ function configs($key) {
         'currency_key' => getenv('CURRENCY_KEYS'),
 
         // email config
-        'email.port' => getenv('email.SMTP_PORT'),
-        'email.host' => getenv('email.SMTP_HOST'),
-        'email.user' => getenv('email.SMTP_USER'),
-        'email.pass' => getenv('email.SMTP_PASSWORD'),
-        'email.crypto' => getenv('email.SMTP_CRYPTO'),
+        'email.port' => getenv('SMTP_PORT'),
+        'email.host' => getenv('SMTP_HOST'),
+        'email.user' => getenv('SMTP_USER'),
+        'email.pass' => getenv('SMTP_PASSWORD'),
+        'email.crypto' => getenv('SMTP_CRYPTO'),
     ];
 
     return $configuration[$key] ?? null;

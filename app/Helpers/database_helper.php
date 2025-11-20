@@ -226,8 +226,8 @@ $databases = [
 ];
 
 $alterTables = [
-    "ALTER TABLE users ADD COLUMN billing_circle_start_date DATE DEFAULT NULL;",
-    "ALTER TABLE users ADD COLUMN monthly_minutes_limit INTEGER DEFAULT 30;",
+    // "ALTER TABLE users ADD COLUMN billing_circle_start_date DATE DEFAULT NULL;",
+    // "ALTER TABLE users ADD COLUMN monthly_minutes_limit INTEGER DEFAULT 30;",
 ];
 
 function createDatabaseStructure() {

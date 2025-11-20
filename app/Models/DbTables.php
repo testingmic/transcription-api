@@ -15,6 +15,7 @@ class DbTables {
 
     public static $organizationTable = 'organizations';
     public static $analyticsTable = 'analytics';
+    public static $altUserTable = 'altuser';
     
     public static $dashboardTable = 'dashboard_data';
     public static $userDashboardTable = 'user_dashboard_data';
@@ -32,7 +33,7 @@ class DbTables {
      */
     public static function initTables() {
         return [
-            'resourcesTable', 'authTokenTable', 'userTable', 'accessTable', 'organizationTable', 'analyticsTable'
+            'resourcesTable', 'authTokenTable', 'userTable', 'accessTable', 'organizationTable', 'analyticsTable', 'altUserTable'
         ];
     }
 }

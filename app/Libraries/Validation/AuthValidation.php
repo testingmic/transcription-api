@@ -57,9 +57,8 @@ class AuthValidation {
         'reset' => [
             'method' => 'POST',
             'payload' => [
-                'email' => 'required|valid_email|max_length[100]',
                 'password' => 'required|valid_password|min_length[6]|max_length[32]',
-                'password_confirm' => 'required|matches[password]',
+                'confirmPassword' => 'required|matches[password]',
                 'code' => 'required|max_length[6]|numeric'
             ]
         ],
