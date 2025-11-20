@@ -225,22 +225,21 @@ class Users extends LoadController {
         }
 
         // remove the user type, two factor setup and two factor secret
-        foreach(['user_type', 'two_factor_setup', 'twofactor_secret', 'date_registered', 'status'] as $item) {
+        foreach(['two_factor_setup', 'twofactor_secret', 'date_registered', 'status'] as $item) {
             if(isset($this->submittedPayload[$item])) {
                 unset($this->submittedPayload[$item]);
             }
+        }
+
+        // if the name was parsed but empty then remove from updating
+        if(isset($this->submittedPayload['name']) && empty($this->submittedPayload['name'])) {
+            unset($this->submittedPayload['name']);
         }
 
         // check if the password is set
         if(!empty($this->submittedPayload['password'])) {
             $hashPassword = hash_password($this->submittedPayload['password']);
             $this->submittedPayload['password'] = $hashPassword;
-        }
-
-        foreach(['social_links'] as $item) {
-            if(isset($this->submittedPayload[$item])) {
-                $this->submittedPayload[$item] = json_encode($this->submittedPayload[$item]);
-            }
         }
 
         if(!empty($users['preferences']) && !empty($this->submittedPayload['preferences'])) {

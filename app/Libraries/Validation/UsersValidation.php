@@ -76,6 +76,7 @@ class UsersValidation {
             'method' => 'PUT',
             'authenticate' => true,
             'payload' => [
+                "name" => "permit_empty",
                 "user_id" => "required|integer",
                 "description" => "permit_empty|string|max_length[2000]",
                 "nationality" => "permit_empty|string|max_length[255]",
