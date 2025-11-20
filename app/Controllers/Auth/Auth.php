@@ -320,14 +320,17 @@ class Auth extends LoadController {
      */
     public function verify() {
 
-        $tempCode = (int) $this->payload['code'];
+        $tempCode = preg_match("/^[0-9]+$/", $this->payload['code']) ? (int) $this->payload['code'] : $this->payload['code'];
         $theCode = strlen($this->payload['code']) == 5 ? md5($tempCode) :  $this->payload['code'];
 
-        $checkAltUser = $this->usersModel->getAltUser([
+        $payload = [
             'ver_code' => $theCode,
-            'email' => $this->payload['email'] ?? null,
             'auth' => 'password_reset'
-        ]);
+        ];
+        if(!empty($this->payload['email'])) {
+            $payload['email'] = $this->payload['email'];
+        }
+        $checkAltUser = $this->usersModel->getAltUser($payload);
 
         if(empty($checkAltUser)) {
             return Routing::error('Invalid reset code was provided.');
