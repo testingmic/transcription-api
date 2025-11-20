@@ -25,6 +25,10 @@ function formatTranscription($transcription, $removeSummary = false) {
             $value['summarySet'] = true;
         }
 
+        elseif(!empty($value['summary']) && !empty($value['summary']['overview']) && !empty($value['summary']['keyPoints'])) {
+            $value['summarySet'] = true;
+        }
+
         if($removeSummary) {
             unset($value['summary']);
         }
