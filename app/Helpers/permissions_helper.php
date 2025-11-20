@@ -36,6 +36,7 @@ function getPermissions() {
                 'view' => true,
                 'entitled' => true,
                 'delete' => true,
+                'stats' => true,
             ],
             'audio' => [
                 'create' => true,
@@ -110,6 +111,7 @@ function getPermissions() {
                 'entitled' => true,
                 'view' => true,
                 'delete' => true,
+                'stats' => true,
             ],
             'audio' => [
                 'create' => true,
@@ -185,6 +187,7 @@ function getPermissions() {
                 'view' => true,
                 'entitled' => true,
                 'delete' => true,
+                'stats' => true,
             ],
             'audio' => [
                 'create' => true,

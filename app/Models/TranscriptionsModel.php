@@ -143,6 +143,158 @@ class TranscriptionsModel extends Model {
             return false;
         }
     }
+
+    /**
+     * Get transcription statistics
+     * @param string|null $startDate
+     * @param string|null $endDate
+     * @param int|null $userId Optional user ID filter
+     * @return array
+     */
+    public function getStats($startDate = null, $endDate = null, $userId = null) {
+        try {
+            $query = $this->db->table($this->table);
+            
+            // Apply date filters if provided
+            if (!empty($startDate)) {
+                $query->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $query->where('DATE(created_at) <=', $endDate);
+            }
+            
+            // Apply user filter if provided
+            if (!empty($userId)) {
+                $query->where('user_id', $userId);
+            }
+            
+            // Get total count
+            $total = $query->countAllResults(false);
+            
+            // Reset query for status counts
+            $query = $this->db->table($this->table);
+            if (!empty($startDate)) {
+                $query->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $query->where('DATE(created_at) <=', $endDate);
+            }
+            if (!empty($userId)) {
+                $query->where('user_id', $userId);
+            }
+            
+            // Get status counts
+            $completedQuery = $this->db->table($this->table);
+            if (!empty($startDate)) {
+                $completedQuery->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $completedQuery->where('DATE(created_at) <=', $endDate);
+            }
+            if (!empty($userId)) {
+                $completedQuery->where('user_id', $userId);
+            }
+            $completed = $completedQuery->where('status', 'COMPLETED')->countAllResults(false);
+            
+            $processingQuery = $this->db->table($this->table);
+            if (!empty($startDate)) {
+                $processingQuery->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $processingQuery->where('DATE(created_at) <=', $endDate);
+            }
+            if (!empty($userId)) {
+                $processingQuery->where('user_id', $userId);
+            }
+            $processing = $processingQuery->where('status', 'PROCESSING')->countAllResults(false);
+            
+            $failedQuery = $this->db->table($this->table);
+            if (!empty($startDate)) {
+                $failedQuery->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $failedQuery->where('DATE(created_at) <=', $endDate);
+            }
+            if (!empty($userId)) {
+                $failedQuery->where('user_id', $userId);
+            }
+            $failed = $failedQuery->where('status', 'FAILED')->countAllResults(false);
+            
+            // Get duration statistics
+            $query = $this->db->table($this->table)
+                ->select('SUM(duration) as totalDuration, AVG(duration) as averageDuration')
+                ->where('duration >', 0);
+            
+            if (!empty($startDate)) {
+                $query->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $query->where('DATE(created_at) <=', $endDate);
+            }
+            if (!empty($userId)) {
+                $query->where('user_id', $userId);
+            }
+            
+            $durationStats = $query->get()->getRowArray();
+            $totalDuration = $durationStats['totalDuration'] ?? 0;
+            $averageDuration = $durationStats['averageDuration'] ?? 0;
+            
+            // Get statistics by date
+            $query = $this->db->table($this->table)
+                ->select('DATE(created_at) as date, COUNT(*) as count, SUM(duration) as duration')
+                ->groupBy('DATE(created_at)')
+                ->orderBy('date', 'ASC');
+            
+            if (!empty($startDate)) {
+                $query->where('DATE(created_at) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $query->where('DATE(created_at) <=', $endDate);
+            }
+            if (!empty($userId)) {
+                $query->where('user_id', $userId);
+            }
+            
+            $byDate = $query->get()->getResultArray();
+            
+            // Format byDate array
+            $formattedByDate = [];
+            foreach ($byDate as $row) {
+                $formattedByDate[] = [
+                    'date' => $row['date'] ?? '',
+                    'count' => (int)($row['count'] ?? 0),
+                    'duration' => (int)($row['duration'] ?? 0)
+                ];
+            }
+            
+            // If no date data, return empty array instead of placeholder
+            if (empty($formattedByDate)) {
+                $formattedByDate = [];
+            }
+            
+            return [
+                'total' => (int)$total,
+                'completed' => (int)$completed,
+                'processing' => (int)$processing,
+                'failed' => (int)$failed,
+                'totalDuration' => (int)$totalDuration,
+                'averageDuration' => round((float)$averageDuration, 2),
+                'byDate' => $formattedByDate
+            ];
+            
+        } catch(DatabaseException $e) {
+            log_message('error', 'Transcription Stats Error: ' . $e->getMessage());
+            return [
+                'total' => 0,
+                'completed' => 0,
+                'processing' => 0,
+                'failed' => 0,
+                'totalDuration' => 0,
+                'averageDuration' => 0,
+                'byDate' => []
+            ];
+        }
+    }
 }
 
 ?>

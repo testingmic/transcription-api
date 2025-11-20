@@ -48,6 +48,12 @@ class TranscriptionsValidation {
                 'transcription_id' => 'required|integer',
             ]
         ],
+        'stats' =>[
+            'method' => 'GET',
+            'authenticate' => true,
+            'roles' => ['Admin', 'User', 'Moderator'],
+            'payload' => [ ]
+        ],
         'create' => [
             'method' => 'POST',
             'authenticate' => true,

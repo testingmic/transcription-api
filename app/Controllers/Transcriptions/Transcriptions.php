@@ -80,6 +80,27 @@ class Transcriptions extends LoadController {
     }
 
     /**
+     * Get transcription statistics
+     * 
+     * @return array
+     */
+    public function stats() {
+        $userId = null;
+        if($this->isUser()) {
+            $userId = $this->currentUser['id'];
+        }
+        elseif(!empty($this->payload['user_id'])) {
+            $userId = $this->payload['user_id'];
+        }
+        $stats = $this->transcriptionsModel->getStats(
+            $this->payload['start_date'] ?? null, 
+            $this->payload['end_date'] ?? null, 
+            $userId
+        );
+        return Routing::success($stats);
+    }
+
+    /**
      * Create a transcription
      * 
      * @return array
