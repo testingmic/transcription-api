@@ -15,7 +15,6 @@ class Tickets extends LoadController {
     public function list() {
 
         $payload = [
-            'user_id' => $this->currentUser['id'],
             'status' => $this->payload['status'] ?? null,
             'type' => $this->payload['type'] ?? null,
             'priority' => $this->payload['priority'] ?? null,
