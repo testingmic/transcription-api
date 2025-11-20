@@ -332,7 +332,8 @@ class Auth extends LoadController {
 
         $this->tempData = $checkAltUser;
 
-        return Routing::success('Reset code verified.');
+        return Routing::success(['verified' => true, 'resetToken' => $checkAltUser['ver_code']]);
+
     }
 
     /**
