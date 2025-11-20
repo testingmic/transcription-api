@@ -320,7 +320,8 @@ class Auth extends LoadController {
      */
     public function verify() {
 
-        $theCode = strlen($this->payload['code']) == 32 ? $this->payload['code'] : md5($this->payload['code']);
+        $tempCode = (int) $this->payload['code'];
+        $theCode = strlen($this->payload['code']) == 5 ? md5($tempCode) :  $this->payload['code'];
 
         $checkAltUser = $this->usersModel->getAltUser([
             'ver_code' => $theCode,
@@ -334,7 +335,7 @@ class Auth extends LoadController {
 
         $this->tempData = $checkAltUser;
 
-        return Routing::success(['verified' => true, 'token' => $checkAltUser['ver_code']]);
+        return Routing::success(['verified' => true, 'token' => $theCode]);
 
     }
 
