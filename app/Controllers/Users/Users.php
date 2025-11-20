@@ -256,7 +256,7 @@ class Users extends LoadController {
         // return the success message
         return Routing::updated([
             'data' => 'The user has been updated successfully', 
-            'record' => $this->view()['data']
+            'record' => $this->profile()['data']
         ]);
     }
 
