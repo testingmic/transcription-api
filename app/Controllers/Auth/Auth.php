@@ -10,6 +10,8 @@ use App\Libraries\Routing;
 use RobThree\Auth\TwoFactorAuth;
 use RobThree\Auth\Providers\Qr\QRServerProvider;
 
+use App\Controllers\Notifications\Notifications;
+
 use App\Controllers\Users\Usages;
 
 class Auth extends LoadController {
@@ -366,6 +368,15 @@ class Auth extends LoadController {
         $this->usersModel->deleteAltUser([
             'email' => $email, 'auth' => 'password_reset'
         ]);
+
+        $notify = new Notifications();
+        $notify->payload = [
+            'user_id' => $this->tempData['user_id'],
+            'type' => 'info',
+            'title' => 'Password Reset',
+            'message' => 'Your password has been reset successfully.',
+            'delivery_channel' => 'email'
+        ];
 
         return Routing::success('Password reset successful.');
     }
