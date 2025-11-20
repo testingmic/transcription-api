@@ -58,7 +58,7 @@ class AuthValidation {
             'method' => 'POST',
             'payload' => [
                 'password' => 'required|valid_password|min_length[6]|max_length[32]',
-                'confirmPassword' => 'required|matches[password]',
+                'passwordConfirm' => 'required|matches[password]',
                 'code' => 'required|max_length[32]'
             ]
         ],
