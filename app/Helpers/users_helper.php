@@ -45,6 +45,7 @@ function formatUserResponse($user, bool $single = false, $simpleData = false) {
 
         if(!empty($value['photo'])) {
             $result[$key]['photo'] = base_url("uploads/{$value['photo']}");
+            $result[$key]['avatar'] = base_url("uploads/{$value['photo']}");
         }
 
         foreach(['gender', 'nationality', 'date_of_birth'] as $item) {
