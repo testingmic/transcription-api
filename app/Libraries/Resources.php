@@ -23,10 +23,10 @@ class Resources extends LoadController {
      * Ensure the directories exist
      */
     private function ensureDirectoriesExist() {
-        if (!file_exists($this->uploadPath)) {
+        if (!empty($this->uploadPath) && !file_exists($this->uploadPath)) {
             mkdir($this->uploadPath, 0755, true);
         }
-        if (!file_exists($this->thumbnailPath)) {
+        if (!empty($this->thumbnailPath) && !file_exists($this->thumbnailPath)) {
             mkdir($this->thumbnailPath, 0755, true);
         }
     }
@@ -213,6 +213,68 @@ class Resources extends LoadController {
         } catch (Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    /**
+     * Upload profile image
+     * @param array $mediaFiles
+     * 
+     * @return string
+     */
+    public function profileImage($mediaFiles) {
+
+        // create the upload path
+        $today = date('Ymd');
+
+        // set the upload path
+        $uploadPath = "avatar/";
+
+        // set the upload and thumbnail paths
+        $this->uploadPath = rtrim(PUBLICPATH, "/") . "/uploads/avatar/";
+
+        $this->ensureDirectoriesExist();
+
+        // loop through the media files
+        foreach($mediaFiles as $key => $file) {
+
+            // validate the file uploaded
+            if(!$file->isValid() || $file->hasMoved()) {
+                continue;
+            }
+
+            // create a new object of the File class
+            $theFile = new \CodeIgniter\Files\File($file);
+            
+            // get the media information
+            $originalName = $file->getName();
+            $megabytes = $theFile->getSizeByUnit('mb');
+            $mimeType = $theFile->getMimeType();
+
+            // create a new name for the file
+            $newName = $this->createRandomNameUUIDFormat($originalName);
+
+            // validate the file type
+            if(!in_array($mimeType, $this->allowedImageTypes)) {
+                continue;
+            }
+
+            // validate the file size
+            if($megabytes > $this->maxImageSize) {
+                continue;
+            }
+
+            // move the file to the upload path
+            $file->move($this->uploadPath, $newName);
+            
+            // create a thumbnail for the image
+            $this->createImageThumbnail($this->uploadPath . $newName, $this->uploadPath . $newName, 300, 300);
+
+            $thumbUrl =  $uploadPath . $newName;
+         
+            return $thumbUrl;
+
+        }
+
     }
 
     /**

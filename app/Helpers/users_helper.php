@@ -43,6 +43,10 @@ function formatUserResponse($user, bool $single = false, $simpleData = false) {
             $result[$key]['usage'] = $value['usage'];
         }
 
+        if(!empty($value['photo'])) {
+            $result[$key]['photo'] = base_url("uploads/{$value['photo']}");
+        }
+
         foreach(['gender', 'nationality', 'date_of_birth'] as $item) {
             if(!empty($value[$item])) {
                 $result[$key][$item] = ucwords($value[$item]);

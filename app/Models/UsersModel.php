@@ -24,7 +24,7 @@ class UsersModel extends Model {
         "admin_access", "date_registered", "nationality", "gender", "date_of_birth", "phone",  
         "password", "billing_address", "timezone", "website", "job_title", "description", "skills", 
         "social_links", "language", "rating", "image", "branch_id", "pharmacy_id", "pin_hash",
-        "user_device_model"
+        "user_device_model", "photo"
     ];
     
     public function __construct() {

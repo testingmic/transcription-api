@@ -4,6 +4,7 @@ namespace App\Controllers\Users;
 
 use App\Controllers\LoadController;
 use App\Libraries\Routing;
+use App\Libraries\Resources;
 use App\Controllers\Users\Usages;
 
 class Users extends LoadController {
@@ -248,6 +249,22 @@ class Users extends LoadController {
                 $existingPreferences[$key] = $value;
             }
             $this->submittedPayload['preferences'] = json_encode($existingPreferences);
+        }
+
+        // if the file uploads are set, upload the profile image
+        if(isset($this->payload['file_uploads']) && !empty($this->payload['file_uploads'])) {
+
+            // upload the profile image
+            $this->submittedPayload['photo'] = (new Resources())->profileImage($this->payload['file_uploads']);
+            $this->submittedPayload['image'] = $this->submittedPayload['photo'];
+
+            // delete the old image if it exists
+            if(!empty($users['image']) && !empty($this->submittedPayload['image'])) {
+                $dir = rtrim(PUBLICPATH, "/") . "/uploads/";
+                if(file_exists($dir . $users['image'])) {
+                    unlink($dir . $users['image']);
+                }
+            }
         }
 
         // update the user information

@@ -73,7 +73,7 @@ class UsersValidation {
             ]
         ],
         'update:user_id' => [
-            'method' => 'PUT',
+            'method' => 'POST',
             'authenticate' => true,
             'payload' => [
                 "name" => "permit_empty",
