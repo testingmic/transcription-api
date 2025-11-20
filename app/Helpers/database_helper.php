@@ -42,6 +42,20 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
     CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);",
 
+    "CREATE TABLE IF NOT EXISTS delete_requests (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        email VARCHAR(150) NOT NULL,
+        reason TEXT NOT NULL,
+        comments TEXT DEFAULT NULL,
+        requested_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        delete_on DATE NOT NULL,
+        status VARCHAR(20) DEFAULT 'pending'
+    );
+    CREATE INDEX IF NOT EXISTS idx_delete_requests_user_id ON delete_requests(user_id);
+    CREATE INDEX IF NOT EXISTS idx_delete_requests_email ON delete_requests(email);
+    CREATE INDEX IF NOT EXISTS idx_delete_requests_status ON delete_requests(status);",
+
     "CREATE TABLE IF NOT EXISTS users_usages (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,

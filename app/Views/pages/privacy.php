@@ -187,7 +187,7 @@
                 </p>
                 <div class="glass-card p-6 rounded-lg">
                     <p class="text-gray-700 mb-2"><strong>Privacy Email:</strong> <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-blue-800 hover:underline">privacy@transc.io</a></p>
-                    <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-blue-800 hover:underline">support@transc.io</a></p>
+                    <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="text-blue-800 hover:underline">support@emmallextech.com</a></p>
                     <p class="text-gray-700"><strong>Data Deletion Requests:</strong> <a href="<?= $baseUrl ?>data-deletion" class="text-blue-800 hover:underline">Request Data Deletion</a></p>
                 </div>
             </section>

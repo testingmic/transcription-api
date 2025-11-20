@@ -102,20 +102,6 @@
             </div>
 
             <div>
-                <label for="account-id" class="block text-sm font-medium text-gray-700 mb-2">
-                    Account ID (Optional)
-                </label>
-                <input 
-                    type="text" 
-                    id="account-id" 
-                    name="account-id"
-                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent outline-none transition-all"
-                    placeholder="Your account ID if available"
-                >
-                <p class="mt-2 text-sm text-gray-500">Helps us locate your account faster</p>
-            </div>
-
-            <div>
                 <label for="reason" class="block text-sm font-medium text-gray-700 mb-2">
                     Reason for Deletion (Optional)
                 </label>
@@ -165,23 +151,7 @@
                 </div>
             </div>
 
-            <div class="flex items-start">
-                <div class="flex items-center h-5">
-                    <input 
-                        id="export-data" 
-                        name="export-data" 
-                        type="checkbox"
-                        class="h-4 w-4 text-blue-800 focus:ring-blue-800 border-gray-300 rounded"
-                    >
-                </div>
-                <div class="ml-3 text-sm">
-                    <label for="export-data" class="font-medium text-gray-700">
-                        I have exported all my data that I wish to keep
-                    </label>
-                </div>
-            </div>
-
-            <div class="pt-4">
+            <div>
                 <button 
                     type="submit"
                     class="btn-submit w-full gradient-primary text-white px-6 py-4 rounded-lg font-semibold text-lg relative z-10"
@@ -192,7 +162,7 @@
         </form>
 
         <!-- Success Message (hidden by default) -->
-        <div id="success-message" class="hidden mt-6 success-message">
+        <div id="success-message" class="hidden success-message">
             <div class="bg-green-50 border-l-4 border-blue-800 p-6 rounded-lg">
                 <div class="flex">
                     <div class="flex-shrink-0">
@@ -236,7 +206,7 @@
                 </svg>
                 <div>
                     <strong class="text-gray-900">Contact Support:</strong>
-                    <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-blue-800 hover:underline">support@transc.io</a> - we're here to help!</p>
+                    <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="text-blue-800 hover:underline">support@emmallextech.com</a> - we're here to help!</p>
                 </div>
             </li>
             <li class="flex items-start">

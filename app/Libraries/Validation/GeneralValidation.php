@@ -10,8 +10,18 @@ class GeneralValidation {
             'payload' => []
         ],
         'leave' => [
-            'method' => 'GET,POST',
+            'method' => 'POST',
             'authenticate' => false,
+            'payload' => [
+                "email" => "required|valid_email|max_length[255]",
+                "reason" => "required|string|max_length[255]",
+                "comments" => "permit_empty|string|max_length[255]"
+            ]
+        ],
+        'requests' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'roles' => ['Admin', 'Moderator'],
             'payload' => []
         ],
         'legal' => [

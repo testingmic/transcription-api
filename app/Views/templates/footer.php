@@ -26,7 +26,7 @@
             <div>
                 <h4 class="font-semibold text-white mb-4">Support</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="hover:text-white transition cursor-pointer">support@transc.io</a></li>
+                    <li><a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="hover:text-white transition cursor-pointer">support@emmallextech.com</a></li>
                     <li><a href="mailto:sales@transc.io" data-copy-email="sales@transc.io" class="hover:text-white transition cursor-pointer">sales@transc.io</a></li>
                 </ul>
                 <div class="mt-4 flex space-x-4">

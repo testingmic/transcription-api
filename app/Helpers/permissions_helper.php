@@ -77,6 +77,7 @@ function getPermissions() {
                 'stats' => true,
                 'endpoints' => true,
                 'utilities' => true,
+                'requests' => true,
             ],
             'notifications' => [
                 'list' => true,
@@ -226,6 +227,7 @@ function getPermissions() {
             'general' => [
                 'stats' => true,
                 'utilities' => true,
+                'requests' => true,
             ],
             'notifications' => [
                 'list' => true,

@@ -31,5 +31,8 @@
             }
         }
     </script>
+    <script>
+        const baseUrl = "<?= $baseUrl ?>";
+    </script>
 </head>
 <body class="bg-gray-50">

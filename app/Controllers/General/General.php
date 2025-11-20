@@ -7,6 +7,8 @@ use App\Libraries\Routing;
 
 class General extends LoadController {
 
+    private $successMessage = 'Thank you for submitting the form for account data deletion. You will be notified once your request has been processed.';
+
     public function utilities() {
         $result = [];
         return Routing::success($result);
@@ -21,6 +23,72 @@ class General extends LoadController {
         return Routing::success([
             'status' => 'ok'
         ]);
+    }
+
+    /**
+     * Get all the requests to delete accounts
+     * 
+     * @return array
+     */
+    public function requests() {
+
+        $requests = $this->usersModel->getDeleteRequests();
+        
+        return Routing::success($requests);
+    }
+
+    /**
+     * This is a request to leave the platform
+     * 
+     * @return array
+     */
+    public function leave() {
+        
+        // confirm if the email address exists in the system
+        $user = $this->usersModel->where('email', $this->payload['email'])->first();
+        if(!$user) {
+            return Routing::success($this->successMessage);
+        }
+
+        // check if there is an existing request to delete
+        $check = $this->usersModel->getDeleteRequest($user['id']);
+        if(!empty($check)) {
+            return Routing::success($this->successMessage);
+        }
+
+        // confirm if the user has a subscription
+        $this->usersModel->insertDeleteRequest([
+            'user_id' => $user['id'],
+            'email' => $user['email'],
+            'reason' => $this->payload['reason'],
+            'comments' => $this->payload['comments'],
+            'requested_at' => date('Y-m-d H:i:s'),
+            'delete_on' => date('Y-m-d', strtotime('+1 month')),
+            'status' => 'pending'
+        ]);
+
+        // create a support ticket to inform the user of the request to delete
+        $this->ticketsModel->createTicket([
+            'user_id' => $user['id'],
+            'subject' => 'Request to delete account',
+            'description' => $this->payload['comments'],
+            'priority' => 'high',
+            'type' => 'support',
+            'user_id' => $user['id'],
+            'status' => 'open',
+        ]);
+
+        // generate a notification to the user
+        $this->notificationsModel->createRecord([
+            'user_id' => $user['id'],
+            'type' => 'warning',
+            'title' => 'Request to delete account',
+            'read' => '0',
+            'message' => 'You have requested to delete your account. Please wait for confirmation.',
+            'delivery_channel' => 'Push',
+        ]);
+
+        return Routing::success($this->successMessage);
     }
 
     /**

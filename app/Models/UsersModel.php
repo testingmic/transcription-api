@@ -221,6 +221,61 @@ class UsersModel extends Model {
     }
 
     /**
+     * Get delete request
+     * 
+     * @param int $user_id
+     * @return array|null
+     */
+    public function getDeleteRequest($user_id) {
+
+        try {
+            return $this->db->table('delete_requests')
+                            ->where('user_id', $user_id)
+                            ->get()
+                            ->getRowArray();
+        } catch(DatabaseException $e) {
+            return [];
+        }
+
+    }
+
+    /**
+     * Get all the delete requests
+     * 
+     * @return array
+     */
+    public function getDeleteRequests() {
+
+        try {
+            return $this->db->table('delete_requests')
+                            ->select('delete_requests.*, users.email, users.name')
+                            ->join('users', 'users.id = delete_requests.user_id', 'left')
+                            ->orderBy('delete_requests.requested_at', 'DESC')
+                            ->get()
+                            ->getResultArray();
+        } catch(DatabaseException $e) {
+            return [];
+        }
+
+    }
+
+    /**
+     * Create a delete request
+     * 
+     * @param array $data
+     * @return array|null
+     */
+    public function insertDeleteRequest($data) {
+
+        try {
+            $this->db->table('delete_requests')->insert($data);
+            return $this->db->insertID();
+        } catch(DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
      * Quick find by username
      * 
      * @param string $username

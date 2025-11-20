@@ -139,6 +139,9 @@ function initDataDeletionForm() {
                 showFormError('Please confirm that you understand this action is permanent');
                 return;
             }
+
+            const reason = document.getElementById('reason').value;
+            const comments = document.getElementById('comments').value;
             
             // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -150,29 +153,32 @@ function initDataDeletionForm() {
             setTimeout(() => {
                 // Hide form
                 form.style.display = 'none';
-                
-                // Show success message
-                const successMessage = document.getElementById('success-message');
-                if (successMessage) {
-                    successMessage.classList.remove('hidden');
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-                
+
                 // In production, you would send the form data to your server:
                 // const formData = new FormData(form);
-                // fetch('/api/data-deletion-request', {
-                //     method: 'POST',
-                //     body: formData
-                // })
-                // .then(response => response.json())
-                // .then(data => {
-                //     // Handle success
-                // })
-                // .catch(error => {
-                //     // Handle error
-                //     submitBtn.disabled = false;
-                //     submitBtn.textContent = originalText;
-                // });
+                fetch(`${baseUrl}/api/general/leave`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: email,
+                        reason: reason,
+                        comments: comments
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Show success message
+                    const successMessage = document.getElementById('success-message');
+                    if (successMessage) {
+                        successMessage.classList.remove('hidden');
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                })
+                .catch(error => {
+                    // Handle error
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    showFormError(error.message || error.data.data);
+                });
             }, 1000);
         });
     }

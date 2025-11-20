@@ -100,6 +100,11 @@ class LoadController extends BaseController
             // initialize additional models
             if($loop) {
 
+                // initialize additional for users
+                if(in_array($model, ['general'])) {
+                    $this->triggerModel(['tickets', 'notifications'], false);
+                }
+
                 // initialize additional for audio
                 if(in_array($model, ['audio'])) {
                     $this->triggerModel(['transcriptions'], false);

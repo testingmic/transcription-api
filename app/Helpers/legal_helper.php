@@ -76,7 +76,7 @@ function termsOfService() {
                 'text' => 'If you have any questions about these Terms, please contact us:',
                 'items' => [
                   'Legal Email: legal@transc.io',
-                  'Support Email: support@transc.io',
+                  'Support Email: support@emmallextech.com',
                 ],
             ],
         ],
@@ -171,7 +171,7 @@ function privacyPolicy() {
                 'text' => 'If you have any questions about this Privacy Policy or our data practices, please contact us:',
                 'items' => [
                     'Privacy Email: privacy@transc.io',
-                    'Support Email: support@transc.io',
+                    'Support Email: support@emmallextech.com',
                     'Data Deletion Requests: Request Data Deletion',
                 ],
             ],

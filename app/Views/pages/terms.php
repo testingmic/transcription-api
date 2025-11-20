@@ -189,7 +189,7 @@
                 </p>
                 <div class="glass-card p-6 rounded-lg">
                     <p class="text-gray-700 mb-2"><strong>Legal Email:</strong> <a href="mailto:legal@transc.io" data-copy-email="legal@transc.io" class="text-blue-800 hover:underline">legal@transc.io</a></p>
-                    <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@transc.io" data-copy-email="support@transc.io" class="text-blue-800 hover:underline">support@transc.io</a></p>
+                    <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="text-blue-800 hover:underline">support@emmallextech.com</a></p>
                 </div>
             </section>
         </div>
