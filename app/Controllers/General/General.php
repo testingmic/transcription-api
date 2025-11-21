@@ -139,9 +139,7 @@ class General extends LoadController {
         $this->ticketsModel->createMessage([
             'ticket_id' => $ticketId,
             'user_id' => $adminUser['id'] ?? 0,
-            'message' => "We have received an indication from you to delete your account. 
-                Please confirm that you wish to proceed with this. 
-                Note that we will still proceed to delete all data associated with your account on {$deleteDate} if you do not indicate otherwise.",
+            'message' => "We have received an indication from you to delete your account. Please confirm that you wish to proceed with this. Note that we will still proceed to delete all data associated with your account on {$deleteDate} if you do not indicate otherwise.",
             'sender_type' => 'admin',
         ]);
 
