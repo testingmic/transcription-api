@@ -42,7 +42,7 @@ class NotificationsModel extends Model {
     public function listNotifications($filters = [], $limit = null, $offset = 0) {
         try {
             $query = $this->select('notifications.*')
-                ->orderBy('created_at', 'DESC');
+                ->orderBy('id', 'DESC');
 
             foreach($filters as $key => $value) {
                 if(!empty($value) || $value === '0' || $value === 0) {

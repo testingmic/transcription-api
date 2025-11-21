@@ -102,6 +102,9 @@ class General extends LoadController {
                 return Routing::success($this->successMessage);
             }
         }
+        
+        // set the delete date
+        $deleteDate = date('Y-m-d', strtotime('+1 month'));
 
         // confirm if the user has a subscription
         $requestId = $this->usersModel->insertDeleteRequest([
@@ -110,12 +113,12 @@ class General extends LoadController {
             'reason' => $this->payload['reason'],
             'comments' => $this->payload['comments'],
             'requested_at' => date('Y-m-d H:i:s'),
-            'delete_on' => date('Y-m-d', strtotime('+1 month')),
+            'delete_on' => $deleteDate,
             'status' => 'pending'
         ]);
 
         // create a support ticket to inform the user of the request to delete
-        $this->ticketsModel->createTicket([
+        $ticketId = $this->ticketsModel->createTicket([
             'user_id' => $user['id'],
             'subject' => 'DELETE ACCOUNT',
             'description' => $this->payload['comments'],
@@ -126,12 +129,25 @@ class General extends LoadController {
             'status' => 'open',
         ]);
 
+        // get an admin user id
+        $adminUser = $this->usersModel->getAdminUser();
+
+        // create a message to the user to confirm the requests
+        $this->ticketsModel->createMessage([
+            'ticket_id' => $ticketId,
+            'user_id' => $adminUser['id'] ?? 0,
+            'message' => "We have received an indication from you to delete your account. 
+                Please confirm that you wish to proceed with this. 
+                Note that we will still proceed to delete all data associated with your account on {$deleteDate} if you do not indicate otherwise.",
+            'sender_type' => 'admin',
+        ]);
+
         // generate a notification to the user
         $this->notificationsModel->createRecord([
             'user_id' => $user['id'],
             'type' => 'warning',
             'title' => 'Request to delete account',
-            'read' => '0',
+            'read' => 'false',
             'message' => 'You have requested to delete your account. Please wait for confirmation.',
             'delivery_channel' => 'Push',
         ]);

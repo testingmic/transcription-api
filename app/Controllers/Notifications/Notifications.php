@@ -38,7 +38,7 @@ class Notifications extends LoadController {
         }
 
         $limit = $this->payload['limit'] ?? 20;
-        $offset = $this->payload['offset'] ?? 0;
+        $offset =  $this->payload['offset'] ?? 0;
 
         $notifications = $this->notificationsModel->listNotifications($payload, $limit, $offset);
         

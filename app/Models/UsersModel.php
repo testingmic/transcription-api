@@ -115,7 +115,20 @@ class UsersModel extends Model {
         }
 
         return $builder->countAllResults();
-    }   
+    }
+
+    /**
+     * Get admin user
+     * 
+     * @return array
+     */
+    public function getAdminUser() {
+        try {
+            return $this->db->table($this->table)->select('id')->where('role', 'Admin')->get()->getRowArray();
+        } catch(DatabaseException $e) {
+            return [];
+        }
+    }
 
     /**
      * Get active users count
