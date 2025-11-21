@@ -226,11 +226,11 @@ class UsersModel extends Model {
      * @param int $user_id
      * @return array|null
      */
-    public function getDeleteRequest($user_id) {
+    public function getDeleteRequest($user_id, $column = 'user_id') {
 
         try {
             return $this->db->table('delete_requests')
-                            ->where('user_id', $user_id)
+                            ->where($column, $user_id)
                             ->get()
                             ->getRowArray();
         } catch(DatabaseException $e) {

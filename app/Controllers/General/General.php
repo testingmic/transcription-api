@@ -33,7 +33,7 @@ class General extends LoadController {
     public function requests() {
 
         $requests = $this->usersModel->getDeleteRequests();
-        
+
         return Routing::success($requests);
     }
 
@@ -57,7 +57,7 @@ class General extends LoadController {
         }
 
         // confirm if the user has a subscription
-        $this->usersModel->insertDeleteRequest([
+        $requestId = $this->usersModel->insertDeleteRequest([
             'user_id' => $user['id'],
             'email' => $user['email'],
             'reason' => $this->payload['reason'],
@@ -70,9 +70,10 @@ class General extends LoadController {
         // create a support ticket to inform the user of the request to delete
         $this->ticketsModel->createTicket([
             'user_id' => $user['id'],
-            'subject' => 'Request to delete account',
+            'subject' => 'DELETE ACCOUNT',
             'description' => $this->payload['comments'],
-            'priority' => 'high',
+            'priority' => 'urgent',
+            'request_id' => $requestId,
             'type' => 'support',
             'user_id' => $user['id'],
             'status' => 'open',

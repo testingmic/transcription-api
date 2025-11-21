@@ -42,9 +42,9 @@ class Tickets extends LoadController {
             return Routing::error('Ticket ID is required');
         }
 
-        $payload = ['id' => $this->uniqueId];
+        $payload = ['tickets.id' => $this->uniqueId];
         if($this->isUser()) {
-            $payload['user_id'] = $this->currentUser['id'];
+            $payload['tickets.user_id'] = $this->currentUser['id'];
         }
 
         $ticket = $this->ticketsModel->checkExists($payload);
@@ -55,6 +55,10 @@ class Tickets extends LoadController {
         $ticket['messages'] = $this->ticketsModel->listMessages(['ticket_id' => $this->uniqueId]);
         if(empty($ticket['messages'])) {
             $ticket['messages'] = [];
+        }
+
+        if($ticket['request_id'] > 0) {
+            $ticket['request'] = $this->usersModel->getDeleteRequest($ticket['request_id'], 'id');
         }
 
         return Routing::success($ticket);
@@ -102,9 +106,9 @@ class Tickets extends LoadController {
             return Routing::error('Ticket ID is required');
         }
         
-        $payload = ['id' => $this->uniqueId];
+        $payload = ['tickets.id' => $this->uniqueId];
         if($this->isUser()) {
-            $payload['user_id'] = $this->currentUser['id'];
+            $payload['tickets.user_id'] = $this->currentUser['id'];
         }
 
         $ticket = $this->ticketsModel->checkExists($payload);
@@ -129,7 +133,7 @@ class Tickets extends LoadController {
             return Routing::error('Ticket ID is required');
         }
 
-        $payload = ['id' => $this->uniqueId];
+        $payload = ['tickets.id' => $this->uniqueId];
         $ticketRecord = $this->ticketsModel->checkExists($payload);
         if(empty($ticketRecord)) {
             return Routing::notFound('Ticket');
@@ -168,7 +172,7 @@ class Tickets extends LoadController {
      * @return array
      */
     public function close() {
-        $this->payload['status'] = 'closed';
+        $this->payload['status'] = $this->isAdmin() ? 'resolved' : 'closed';
         return $this->update();
     }
 

@@ -32,22 +32,23 @@ class TicketsModel extends Model {
      * @return array|bool
      */
     public function listTickets($filters = [], $limit = null, $offset = 0) {
-        $query = $this->select('tickets.*')
-            ->orderBy('id', 'DESC')
+        $query = $this->select('tickets.*, users.email, users.name')
+            ->join('users', 'users.id = tickets.user_id', 'left')
+            ->orderBy('tickets.id', 'DESC')
             ->limit($limit, $offset * $limit);
 
         foreach($filters as $key => $value) {
             if(!empty($value)) {
                 if(is_array($value)) {
-                    $query->whereIn($key, $value);
+                    $query->whereIn("tickets.{$key}", $value);
                 } else {
-                    $query->where($key, $value);
+                    $query->where("tickets.{$key}", $value);
                 }
             }
         }
-        $query->where('status !=', 'deleted');
+        $query->where('tickets.status !=', 'deleted');
 
-        $query->orderBy('id', 'DESC')
+        $query->orderBy('tickets.id', 'DESC')
             ->limit($limit, $offset * $limit);
 
         return $query->get()->getResultArray();
@@ -90,8 +91,10 @@ class TicketsModel extends Model {
      */
     public function checkExists($filters = []) {
         try {
-            return $this->where($filters)
-                        ->where('status !=', 'deleted')
+            return $this->select('tickets.*, users.email, users.name')
+                        ->join('users', 'users.id = tickets.user_id', 'left')
+                        ->where($filters)
+                        ->where('tickets.status !=', 'deleted')
                         ->first();
         } catch(DatabaseException $e) {
             log_message('error', 'Ticket Exists Error: ' . $e->getMessage());

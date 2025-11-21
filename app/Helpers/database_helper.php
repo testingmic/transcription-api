@@ -42,7 +42,7 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
     CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);",
 
-    "CREATE TABLE IF NOT EXISTS delete_requests (
+    "drop table delete_requests;CREATE TABLE IF NOT EXISTS delete_requests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         email VARCHAR(150) NOT NULL,
@@ -189,6 +189,7 @@ $databases = [
         priority VARCHAR(20) DEFAULT 'low',
         subject VARCHAR(255) NOT NULL,
         messages_count INTEGER DEFAULT 0,
+        request_id INTEGER DEFAULT 0,
         description TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -240,7 +241,7 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE users ADD COLUMN billing_circle_start_date DATE DEFAULT NULL;",
+    "ALTER TABLE tickets ADD COLUMN request_id INTEGER DEFAULT 0;",
     // "ALTER TABLE users ADD COLUMN monthly_minutes_limit INTEGER DEFAULT 30;",
 ];
 
