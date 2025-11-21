@@ -92,7 +92,7 @@ class General extends LoadController {
         // confirm if the email address exists in the system
         $user = $this->usersModel->where('email', $this->payload['email'])->first();
         if(!$user) {
-            return Routing::success($this->successMessage);
+            return Routing::success('We could not find your account in our system. Please try again. If you believe this is an error, please contact support.');
         }
 
         // check if there is an existing request to delete
@@ -100,6 +100,9 @@ class General extends LoadController {
         if(!empty($check)) {
             if($check['status'] == 'pending') {
                 return Routing::success($this->successMessage);
+            }
+            if($check['status'] == 'approved') {
+                return Routing::success('Your request to delete your account has been approved. You will be notified once your request has been processed.');
             }
         }
         
