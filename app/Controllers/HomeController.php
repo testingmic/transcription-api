@@ -32,7 +32,7 @@ class HomeController extends BaseController {
     public function renderit($page) {
         $data = [
             'baseUrl' => base_url(),
-            'appName' => 'MobileTranscribe',
+            'appName' => 'MobileTranscribe.com',
         ];
         echo view('templates/header', $data);
         echo view($page, $data);

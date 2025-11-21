@@ -5,13 +5,12 @@
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
                 <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
-                    Transc.io
+                    <?= $appName; ?>
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
                 <a href="#features" class="text-gray-700 hover:text-blue-800 transition font-medium">Features</a>
                 <a href="#how-it-works" class="text-gray-700 hover:text-blue-800 transition font-medium">How It Works</a>
-                <a href="#pricing" class="text-gray-700 hover:text-blue-800 transition font-medium">Pricing</a>
                 <a href="#testimonials" class="text-gray-700 hover:text-blue-800 transition font-medium">Reviews</a>
                 <a href="#faq" class="text-gray-700 hover:text-blue-800 transition font-medium">FAQ</a>
                 <a href="<?= $baseUrl ?>privacy" class="text-gray-700 hover:text-blue-800 transition font-medium">Privacy</a>
@@ -30,7 +29,6 @@
         <div class="px-4 pt-2 pb-3 space-y-1">
             <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Features</a>
             <a href="#how-it-works" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">How It Works</a>
-            <a href="#pricing" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Pricing</a>
             <a href="#testimonials" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Reviews</a>
             <a href="#faq" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">FAQ</a>
             <a href="<?= $baseUrl ?>privacy" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Privacy</a>
