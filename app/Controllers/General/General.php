@@ -54,15 +54,29 @@ class General extends LoadController {
             'status' => $this->payload['status'], $column => date('Y-m-d H:i:s')
         ]);
 
+        // set the ticket model information
+        $status = $this->payload['status'] == 'approved' ? 'resolved' : 'closed';
+
         // also close any open ticket created for this one
-        $this->usersModel->db->query("UPDATE tickets SET status = 'resolved' WHERE request_id = ?", [$request['id']]);
+        $this->usersModel->db->query("UPDATE tickets SET status = '{$status}' WHERE request_id = ?", [$request['id']]);
+
+        // get the associated ticket
+        $ticket = $this->ticketsModel->checkExists(['request_id' => $request['request_id']]);
+
+        // create a message to the user to confirm the requests
+        $this->ticketsModel->createMessage([
+            'ticket_id' => $ticket['id'],
+            'user_id' => $this->currentUser['id'],
+            'message' => "Your request to delete your account has been " . $this->payload['status'] . ".",
+            'sender_type' => 'admin',
+        ]);
 
         // generate a notification to the user
         $this->notificationsModel->createRecord([
             'user_id' => $request['user_id'],
             'type' => 'warning',
             'title' => 'Request to delete account',
-            'read' => '0',
+            'read' => 'false',
             'message' => 'Your request to delete your account has been ' . $this->payload['status'] . '.',
             'delivery_channel' => 'Push',
         ]);
@@ -139,7 +153,7 @@ class General extends LoadController {
         $this->ticketsModel->createMessage([
             'ticket_id' => $ticketId,
             'user_id' => $adminUser['id'] ?? 0,
-            'message' => "We have received an indication from you to delete your account. Please confirm that you wish to proceed with this. Note that we will still proceed to delete all data associated with your account on {$deleteDate} if you do not indicate otherwise.",
+            'message' => "We have received an indication from you to delete your account data. Please confirm that you wish to proceed with this. Note that we will still proceed to delete all data associated with your account on {$deleteDate} if you do not indicate otherwise.",
             'sender_type' => 'admin',
         ]);
 
