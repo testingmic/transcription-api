@@ -16,6 +16,7 @@ function lastUpdated() {
 function termsOfService() {
 
     $appName = configs('app_name');
+
     return [
         'title' => 'Terms of Service',
         'subtitle' => 'Please read these terms carefully before using our transcription service.',
@@ -92,6 +93,9 @@ function termsOfService() {
  * @return array
  */
 function privacyPolicy() {
+
+    $appName = configs('app_name');
+    
     return [
         'title' => 'Privacy Policy',
         'subtitle' => 'Please read this privacy policy carefully to understand how we collect, use, and protect your information.',
