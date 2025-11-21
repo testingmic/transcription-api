@@ -57,7 +57,7 @@
     <link rel="stylesheet" href="<?= $baseUrl ?>assets/css/styles.css">
     <style>
         .h-15 {
-            height: 4.5rem !important;
+            height: 4rem !important;
         }
     </style>
     <script>
