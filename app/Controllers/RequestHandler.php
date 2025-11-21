@@ -233,10 +233,6 @@ class RequestHandler extends BaseController
             }
         }
 
-        if(!empty($payload['status'])) {
-            $payload['status'] = is_array($payload['status']) ? array_map('ucwords', stringToArray($payload['status'])) : ucwords($payload['status']);
-        }
-
         $classObject->dbTables = new DbTables();
         $classObject->routingInfo = $this->routingInfo;
 

@@ -78,6 +78,7 @@ function getPermissions() {
                 'endpoints' => true,
                 'utilities' => true,
                 'requests' => true,
+                'deletion' => true,
             ],
             'notifications' => [
                 'list' => true,
@@ -228,6 +229,7 @@ function getPermissions() {
                 'stats' => true,
                 'utilities' => true,
                 'requests' => true,
+                'deletion' => true,
             ],
             'notifications' => [
                 'list' => true,

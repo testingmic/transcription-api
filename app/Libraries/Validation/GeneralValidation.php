@@ -18,6 +18,15 @@ class GeneralValidation {
                 "comments" => "permit_empty|string|max_length[255]"
             ]
         ],
+        'deletion:request_id' => [
+            'method' => 'PUT',
+            'authenticate' => true,
+            'roles' => ['Admin', 'Moderator'],
+            'payload' => [
+                "request_id" => "required|integer",
+                "status" => "required|string|in_list[approved,cancelled]",
+            ]
+        ],
         'requests' => [
             'method' => 'GET',
             'authenticate' => true,

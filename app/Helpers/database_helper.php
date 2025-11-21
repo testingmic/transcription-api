@@ -49,6 +49,8 @@ $databases = [
         reason TEXT NOT NULL,
         comments TEXT DEFAULT NULL,
         requested_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        approved_at DATETIME DEFAULT NULL,
+        cancelled_at DATETIME DEFAULT NULL,
         delete_on DATE NOT NULL,
         status VARCHAR(20) DEFAULT 'pending'
     );
@@ -241,8 +243,8 @@ $databases = [
 ];
 
 $alterTables = [
-    // "ALTER TABLE tickets ADD COLUMN request_id INTEGER DEFAULT 0;",
-    // "ALTER TABLE users ADD COLUMN monthly_minutes_limit INTEGER DEFAULT 30;",
+    "ALTER TABLE delete_requests ADD COLUMN approved_at DATETIME DEFAULT NULL;",
+    "ALTER TABLE delete_requests ADD COLUMN cancelled_at DATETIME DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {

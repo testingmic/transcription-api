@@ -26,6 +26,51 @@ class General extends LoadController {
     }
 
     /**
+     * Approve or reject a deletion request
+     * 
+     * @return array
+     */
+    public function deletion() {
+
+        // check if the request exists
+        $request = $this->usersModel->getDeleteRequest($this->payload['request_id'], 'id');
+        if(empty($request)) {
+            return Routing::error('Deletion request not found');
+        }
+
+        // check if the request has already been processed
+        if($request['status'] !== 'pending') {
+            return Routing::success('Deletion request has already been ' . $request['status']);
+        }
+
+        // convert the status to lowercase
+        $this->payload['status'] = strtolower($this->payload['status']);
+
+        // determine the column to update
+        $column = $this->payload['status'] == 'approved' ? 'approved_at' : 'cancelled_at';
+
+        // update the status of the request
+        $this->usersModel->updateDeleteRequest($request['user_id'], [
+            'status' => $this->payload['status'], $column => date('Y-m-d H:i:s')
+        ]);
+
+        // also close any open ticket created for this one
+        $this->usersModel->db->query("UPDATE tickets SET status = 'resolved' WHERE request_id = ?", [$request['id']]);
+
+        // generate a notification to the user
+        $this->notificationsModel->createRecord([
+            'user_id' => $request['user_id'],
+            'type' => 'warning',
+            'title' => 'Request to delete account',
+            'read' => '0',
+            'message' => 'Your request to delete your account has been ' . $this->payload['status'] . '.',
+            'delivery_channel' => 'Push',
+        ]);
+        return Routing::success('Deletion request ' . $this->payload['status'] . ' successfully');
+
+    }
+
+    /**
      * Get all the requests to delete accounts
      * 
      * @return array
