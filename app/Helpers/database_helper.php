@@ -243,8 +243,8 @@ $databases = [
 ];
 
 $alterTables = [
-    "ALTER TABLE delete_requests ADD COLUMN approved_at DATETIME DEFAULT NULL;",
-    "ALTER TABLE delete_requests ADD COLUMN cancelled_at DATETIME DEFAULT NULL;",
+    // "ALTER TABLE delete_requests ADD COLUMN approved_at DATETIME DEFAULT NULL;",
+    // "ALTER TABLE delete_requests ADD COLUMN cancelled_at DATETIME DEFAULT NULL;",
 ];
 
 function createDatabaseStructure() {
