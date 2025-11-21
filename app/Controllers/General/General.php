@@ -61,7 +61,7 @@ class General extends LoadController {
         $this->usersModel->db->query("UPDATE tickets SET status = '{$status}' WHERE request_id = ?", [$request['id']]);
 
         // get the associated ticket
-        $ticket = $this->ticketsModel->checkExists(['request_id' => $request['request_id']]);
+        $ticket = $this->ticketsModel->checkExists(['request_id' => $request['id']]);
 
         // create a message to the user to confirm the requests
         $this->ticketsModel->createMessage([
