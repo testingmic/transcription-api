@@ -2,6 +2,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\UsersModel;
+use App\Models\TranscriptionsModel;
 
 class HomeController extends BaseController {
 
@@ -33,6 +35,8 @@ class HomeController extends BaseController {
         $data = [
             'baseUrl' => base_url(),
             'appName' => 'MobileTranscribe.com',
+            'activeUsers' => (new UsersModel())->getActiveUsersCount(),
+            'totalTranscriptions' => (new TranscriptionsModel())->countTranscriptions(),
         ];
         echo view('templates/header', $data);
         echo view($page, $data);

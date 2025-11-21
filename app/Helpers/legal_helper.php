@@ -15,6 +15,7 @@ function lastUpdated() {
  */
 function termsOfService() {
 
+    $appName = configs('app_name');
     return [
         'title' => 'Terms of Service',
         'subtitle' => 'Please read these terms carefully before using our transcription service.',
@@ -23,11 +24,11 @@ function termsOfService() {
         'sections' => [
             [
                 'heading' => 'Acceptance of Terms',
-                'text' => 'By accessing and using Transc.io ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.',
+                'text' => 'By accessing and using '.$appName.' ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.',
             ],
             [
                 'heading' => '2. Description of Service',
-                'text' => 'Transc.io is an AI-powered transcription service that converts audio files into text. The Service includes:',
+                'text' => ''.$appName.' is an AI-powered transcription service that converts audio files into text. The Service includes:',
                 'items' => [
                   'Audio-to-text transcription using artificial intelligence (via ElevenLabs API)',
                   'Storage and management of transcriptions',
@@ -61,7 +62,7 @@ function termsOfService() {
             ],
             [
                 'heading' => '7. Limitation of Liability',
-                'text' => 'TO THE MAXIMUM EXTENT PERMITTED BY LAW, TRANSC.IO SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES. Our total liability for any claims arising from or related to the Service shall not exceed the amount you paid us in the 12 months preceding the claim.',
+                'text' => 'TO THE MAXIMUM EXTENT PERMITTED BY LAW, '.$appName.' SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES. Our total liability for any claims arising from or related to the Service shall not exceed the amount you paid us in the 12 months preceding the claim.',
             ],
             [
                 'heading' => '8. Termination',
@@ -69,13 +70,13 @@ function termsOfService() {
             ],
             [
                 'heading' => '9. Dispute Resolution',
-                'text' => 'These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Transc.io operates, without regard to its conflict of law provisions. Any disputes arising from these Terms or the Service shall be resolved through binding arbitration or in the appropriate courts, as determined by applicable law.',
+                'text' => 'These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which '.$appName.' operates, without regard to its conflict of law provisions. Any disputes arising from these Terms or the Service shall be resolved through binding arbitration or in the appropriate courts, as determined by applicable law.',
             ],
             [
                 'heading' => '10. Contact Information',
                 'text' => 'If you have any questions about these Terms, please contact us:',
                 'items' => [
-                  'Legal Email: legal@transc.io',
+                  'Legal Email: legal@'.$appName.'',
                   'Support Email: support@emmallextech.com',
                 ],
             ],
@@ -99,7 +100,7 @@ function privacyPolicy() {
         'sections' => [
             [
                 'heading' => '1. Introduction',
-                'text' => 'Welcome to Transc.io ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our transcription service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services. By using Transc.io, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.',
+                'text' => 'Welcome to '.$appName.' ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our transcription service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services. By using '.$appName.', you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.',
             ],
             [
                 'heading' => '2. Information We Collect',
@@ -147,7 +148,7 @@ function privacyPolicy() {
             ],
             [
                 'heading' => '6. Your Rights',
-                'text' => 'You have the following rights regarding your personal information. To exercise these rights, please contact us at privacy@transc.io or use our Data Deletion Request page:',
+                'text' => 'You have the following rights regarding your personal information. To exercise these rights, please contact us at privacy@'.$appName.' or use our Data Deletion Request page:',
                 'items' => [
                     'Access: Request access to your personal data',
                     'Correction: Request correction of inaccurate or incomplete data',
@@ -170,7 +171,7 @@ function privacyPolicy() {
                 'heading' => '8. Contact Us',
                 'text' => 'If you have any questions about this Privacy Policy or our data practices, please contact us:',
                 'items' => [
-                    'Privacy Email: privacy@transc.io',
+                    'Privacy Email: privacy@'.$appName.'',
                     'Support Email: support@emmallextech.com',
                     'Data Deletion Requests: Request Data Deletion',
                 ],

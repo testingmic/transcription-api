@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
                 <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
-                    Transc.io
+                    <?= $appName; ?>
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
@@ -61,10 +61,10 @@
             <section id="introduction" class="mb-12 fade-in-on-scroll">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                 <p class="text-gray-700 mb-4">
-                    Welcome to Transc.io ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our transcription service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services.
+                    Welcome to <?= $appName; ?> ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our transcription service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and services.
                 </p>
                 <p class="text-gray-700">
-                    By using Transc.io, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.
+                    By using <?= $appName; ?>, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.
                 </p>
             </section>
 
@@ -159,7 +159,7 @@
                     <li><strong>Data Processing:</strong> Object to or restrict certain processing of your data</li>
                 </ul>
                 <p class="text-gray-700">
-                    To exercise these rights, please contact us at <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-blue-800 hover:underline">privacy@transc.io</a> or use our 
+                    To exercise these rights, please contact us at <a href="mailto:privacy@<?= $appName; ?>" data-copy-email="privacy@<?= $appName; ?>" class="text-blue-800 hover:underline">privacy@<?= $appName; ?></a> or use our 
                     <a href="<?= $baseUrl ?>data-deletion" class="text-blue-800 hover:underline">Data Deletion Request</a> page.
                 </p>
             </section>
@@ -186,7 +186,7 @@
                     If you have any questions about this Privacy Policy or our data practices, please contact us:
                 </p>
                 <div class="glass-card p-6 rounded-lg">
-                    <p class="text-gray-700 mb-2"><strong>Privacy Email:</strong> <a href="mailto:privacy@transc.io" data-copy-email="privacy@transc.io" class="text-blue-800 hover:underline">privacy@transc.io</a></p>
+                    <p class="text-gray-700 mb-2"><strong>Privacy Email:</strong> <a href="mailto:privacy@<?= $appName; ?>" data-copy-email="privacy@<?= $appName; ?>" class="text-blue-800 hover:underline">privacy@<?= $appName; ?></a></p>
                     <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="text-blue-800 hover:underline">support@emmallextech.com</a></p>
                     <p class="text-gray-700"><strong>Data Deletion Requests:</strong> <a href="<?= $baseUrl ?>data-deletion" class="text-blue-800 hover:underline">Request Data Deletion</a></p>
                 </div>

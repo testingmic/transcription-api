@@ -5,7 +5,7 @@
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
                 <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
-                    Transc.io
+                    <?= $appName; ?>
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
@@ -247,5 +247,5 @@
             </svg>
         </div>
     </div>
-    <div class="widget-attribution">Powered by Transc.io</div>
+    <div class="widget-attribution">Powered by <?= $appName; ?></div>
 </div>

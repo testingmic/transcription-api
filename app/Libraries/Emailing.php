@@ -113,7 +113,7 @@ class Emailing {
             $this->emailObject->addAddress($email);
 
             // Set email details
-            $this->emailObject->Subject = ($data['__subject__'] ?? 'Transc.io');
+            $this->emailObject->Subject = ($data['__subject__'] ?? configs('app_name'));
             $this->emailObject->Body = $template;
 
             return  $this->emailObject->send();

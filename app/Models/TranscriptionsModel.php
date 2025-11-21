@@ -62,6 +62,15 @@ class TranscriptionsModel extends Model {
         }
     }
 
+    public function countTranscriptions() {
+        try {
+            return $this->countAllResults();
+        } catch(DatabaseException $e) {
+            log_message('error', 'Transcription Count Error: ' . $e->getMessage());
+            return 0;
+        }
+    }
+
     /**
      * Update a transcription
      * @param int $id

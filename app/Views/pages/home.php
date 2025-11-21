@@ -85,15 +85,17 @@
                     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Trusted by Thousands</h3>
                     <div class="grid grid-cols-2 gap-6">
                         <div class="text-center">
-                            <div class="text-4xl font-bold bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent mb-2">1000+</div>
+                            <div class="text-4xl font-bold bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent mb-2">
+                                <?= $totalTranscriptions ?>+
+                            </div>
                             <div class="text-gray-600 text-sm">Transcriptions</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-4xl font-bold bg-gradient-to-r from-primary-green to-primary-orange bg-clip-text text-transparent mb-2">500K+</div>
+                            <div class="text-4xl font-bold text-gray-500 mb-2"><?= $activeUsers ?>+</div>
                             <div class="text-gray-600 text-sm">Active Users</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-4xl font-bold bg-gradient-to-r from-primary-orange to-primary-blue bg-clip-text text-transparent mb-2">99%</div>
+                            <div class="text-4xl font-bold text-gray-500 bg-clip-text  mb-2">99%</div>
                             <div class="text-gray-600 text-sm">Accuracy Rate</div>
                         </div>
                         <div class="text-center">
@@ -127,16 +129,6 @@
                 <p class="text-gray-600">Get instant transcriptions as you speak. No waiting, no delays - just pure speed.</p>
             </div>
             
-            <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.1s;">
-                <div class="w-14 h-14 bg-gradient-to-r from-blue-700 to-blue-900 rounded-xl flex items-center justify-center mb-6 icon-bounce">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Multi-Language Support</h3>
-                <p class="text-gray-600">Transcribe in 50+ languages and dialects with native-level accuracy.</p>
-            </div>
-            
             <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.2s;">
                 <div class="w-14 h-14 bg-gradient-to-r from-blue-800 to-blue-900 rounded-xl flex items-center justify-center mb-6 icon-bounce">
                     <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,16 +137,6 @@
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 mb-3">Cloud Sync & Storage</h3>
                 <p class="text-gray-600">Access your transcriptions anywhere, anytime. Secure cloud storage included.</p>
-            </div>
-            
-            <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.3s;">
-                <div class="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl flex items-center justify-center mb-6 icon-bounce">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Offline Capability</h3>
-                <p class="text-gray-600">Work without internet. Transcribe offline and sync when connected.</p>
             </div>
             
             <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.4s;">
@@ -175,6 +157,26 @@
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 mb-3">Export Options</h3>
                 <p class="text-gray-600">Export in TXT, PDF, DOCX, or share directly to your favorite apps.</p>
+            </div>
+            
+            <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.1s;">
+                <div class="w-14 h-14 bg-gradient-to-r from-blue-700 to-blue-900 rounded-xl flex items-center justify-center mb-6 icon-bounce">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Multi-Language Support</h3>
+                <p class="text-gray-600">Transcribe in 50+ languages and dialects with native-level accuracy.</p>
+            </div>
+            
+            <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.3s;">
+                <div class="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl flex items-center justify-center mb-6 icon-bounce">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Offline Capability</h3>
+                <p class="text-gray-600">Work without internet. Transcribe offline and sync when connected.</p>
             </div>
         </div>
     </div>
@@ -222,17 +224,17 @@
         <div class="text-center mb-16 fade-in-on-scroll">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                Join thousands of satisfied users who trust Transc.io
+                Join thousands of satisfied users who trust <?= $appName; ?>
             </p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="glass-card p-6 rounded-xl fade-in-on-scroll">
                 <div class="flex items-center mb-4">
                     <div class="w-12 h-12 bg-gradient-to-r from-blue-700 to-blue-900 rounded-full flex items-center justify-center text-white font-bold">
-                        SM
+                        JO
                     </div>
                     <div class="ml-4">
-                        <div class="font-semibold text-gray-900">Sarah Mitchell</div>
+                        <div class="font-semibold text-gray-900">John</div>
                         <div class="text-sm text-gray-600">Journalist</div>
                     </div>
                 </div>
@@ -245,10 +247,10 @@
             <div class="glass-card p-6 rounded-xl fade-in-on-scroll" style="transition-delay: 0.1s;">
                 <div class="flex items-center mb-4">
                     <div class="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-700 rounded-full flex items-center justify-center text-white font-bold">
-                        JD
+                        EM
                     </div>
                     <div class="ml-4">
-                        <div class="font-semibold text-gray-900">James Davis</div>
+                        <div class="font-semibold text-gray-900">Emmanuel</div>
                         <div class="text-sm text-gray-600">Student</div>
                     </div>
                 </div>
@@ -261,10 +263,10 @@
             <div class="glass-card p-6 rounded-xl fade-in-on-scroll" style="transition-delay: 0.2s;">
                 <div class="flex items-center mb-4">
                     <div class="w-12 h-12 bg-gradient-to-r from-blue-700 to-blue-900 rounded-full flex items-center justify-center text-white font-bold">
-                        ER
+                        SI
                     </div>
                     <div class="ml-4">
-                        <div class="font-semibold text-gray-900">Emily Rodriguez</div>
+                        <div class="font-semibold text-gray-900">Simon</div>
                         <div class="text-sm text-gray-600">Content Creator</div>
                     </div>
                 </div>
@@ -277,10 +279,10 @@
             <div class="glass-card p-6 rounded-xl fade-in-on-scroll" style="transition-delay: 0.3s;">
                 <div class="flex items-center mb-4">
                     <div class="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center text-white font-bold">
-                        MK
+                        FR
                     </div>
                     <div class="ml-4">
-                        <div class="font-semibold text-gray-900">Michael Kim</div>
+                        <div class="font-semibold text-gray-900">Fred</div>
                         <div class="text-sm text-gray-600">Business Owner</div>
                     </div>
                 </div>
@@ -299,7 +301,7 @@
         <div class="text-center mb-16 fade-in-on-scroll">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
             <p class="text-xl text-gray-600">
-                Everything you need to know about Transc.io
+                Everything you need to know about <?= $appName; ?>
             </p>
         </div>
         <div class="space-y-4">
@@ -373,20 +375,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="faq-item glass-card rounded-xl overflow-hidden fade-in-on-scroll" style="transition-delay: 0.5s;">
-                <button class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/50 transition">
-                    <span class="font-semibold text-gray-900">How many languages are supported?</span>
-                    <svg class="faq-icon w-5 h-5 text-blue-800 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="faq-content">
-                    <div class="px-6 pb-4 text-gray-700">
-                        We support 50+ languages and dialects including English, Spanish, French, German, Chinese, Japanese, Arabic, Hindi, and many more. We're constantly adding new languages based on user demand.
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -400,7 +388,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 fade-in-on-scroll">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
         <p class="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Download Transc.io mobile app and start transcribing your audio files today.
+            Download <?= $appName; ?> mobile app and start transcribing your audio files today.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#" class="btn-primary glass-card text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition shadow-xl inline-flex items-center justify-center">

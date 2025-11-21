@@ -61,7 +61,7 @@
             <section id="acceptance" class="mb-12 fade-in-on-scroll">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
                 <p class="text-gray-700 mb-4">
-                    By accessing and using Transc.io ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                    By accessing and using <?= $appName; ?> ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
                 </p>
                 <p class="text-gray-700">
                     We reserve the right to modify these terms at any time. We will notify users of any changes by updating the "Last updated" date of this document. Your continued use of the Service after such modifications constitutes acceptance of the updated terms.
@@ -71,7 +71,7 @@
             <section id="service" class="mb-12 fade-in-on-scroll" style="transition-delay: 0.1s;">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Description of Service</h2>
                 <p class="text-gray-700 mb-4">
-                    Transc.io is an AI-powered transcription service that converts audio files into text. The Service includes:
+                    <?= $appName; ?> is an AI-powered transcription service that converts audio files into text. The Service includes:
                 </p>
                 <ul class="list-disc pl-6 text-gray-700 space-y-2">
                     <li>Audio-to-text transcription using artificial intelligence (via ElevenLabs API)</li>
@@ -133,7 +133,7 @@
 
                 <h3 class="text-xl font-semibold text-gray-900 mb-3 mt-6">5.2 Our Intellectual Property</h3>
                 <p class="text-gray-700">
-                    The Service, including its design, features, and functionality, is owned by Transc.io and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, or create derivative works of the Service.
+                    The Service, including its design, features, and functionality, is owned by <?= $appName; ?> and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, or create derivative works of the Service.
                 </p>
             </section>
 
@@ -155,7 +155,7 @@
             <section id="liability" class="mb-12 fade-in-on-scroll" style="transition-delay: 0.6s;">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Limitation of Liability</h2>
                 <p class="text-gray-700 mb-4">
-                    TO THE MAXIMUM EXTENT PERMITTED BY LAW, TRANSC.IO SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
+                    TO THE MAXIMUM EXTENT PERMITTED BY LAW, <?= $appName; ?> SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
                 </p>
                 <p class="text-gray-700">
                     Our total liability for any claims arising from or related to the Service shall not exceed the amount you paid us in the 12 months preceding the claim.
@@ -175,7 +175,7 @@
             <section id="disputes" class="mb-12 fade-in-on-scroll" style="transition-delay: 0.8s;">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Dispute Resolution</h2>
                 <p class="text-gray-700 mb-4">
-                    These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Transc.io operates, without regard to its conflict of law provisions.
+                    These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which <?= $appName; ?> operates, without regard to its conflict of law provisions.
                 </p>
                 <p class="text-gray-700">
                     Any disputes arising from these Terms or the Service shall be resolved through binding arbitration or in the appropriate courts, as determined by applicable law.
@@ -188,7 +188,7 @@
                     If you have any questions about these Terms, please contact us:
                 </p>
                 <div class="glass-card p-6 rounded-lg">
-                    <p class="text-gray-700 mb-2"><strong>Legal Email:</strong> <a href="mailto:legal@transc.io" data-copy-email="legal@transc.io" class="text-blue-800 hover:underline">legal@transc.io</a></p>
+                    <p class="text-gray-700 mb-2"><strong>Legal Email:</strong> <a href="mailto:legal@<?= $appName; ?>" data-copy-email="legal@<?= $appName; ?>" class="text-blue-800 hover:underline">legal@<?= $appName; ?></a></p>
                     <p class="text-gray-700 mb-2"><strong>Support Email:</strong> <a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="text-blue-800 hover:underline">support@emmallextech.com</a></p>
                 </div>
             </section>
