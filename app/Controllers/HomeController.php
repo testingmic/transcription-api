@@ -34,7 +34,7 @@ class HomeController extends BaseController {
     public function renderit($page) {
         $data = [
             'baseUrl' => base_url(),
-            'appName' => 'MobileTranscribe.com',
+            'appName' => 'verbaStream.com',
             'activeUsers' => (new UsersModel())->getActiveUsersCount(),
             'totalTranscriptions' => (new TranscriptionsModel())->countTranscriptions(),
         ];

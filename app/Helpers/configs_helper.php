@@ -7,13 +7,13 @@
 function configs($key) {
 
     $configuration = [
-        'app_name' => 'MobileTranscribe.com',
+        'app_name' => 'verbaStream.com',
         'db_group' => config('Database')?->defaultGroup,
         'algo' => config('Security')?->algo,
         'salt' => config('Security')?->salt,
         'testing_mode' => config('General')?->testing_mode,
         'tracking_ttl' => 6,
-        'appName' => 'MobileTranscribe.com',
+        'appName' => 'verbaStream.com',
         'app_url' => getenv('baseURL'),
         'heatmaps_ttl' => (60 * 30 * 1),
         'is_local' => getenv('LOCAL_ENVIRONMENT') == 'yes',
