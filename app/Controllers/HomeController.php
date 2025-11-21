@@ -95,7 +95,7 @@ class HomeController extends BaseController {
     public function renderit($page, $extraData = []) {
         $data = [
             'baseUrl' => base_url(),
-            'appName' => 'Verba Stream',
+            'appName' => 'VerbaStream',
             'activeUsers' => (new UsersModel())->getActiveUsersCount(),
             'totalTranscriptions' => (new TranscriptionsModel())->countTranscriptions(),
         ];

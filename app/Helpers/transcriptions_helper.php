@@ -203,7 +203,7 @@ function subscriptionPlans() {
         'PRO' => [
             'id' => 'pro',
             'name' => 'Pro',
-            'price' => 65.99,
+            'price' => 6.5,
             'minutesLimit' => 600,
             'maxFileSize' => 20, // MB
             'features' => [
@@ -226,7 +226,7 @@ function subscriptionPlans() {
         'PREMIUM' => [
             'id' => 'premium',
             'name' => 'Premium',
-            'price' => 119.99,
+            'price' => 13.99,
             'minutesLimit' => 600 * 2.5,
             'maxFileSize' => 50, // MB
             'features' => [
