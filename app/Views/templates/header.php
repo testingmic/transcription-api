@@ -11,8 +11,15 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <link rel="icon" href="<?= $baseUrl ?>assets/images/logo.png">
+    <meta property="og:image" content="<?= $baseUrl ?>assets/images/logo.png">
+    <meta property="og:image:width" content="100">
+    <meta property="og:image:height" content="100">
     <meta property="og:title" content="<?= $appName; ?> - AI-Powered Audio Transcription">
     <meta property="og:description" content="Fast, accurate, and secure audio transcription powered by AI">
+    <!-- Android -->
+    <meta name="android-app-name" content="<?= $appName; ?>">
+    <meta name="android-app-url" content="<?= $baseUrl ?>">
     <meta property="og:url" content="<?= $baseUrl ?>">
     <meta property="og:site_name" content="<?= $appName; ?>">
     
@@ -48,7 +55,11 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="<?= $baseUrl ?>assets/css/styles.css">
-    
+    <style>
+        .h-15 {
+            height: 4.5rem !important;
+        }
+    </style>
     <script>
         tailwind.config = {
             theme: {

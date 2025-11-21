@@ -7,8 +7,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-                <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent" aria-label="Verba Stream Home">
-                    <?= $appName; ?>
+                <a href="<?= $baseUrl ?>" class="flex items-center gap-3 text-2xl font-bold" style="color: #1db3ff;" aria-label="Verba Stream Home">
+                    <img src="<?= $baseUrl ?>assets/images/logo.png" alt="Verba Stream Logo" class="h-15 w-auto">
+                    <span><?= $appName; ?></span>
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
