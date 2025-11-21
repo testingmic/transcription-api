@@ -14,7 +14,7 @@ class Email extends BaseConfig
     /**
      * The "from" name.
      */
-    public string $fromName = 'verbaStream.com';
+    public string $fromName = 'VerbaStream.com';
 
     /**
      * The "to" email address.
