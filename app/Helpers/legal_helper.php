@@ -152,7 +152,7 @@ function privacyPolicy() {
             ],
             [
                 'heading' => '6. Your Rights',
-                'text' => 'You have the following rights regarding your personal information. To exercise these rights, please contact us at privacy@'.$appName.' or use our Data Deletion Request page:',
+                'text' => 'You have the following rights regarding your personal information. To exercise these rights, please contact us at privacy@verbastream.com or use our Data Deletion Request page:',
                 'items' => [
                     'Access: Request access to your personal data',
                     'Correction: Request correction of inaccurate or incomplete data',

@@ -175,7 +175,7 @@
                     <li><strong>Data Processing:</strong> Object to or restrict certain processing of your data</li>
                 </ul>
                 <p class="text-gray-700">
-                    To exercise these rights, please contact us at <a href="mailto:privacy@<?= $appName; ?>" data-copy-email="privacy@<?= $appName; ?>" class="text-blue-800 hover:underline">privacy@<?= $appName; ?></a> or use our 
+                    To exercise these rights, please contact us at <a href="mailto:privacy@verbastream.com" data-copy-email="privacy@verbastream.com" class="text-blue-800 hover:underline">privacy@verbastream.com</a> or use our 
                     <a href="<?= $baseUrl ?>data-deletion" class="text-blue-800 hover:underline">Data Deletion Request</a> page.
                 </p>
             </section>
