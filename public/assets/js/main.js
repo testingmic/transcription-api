@@ -7,7 +7,9 @@ function initMobileMenu() {
     
     if (menuBtn && menu) {
         menuBtn.addEventListener('click', function() {
+            const isHidden = menu.classList.contains('hidden');
             menu.classList.toggle('hidden');
+            menuBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
             // Animate hamburger icon
             const icon = menuBtn.querySelector('svg');
             if (icon) {
@@ -269,6 +271,161 @@ function initLazyLoading() {
     }
 }
 
+// Contact form handler
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const messageField = document.getElementById('message');
+    const charCount = document.getElementById('char-count');
+    
+    if (!form) return;
+    
+    // Character counter
+    if (messageField && charCount) {
+        messageField.addEventListener('input', function() {
+            const count = this.value.length;
+            charCount.textContent = `${count} / 2000 characters`;
+        });
+    }
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const submitLoading = document.getElementById('submit-loading');
+        const formError = document.getElementById('form-error');
+        const successMessage = document.getElementById('success-message');
+        
+        // Reset errors
+        formError.classList.add('hidden');
+        document.querySelectorAll('.text-red-600').forEach(el => {
+            el.classList.add('hidden');
+        });
+        
+        // Get form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // Basic validation
+        let hasErrors = false;
+        if (!data.name || data.name.length < 2) {
+            showFieldError('name', 'Name must be at least 2 characters');
+            hasErrors = true;
+        }
+        if (!data.email || !isValidEmail(data.email)) {
+            showFieldError('email', 'Please enter a valid email address');
+            hasErrors = true;
+        }
+        if (!data.subject) {
+            showFieldError('subject', 'Please select a subject');
+            hasErrors = true;
+        }
+        if (!data.message || data.message.length < 10) {
+            showFieldError('message', 'Message must be at least 10 characters');
+            hasErrors = true;
+        }
+        
+        if (hasErrors) return;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitText.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+        
+        // Submit form
+        fetch(`${baseUrl}contact`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                form.reset();
+                if (charCount) charCount.textContent = '0 / 2000 characters';
+                successMessage.classList.remove('hidden');
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                showFormError(data.message || 'An error occurred. Please try again.');
+            }
+        })
+        .catch(error => {
+            showFormError('Network error. Please check your connection and try again.');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitText.classList.remove('hidden');
+            submitLoading.classList.add('hidden');
+        });
+    });
+}
+
+function showFieldError(fieldName, message) {
+    const errorEl = document.getElementById(`${fieldName}-error`);
+    if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+    }
+}
+
+// Newsletter form handler
+function initNewsletterForm() {
+    const form = document.getElementById('newsletter-form');
+    if (!form) return;
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        
+        if (!isValidEmail(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // TODO: Implement newsletter subscription API call
+        alert('Thank you for subscribing!');
+        form.reset();
+    });
+}
+
+// Cookie consent handler
+function initCookieConsent() {
+    const consentBanner = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+    
+    if (!consentBanner) return;
+    
+    // Check if user has already made a choice
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent) {
+        return; // Don't show banner if choice already made
+    }
+    
+    // Show banner after a short delay
+    setTimeout(() => {
+        consentBanner.classList.remove('hidden');
+    }, 1000);
+    
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            consentBanner.classList.add('hidden');
+        });
+    }
+    
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'declined');
+            consentBanner.classList.add('hidden');
+        });
+    }
+}
+
+
 // Initialize all features when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
@@ -277,6 +434,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initFAQ();
     initDataDeletionForm();
+    initContactForm();
+    initNewsletterForm();
+    initCookieConsent();
     initCopyEmail();
     initLazyLoading();
     

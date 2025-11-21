@@ -10,6 +10,9 @@ $routes->get("/", [HomeController::class, "index"]);
 $routes->get("/privacy", [HomeController::class, "privacy"]);
 $routes->get("/terms", [HomeController::class, "terms"]);
 $routes->get("/data-deletion", [HomeController::class, "dataDeletion"]);
+$routes->get("/pricing", [HomeController::class, "pricing"]);
+$routes->get("/contact", [HomeController::class, "contact"]);
+$routes->post("/contact", [HomeController::class, "contactSubmit"]);
 
 // Handle 404 errors and pass URL segments to BaseRoute::routing
 $routes->set404Override("\App\Controllers\BaseRoute::control");

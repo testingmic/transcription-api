@@ -1,23 +1,27 @@
 
+<!-- Skip to main content link for accessibility -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-800 focus:text-white focus:rounded-lg">Skip to main content</a>
+
 <!-- Navigation -->
-<nav id="navbar" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200/50 transition-all duration-300">
+<nav id="navbar" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200/50 transition-all duration-300" role="navigation" aria-label="Main navigation">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-                <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
+                <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent" aria-label="Verba Stream Home">
                     <?= $appName; ?>
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
-                <a href="#features" class="text-gray-700 hover:text-blue-800 transition font-medium">Features</a>
-                <a href="#how-it-works" class="text-gray-700 hover:text-blue-800 transition font-medium">How It Works</a>
-                <a href="#testimonials" class="text-gray-700 hover:text-blue-800 transition font-medium">Reviews</a>
-                <a href="#faq" class="text-gray-700 hover:text-blue-800 transition font-medium">FAQ</a>
-                <a href="<?= $baseUrl ?>privacy" class="text-gray-700 hover:text-blue-800 transition font-medium">Privacy</a>
+                <a href="#features" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Features</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">How It Works</a>
+                <a href="<?= $baseUrl ?>pricing" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Pricing</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Reviews</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">FAQ</a>
+                <a href="<?= $baseUrl ?>contact" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Contact</a>
             </div>
             <div class="md:hidden">
-                <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-800 transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-800 transition focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded p-2" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
@@ -25,24 +29,25 @@
         </div>
     </div>
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200">
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200" role="menu">
         <div class="px-4 pt-2 pb-3 space-y-1">
-            <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Features</a>
-            <a href="#how-it-works" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">How It Works</a>
-            <a href="#testimonials" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Reviews</a>
-            <a href="#faq" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">FAQ</a>
-            <a href="<?= $baseUrl ?>privacy" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Privacy</a>
+            <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-800" role="menuitem">Features</a>
+            <a href="#how-it-works" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-800" role="menuitem">How It Works</a>
+            <a href="<?= $baseUrl ?>pricing" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-800" role="menuitem">Pricing</a>
+            <a href="#testimonials" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-800" role="menuitem">Reviews</a>
+            <a href="#faq" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-800" role="menuitem">FAQ</a>
+            <a href="<?= $baseUrl ?>contact" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-800" role="menuitem">Contact</a>
         </div>
     </div>
 </nav>
 
 <!-- Hero Section -->
-<section class="gradient-hero text-white py-20 md:py-22 relative overflow-hidden">
-    <!-- Animated background elements -->
-    <div class="absolute inset-0 opacity-20">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full filter blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
-        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-300 rounded-full filter blur-3xl animate-float" style="animation-delay: 3s;"></div>
+<section id="main-content" class="gradient-hero text-white py-20 md:py-22 relative overflow-hidden" aria-label="Hero section">
+    <!-- Enhanced animated background elements - Blue theme -->
+    <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full filter blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full filter blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-blue-300 to-indigo-400 rounded-full filter blur-3xl animate-float" style="animation-delay: 3s;"></div>
     </div>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -56,51 +61,51 @@
                     Fast, accurate, and secure transcription powered by advanced AI. Get your audio transcribed in minutes, not hours.
                 </p>
                 
-                <!-- Key Benefits -->
+                <!-- Enhanced Key Benefits -->
                 <div class="flex flex-wrap gap-4 mb-8 justify-center md:justify-start">
-                    <div class="flex items-center glass-card px-4 py-2 rounded-full">
-                        <svg class="w-5 h-5 text-primary-green mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <div class="flex items-center glass-card px-5 py-3 rounded-full shadow-colored hover:scale-105 transition-transform">
+                        <svg class="w-5 h-5 text-emerald-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="text-gray-800 font-medium">99% Accurate</span>
+                        <span class="text-gray-900 font-semibold">99% Accurate</span>
                     </div>
-                    <div class="flex items-center glass-card px-4 py-2 rounded-full">
-                        <svg class="w-5 h-5 text-primary-blue mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <div class="flex items-center glass-card px-5 py-3 rounded-full shadow-colored hover:scale-105 transition-transform">
+                        <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="text-gray-800 font-medium">Lightning Fast</span>
+                        <span class="text-gray-900 font-semibold">Lightning Fast</span>
                     </div>
-                    <div class="flex items-center glass-card px-4 py-2 rounded-full">
-                        <svg class="w-5 h-5 text-primary-orange mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <div class="flex items-center glass-card px-5 py-3 rounded-full shadow-colored hover:scale-105 transition-transform">
+                        <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="text-gray-800 font-medium">Secure & Private</span>
+                        <span class="text-gray-900 font-semibold">Secure & Private</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column: Stats Card -->
+            <!-- Enhanced Right Column: Stats Card -->
             <div class="fade-in-on-scroll" style="transition-delay: 0.3s;">
-                <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                <div class="bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-colored-lg border border-white/20">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Trusted by Thousands</h3>
                     <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent mb-2">
+                        <div class="text-center p-4 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-md transition-shadow">
+                            <div class="text-4xl font-bold text-blue-700 mb-2">
                                 <?= $totalTranscriptions ?>+
                             </div>
-                            <div class="text-gray-600 text-sm">Transcriptions</div>
+                            <div class="text-gray-700 text-sm font-medium">Transcriptions</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-gray-500 mb-2"><?= $activeUsers ?>+</div>
-                            <div class="text-gray-600 text-sm">Active Users</div>
+                        <div class="text-center p-4 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-50 hover:shadow-md transition-shadow">
+                            <div class="text-4xl font-bold text-blue-600 mb-2"><?= $activeUsers ?>+</div>
+                            <div class="text-gray-700 text-sm font-medium">Active Users</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-gray-500 bg-clip-text  mb-2">99%</div>
-                            <div class="text-gray-600 text-sm">Accuracy Rate</div>
+                        <div class="text-center p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-cyan-50 hover:shadow-md transition-shadow">
+                            <div class="text-4xl font-bold text-emerald-600 mb-2">99%</div>
+                            <div class="text-gray-700 text-sm font-medium">Accuracy Rate</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold bg-gradient-to-r from-primary-blue to-primary-green bg-clip-text text-transparent mb-2">50+</div>
-                            <div class="text-gray-600 text-sm">Languages</div>
+                        <div class="text-center p-4 rounded-xl bg-gradient-to-br from-cyan-50 to-blue-50 hover:shadow-md transition-shadow">
+                            <div class="text-4xl font-bold text-blue-700 mb-2">50+</div>
+                            <div class="text-gray-700 text-sm font-medium">Languages</div>
                         </div>
                     </div>
                 </div>
@@ -119,14 +124,14 @@
             </p>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll">
-                <div class="w-14 h-14 gradient-primary rounded-xl flex items-center justify-center mb-6 icon-bounce">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="feature-card glass-card p-8 rounded-2xl card-hover fade-in-on-scroll border border-gray-100">
+                <div class="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-colored">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Real-Time Transcription</h3>
-                <p class="text-gray-600">Get instant transcriptions as you speak. No waiting, no delays - just pure speed.</p>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Real-Time Transcription</h3>
+                <p class="text-gray-600 leading-relaxed">Get instant transcriptions as you speak. No waiting, no delays - just pure speed.</p>
             </div>
             
             <div class="feature-card glass-card p-8 rounded-xl card-hover fade-in-on-scroll" style="transition-delay: 0.2s;">
@@ -391,18 +396,29 @@
             Download <?= $appName; ?> mobile app and start transcribing your audio files today.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#" class="btn-primary glass-card text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition shadow-xl inline-flex items-center justify-center">
-                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <a href="https://apps.apple.com/app/verba-stream" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn-primary glass-card text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition shadow-xl inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800"
+               aria-label="Download Verba Stream on the App Store">
+                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M17.05 20.28c-.98.95-2.05.88-3.08.33-1.09-.58-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.33C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                 </svg>
                 App Store
             </a>
-            <a href="#" class="btn-primary glass-card text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition shadow-xl inline-flex items-center justify-center">
-                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <a href="https://play.google.com/store/apps/details?id=com.verbastream" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn-primary glass-card text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition shadow-xl inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800"
+               aria-label="Download Verba Stream on Google Play">
+                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                 </svg>
                 Google Play
             </a>
         </div>
+        <p class="mt-4 text-sm text-white/80">
+            <a href="<?= $baseUrl ?>pricing" class="underline hover:text-white transition">View pricing plans</a> or <a href="<?= $baseUrl ?>contact" class="underline hover:text-white transition">contact us</a> for enterprise solutions
+        </p>
     </div>
 </section>

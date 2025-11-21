@@ -1,18 +1,20 @@
 
 <!-- Navigation -->
-<nav id="navbar" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200/50 transition-all duration-300">
+<nav id="navbar" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200/50 transition-all duration-300" role="navigation" aria-label="Main navigation">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-                <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
+                <a href="<?= $baseUrl ?>" class="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent" aria-label="Verba Stream Home">
                     <?= $appName; ?>
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
-                <a href="<?= $baseUrl ?>" class="text-gray-700 hover:text-blue-800 transition font-medium">Home</a>
-                <a href="<?= $baseUrl ?>privacy" class="text-gray-700 hover:text-blue-800 transition font-medium">Privacy</a>
-                <a href="<?= $baseUrl ?>terms" class="text-gray-700 hover:text-blue-800 transition font-medium">Terms</a>
-                <a href="<?= $baseUrl ?>data-deletion" class="text-blue-800 font-semibold">Data Deletion</a>
+                <a href="<?= $baseUrl ?>" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Home</a>
+                <a href="<?= $baseUrl ?>pricing" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Pricing</a>
+                <a href="<?= $baseUrl ?>contact" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Contact</a>
+                <a href="<?= $baseUrl ?>privacy" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Privacy</a>
+                <a href="<?= $baseUrl ?>terms" class="text-gray-700 hover:text-blue-800 transition font-medium focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 rounded">Terms</a>
+                <a href="<?= $baseUrl ?>data-deletion" class="text-blue-800 font-semibold" aria-current="page">Data Deletion</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-800 transition">
@@ -31,6 +33,21 @@
             <a href="<?= $baseUrl ?>terms" class="block px-3 py-2 text-gray-700 hover:text-blue-800 hover:bg-gray-50 rounded-md transition">Terms</a>
             <a href="<?= $baseUrl ?>data-deletion" class="block px-3 py-2 text-blue-800 font-semibold hover:bg-gray-50 rounded-md transition">Data Deletion</a>
         </div>
+    </div>
+</nav>
+
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="bg-gray-50 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="<?= $baseUrl ?>" class="hover:text-blue-800 transition">Home</a></li>
+            <li aria-hidden="true">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+            </li>
+            <li class="text-gray-900 font-medium" aria-current="page">Data Deletion</li>
+        </ol>
     </div>
 </nav>
 
@@ -206,7 +223,7 @@
                 </svg>
                 <div>
                     <strong class="text-gray-900">Contact Support:</strong>
-                    <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@emmallextech.com" data-copy-email="support@emmallextech.com" class="text-blue-800 hover:underline">support@emmallextech.com</a> - we're here to help!</p>
+                    <p class="text-gray-600 text-sm">Email us at <a href="mailto:support@verbastream.com" data-copy-email="support@verbastream.com" class="text-blue-800 hover:underline">support@verbastream.com</a> - we're here to help!</p>
                 </div>
             </li>
             <li class="flex items-start">
