@@ -259,9 +259,9 @@ class UsersModel extends Model {
      * @param array $data
      * @return array|null
      */
-    public function updateDeleteRequest($user_id, $data) {
+    public function updateDeleteRequest($id, $data) {
         try {
-            return $this->db->table('delete_requests')->where('user_id', $user_id)->update($data);
+            return $this->db->table('delete_requests')->where('id', $id)->update($data);
         } catch(DatabaseException $e) {
             return [];
         }

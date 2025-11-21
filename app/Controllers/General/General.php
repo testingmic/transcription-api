@@ -50,7 +50,7 @@ class General extends LoadController {
         $column = $this->payload['status'] == 'approved' ? 'approved_at' : 'cancelled_at';
 
         // update the status of the request
-        $this->usersModel->updateDeleteRequest($request['user_id'], [
+        $this->usersModel->updateDeleteRequest($request['id'], [
             'status' => $this->payload['status'], $column => date('Y-m-d H:i:s')
         ]);
 

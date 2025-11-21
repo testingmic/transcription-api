@@ -42,7 +42,7 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
     CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);",
 
-    "CREATE TABLE IF NOT EXISTS delete_requests (
+    "DROP TABLE delete_requests;CREATE TABLE IF NOT EXISTS delete_requests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         email VARCHAR(150) NOT NULL,
