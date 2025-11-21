@@ -241,7 +241,7 @@ $databases = [
 ];
 
 $alterTables = [
-    "ALTER TABLE tickets ADD COLUMN request_id INTEGER DEFAULT 0;",
+    // "ALTER TABLE tickets ADD COLUMN request_id INTEGER DEFAULT 0;",
     // "ALTER TABLE users ADD COLUMN monthly_minutes_limit INTEGER DEFAULT 30;",
 ];
 

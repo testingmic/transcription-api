@@ -10,7 +10,7 @@ class TicketsModel extends Model {
     protected $table = 'tickets';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'user_id', 'status', 'type', 'priority', 'subject', 
+        'user_id', 'status', 'type', 'priority', 'subject', 'request_id',
         'description', 'created_at', 'updated_at', 'messages_count'
     ];
 
