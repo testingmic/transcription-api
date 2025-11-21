@@ -98,7 +98,9 @@ class General extends LoadController {
         // check if there is an existing request to delete
         $check = $this->usersModel->getDeleteRequest($user['id']);
         if(!empty($check)) {
-            return Routing::success($this->successMessage);
+            if($check['status'] == 'pending') {
+                return Routing::success($this->successMessage);
+            }
         }
 
         // confirm if the user has a subscription
